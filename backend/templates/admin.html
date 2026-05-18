@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>后台统计 · RAZ入门测试</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: #1f2937; font-size: 14px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      background: #fff; border-bottom: 1px solid #e5e7eb;
+      padding: 0 20px; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo .dot {
+      width: 32px; height: 32px; background: #14b8a6; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 900; color: #fff;
+    }
+    .nav-logo span { font-weight: 800; font-size: 15px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-right a {
+      font-size: 13px; color: #6b7280; text-decoration: none; padding: 6px 12px;
+      border-radius: 8px; transition: background .15s;
+    }
+    .nav-right a:hover { background: #f3f4f6; color: #374151; }
+
+    /* ── Layout ── */
+    .container { max-width: 1300px; margin: 0 auto; padding: 24px 20px; }
+
+    /* ── Stats ── */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card {
+      background: #fff; border-radius: 14px; padding: 18px 22px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-label { font-size: 12px; color: #9ca3af; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+    .stat-value { font-size: 32px; font-weight: 900; margin-top: 4px; }
+    .stat-card.blue .stat-value  { color: #3b82f6; }
+    .stat-card.teal .stat-value  { color: #14b8a6; }
+    .stat-card.green .stat-value { color: #22c55e; }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      background: #fff; border-radius: 14px; padding: 16px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    }
+    .filter-bar select, .filter-bar input[type=text] {
+      padding: 8px 12px; border: 1.5px solid #e5e7eb; border-radius: 8px;
+      font-size: 13px; outline: none; transition: border-color .2s;
+      background: #fff;
+    }
+    .filter-bar select:focus, .filter-bar input:focus { border-color: #14b8a6; }
+    .filter-bar input[type=text] { min-width: 180px; }
+    .btn {
+      padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; border: none; transition: background .15s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary { background: #14b8a6; color: #fff; }
+    .btn-primary:hover { background: #0d9488; }
+    .btn-outline { background: #fff; color: #374151; border: 1.5px solid #d1d5db; }
+    .btn-outline:hover { background: #f9fafb; }
+    .btn-danger { background: #fff; color: #ef4444; border: 1.5px solid #fca5a5; }
+    .btn-danger:hover { background: #fef2f2; }
+    .btn-sm { padding: 4px 10px; font-size: 12px; }
+    .ml-auto { margin-left: auto; }
+
+    /* ── Table ── */
+    .table-wrap {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .table-header {
+      padding: 14px 20px; border-bottom: 1px solid #f3f4f6;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .table-header .count { font-size: 13px; color: #6b7280; }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      padding: 11px 14px; text-align: left;
+      font-size: 11px; font-weight: 700; color: #9ca3af;
+      text-transform: uppercase; letter-spacing: .4px;
+      background: #f9fafb; border-bottom: 1px solid #f3f4f6;
+      white-space: nowrap;
+    }
+    th a { color: inherit; text-decoration: none; }
+    th a:hover { color: #374151; }
+    td {
+      padding: 12px 14px; border-bottom: 1px solid #f9fafb;
+      vertical-align: middle; white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafafa; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block; padding: 3px 9px; border-radius: 20px;
+      font-size: 11px; font-weight: 700;
+    }
+    .badge-teal   { background: #ccfbf1; color: #0f766e; }
+    .badge-green  { background: #dcfce7; color: #15803d; }
+    .badge-red    { background: #fee2e2; color: #dc2626; }
+    .badge-yellow { background: #fef3c7; color: #92400e; }
+    .score-high { color: #15803d; font-weight: 800; font-size: 15px; }
+    .score-low  { color: #dc2626; font-weight: 800; font-size: 15px; }
+    .skills     { color: #6b7280; font-size: 12px; }
+    .wrong-list { color: #d97706; font-size: 12px; }
+
+    /* ── Empty state ── */
+    .empty { padding: 60px; text-align: center; color: #9ca3af; }
+    .empty .icon { font-size: 40px; margin-bottom: 12px; }
+
+    /* ── Modal ── */
+    .modal-bg {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.45); z-index: 100;
+      align-items: center; justify-content: center;
+    }
+    .modal-bg.open { display: flex; }
+    .modal {
+      background: #fff; border-radius: 16px; padding: 28px; max-width: 380px; width: 90%;
+      box-shadow: 0 8px 40px rgba(0,0,0,.15);
+    }
+    .modal h3 { margin: 0 0 8px; font-size: 17px; }
+    .modal p  { margin: 0 0 20px; color: #6b7280; font-size: 13px; line-height: 1.6; }
+    .modal-btns { display: flex; gap: 10px; }
+    .modal-btns button { flex: 1; padding: 11px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; }
+    .modal-cancel  { background: #f3f4f6; color: #374151; }
+    .modal-confirm { background: #ef4444; color: #fff; }
+
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      th, td { padding: 10px 10px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="dot">R</div>
+    <span>RAZ后台统计</span>
+  </div>
+  <div class="nav-right">
+    <a href="/admin/logout">退出登录</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card blue">
+      <div class="stat-label">总提交数</div>
+      <div class="stat-value">{{ total }}</div>
+    </div>
+    <div class="stat-card teal">
+      <div class="stat-label">平均分</div>
+      <div class="stat-value">{{ avg_score }}</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">通过率</div>
+      <div class="stat-value">{{ pass_rate }}%</div>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <form method="get" action="/admin">
+    <div class="filter-bar">
+      <select name="level">
+        <option value="">全部级别</option>
+        {% for lv in levels %}
+        <option value="{{ lv }}" {% if lv == current_level %}selected{% endif %}>{{ lv }}级别</option>
+        {% endfor %}
+      </select>
+
+      <input type="text" name="search" value="{{ search }}" placeholder="搜索微信名…">
+
+      <button type="submit" class="btn btn-primary">查询</button>
+      {% if search or current_level %}
+      <a href="/admin" class="btn btn-outline">清除</a>
+      {% endif %}
+
+      <div class="ml-auto" style="display:flex;gap:8px;">
+        <a href="/admin/export?level={{ current_level }}&search={{ search }}" class="btn btn-outline">
+          ⬇ 导出 CSV
+        </a>
+        <button type="button" class="btn btn-danger" onclick="document.getElementById('clearModal').classList.add('open')">
+          🗑 清空数据
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <div class="table-header">
+      <span class="count">共 <strong>{{ rows|length }}</strong> 条记录</span>
+    </div>
+
+    {% if rows %}
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><a href="?level={{ current_level }}&search={{ search }}&sort=submitted_at&order={{ 'asc' if sort=='submitted_at' and order=='desc' else 'desc' }}">提交时间</a></th>
+            <th><a href="?level={{ current_level }}&search={{ search }}&sort=student_name&order={{ 'asc' if sort=='student_name' and order=='desc' else 'desc' }}">微信名</a></th>
+            <th>级别</th>
+            <th><a href="?level={{ current_level }}&search={{ search }}&sort=score&order={{ 'asc' if sort=='score' and order=='desc' else 'desc' }}">分数</a></th>
+            <th><a href="?level={{ current_level }}&search={{ search }}&sort=correct_count&order={{ 'asc' if sort=='correct_count' and order=='desc' else 'desc' }}">答对</a></th>
+            <th>错题</th>
+            <th>判断</th>
+            <th>薄弱能力</th>
+            <th>虚构</th>
+            <th>非虚构</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td style="color:#6b7280;font-size:12px;">{{ r.submitted_at }}</td>
+            <td><strong>{{ r.student_name }}</strong></td>
+            <td><span class="badge badge-teal">{{ r.level_id }}级</span></td>
+            <td>
+              <span class="{{ 'score-high' if r.score >= 80 else 'score-low' }}">{{ r.score }}</span>
+            </td>
+            <td style="color:#374151;">{{ r.correct_count }} / {{ r.correct_count + r.wrong_questions|length }}</td>
+            <td class="wrong-list">
+              {% if r.wrong_questions %}
+                {{ r.wrong_questions | map(attribute='id') | map('string') | map('prepend','Q') | join('、') }}
+              {% else %}
+                <span style="color:#22c55e;">全对</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if r.passed %}
+              <span class="badge badge-green">通过</span>
+              {% else %}
+              <span class="badge badge-red">未通过</span>
+              {% endif %}
+            </td>
+            <td class="skills">{{ r.weak_skills | join(' / ') or '—' }}</td>
+            <td style="text-align:center;">{{ r.fiction_wrong }}</td>
+            <td style="text-align:center;">{{ r.nonfiction_wrong }}</td>
+            <td>
+              <form method="post" action="/admin/delete/{{ r.id }}"
+                    onsubmit="return confirm('确认删除这条记录？')">
+                <button type="submit" class="btn btn-danger btn-sm">删除</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty">
+      <div class="icon">📋</div>
+      <div>暂无记录</div>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+
+<!-- Clear modal -->
+<div class="modal-bg" id="clearModal">
+  <div class="modal">
+    <h3>⚠️ 确认清空所有数据？</h3>
+    <p>此操作将永久删除数据库中所有 {{ total }} 条测试记录，无法恢复。</p>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="document.getElementById('clearModal').classList.remove('open')">取消</button>
+      <form method="post" action="/admin/clear" style="flex:1;">
+        <button type="submit" class="modal-confirm" style="width:100%;">确认清空</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
