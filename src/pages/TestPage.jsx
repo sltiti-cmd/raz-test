@@ -13,6 +13,7 @@ import QuestionCard from '../components/QuestionCard'
 import BatchInput from '../components/BatchInput'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
+import { openPrintPdf } from '../utils/printPdf'
 
 const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO }
 
@@ -112,6 +113,7 @@ export default function TestPage() {
   const [nameInput,     setNameInput]     = useState('')
   const [nameErr,       setNameErr]       = useState('')
   const [unanswered,    setUnanswered]    = useState([])
+  const [showPdfHint,   setShowPdfHint]   = useState(true)
 
   if (!levelData) {
     return <UnknownLevel levelId={levelId} />
@@ -188,10 +190,7 @@ export default function TestPage() {
     showToast(`已填入 ${tokens.length} 题答案`)
   }
 
-  const handlePrint = () => {
-    if (levelData.printPdf) window.open(levelData.printPdf, '_blank')
-    else window.print()
-  }
+  const handlePrint = () => openPrintPdf(levelData)
 
   return (
     <div className="min-h-screen bg-cream-100">
@@ -220,10 +219,11 @@ export default function TestPage() {
                 </span>
                 <button
                   onClick={handlePrint}
-                  className="hidden sm:block text-xs bg-gray-100 hover:bg-gray-200 text-gray-600
-                             px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap no-print"
+                  className="min-h-[36px] text-xs bg-teal-50 hover:bg-teal-100 text-teal-700
+                             border border-teal-200 px-3 py-1.5 rounded-lg transition-colors
+                             whitespace-nowrap no-print font-black"
                 >
-                  🖨 打印
+                  📄 PDF试卷
                 </button>
               </div>
             </div>
@@ -260,6 +260,30 @@ export default function TestPage() {
 
         {/* ── Main layout ── */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
+          {showPdfHint && (
+            <div className="mb-4 rounded-2xl border border-teal-200 bg-white p-3 sm:p-4 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-end">
+                <div className="flex flex-col sm:flex-row gap-2 sm:flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setShowPdfHint(false)}
+                    className="min-h-[44px] px-4 rounded-xl bg-teal-500 hover:bg-teal-600
+                               text-white text-sm font-black transition-colors"
+                  >
+                    继续在线做题
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handlePrint}
+                    className="min-h-[44px] px-4 rounded-xl border border-teal-200 bg-teal-50
+                               hover:bg-teal-100 text-teal-700 text-sm font-black transition-colors"
+                  >
+                    📄 下载PDF试卷
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="flex flex-col md:flex-row gap-4 items-start">
 
             {/* ── Col 1: Question number sidebar (desktop only) ── */}
