@@ -2,6 +2,7 @@ import { placementB } from './b'
 import { placementC } from './c'
 import { placementE } from './e'
 import { placementF } from './f'
+import { placementH } from './h'
 import { placementI } from './i'
 import { placementJ } from './j'
 import { placementL } from './l'
@@ -15,6 +16,7 @@ export const placements = {
   C: placementC,
   E: placementE,
   F: placementF,
+  H: placementH,
   I: placementI,
   J: placementJ,
   L: placementL,
@@ -24,4 +26,7 @@ export const placements = {
   Q: placementQ,
 }
 
-export const placementList = [placementB, placementC, placementE, placementF, placementI, placementJ, placementL, placementM, placementN, placementP, placementQ]
+export const placementList = [placementB, placementC, placementE, placementF, placementH, placementI, placementJ, placementL, placementM, placementN, placementP, placementQ]
+
+export const placementLevels = placements
+export const placementLevelList = placementList

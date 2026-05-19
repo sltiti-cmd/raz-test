@@ -16,6 +16,29 @@ import { useToast } from '../hooks/useToast'
 
 const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO }
 
+function UnknownLevel({ levelId }) {
+  const displayLevel = (levelId || '').toUpperCase()
+
+  return (
+    <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
+      <div className="text-center max-w-sm">
+        <div className="text-5xl mb-4">?</div>
+        <h2 className="text-xl font-black text-gray-700 mb-2">
+          级别暂未开放
+        </h2>
+        <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+          {displayLevel ? `${displayLevel}级别暂未接入升级测试，` : ''}请返回选择页面。
+        </p>
+        <Link to="/"
+          className="inline-block px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-600
+                     text-white font-black transition-colors">
+          返回升级测试大厅
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 // ─── Print-only view ──────────────────────────────────────────────────────────
 function PrintContent({ levelData }) {
   const total = levelData.passages.reduce((n, p) => n + p.questions.length, 0)
@@ -78,7 +101,7 @@ function QNumBtn({ q, idx, currentIdx, answered, onClick }) {
 export default function TestPage() {
   const { levelId } = useParams()
   const navigate    = useNavigate()
-  const levelData   = LEVELS[levelId?.toLowerCase()] || levelA
+  const levelData   = LEVELS[levelId?.toLowerCase()]
   const { toast, showToast } = useToast()
 
   const [answers,       setAnswers]       = useState({})
@@ -89,6 +112,10 @@ export default function TestPage() {
   const [nameInput,     setNameInput]     = useState('')
   const [nameErr,       setNameErr]       = useState('')
   const [unanswered,    setUnanswered]    = useState([])
+
+  if (!levelData) {
+    return <UnknownLevel levelId={levelId} />
+  }
 
   const isHighLevel     = ['G', 'K', 'O'].includes(levelData.id)
   const allQuestions    = levelData.passages.flatMap(p => p.questions.map(q => ({ ...q, passage: p })))
