@@ -20,7 +20,7 @@ export default function BatchInput({ totalQuestions, onFill }) {
 
   return (
     <div className="bg-purple-50 border border-purple-200 rounded-2xl p-5">
-      <h4 className="font-bold text-purple-800 mb-1">📝 批量录入答案</h4>
+      <h4 className="font-bold text-purple-800 mb-1">📝 批量输入答案</h4>
       <p className="text-xs text-purple-600 mb-3">
         直接输入 {totalQuestions} 个答案字母，连续输入即可。
         <br />

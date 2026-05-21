@@ -1,5 +1,9 @@
 export default function LevelCard({ level, onClick, onPdfClick, theme = 'teal' }) {
   const isOpen = level.status === 'open'
+  const lowLevelIds = ['A', 'B', 'C', 'D', 'E', 'F']
+  const readingRule = lowLevelIds.includes(level.id)
+    ? '题干个别生词可看中文提示；文章和选项不读、不解释。'
+    : '独立阅读文章和选项，不翻译、不解释。'
   const isPurple = theme === 'purple'
   const accentText = isPurple ? 'text-purple-600' : 'text-teal-600'
   const accentBorder = isPurple ? 'border-purple-200' : 'border-teal-200'
@@ -30,11 +34,13 @@ export default function LevelCard({ level, onClick, onPdfClick, theme = 'teal' }
           {level.id}
         </div>
         <div className="text-sm font-bold text-gray-700 mb-1">{level.name}</div>
-        {level.desc && (
-          <div className="text-xs text-gray-400 mb-3">{level.desc}</div>
-        )}
+        <div className="text-xs text-gray-500 leading-relaxed mb-3 space-y-1">
+          <p className="font-bold text-gray-500">4篇文章 · 20题 · 每题5分 · 约20分钟</p>
+          <p>请孩子自主认读完成。</p>
+          <p className="text-gray-400">{readingRule}</p>
+        </div>
 
-        <div className="mt-4 flex flex-col gap-2">
+        <div className="mt-3 flex flex-col gap-2">
           <button
             type="button"
             onClick={onClick}

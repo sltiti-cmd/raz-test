@@ -3,7 +3,8 @@ import { forwardRef } from 'react'
 const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResult, levelId, testType }, ref) {
   const testLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ升级测试'
   const { score, correctCount, total, wrongQuestions, skillCounts,
-          fictionWrong, nonfictionWrong, passed } = gradingResult
+          fictionWrong, nonfictionWrong, durationText } = gradingResult
+  const canReadLevel = score >= 80
 
   const sortedSkills = Object.entries(skillCounts).sort((a, b) => b[1] - a[1])
   const topSkills    = sortedSkills.slice(0, 2).map(([s]) => s)
@@ -22,9 +23,9 @@ const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResu
         ? `非虚构文章错${nonfictionWrong}题，事实提取和概念识别需加强。`
         : `两类文章各错${fictionWrong}题，均需进一步巩固。`
 
-  const suggestions = passed
-    ? ['每天坚持朗读英文短文', '可以尝试挑战下一个级别', '扩大词汇量，多读多练']
-    : ['多读短句，每天坚持朗读', '看清题目关键词，读完再选', '练习数字、动作、场景类词汇', '跟着老师做图文配对练习']
+  const suggestions = canReadLevel
+    ? ['可以继续读该级别', '复盘少量错题，确认题干和选项理解', '保持每天阅读，稳定推进']
+    : ['建议先降级巩固', '补足基础词汇和句子理解', '再挑战当前级别']
 
   // ── Inline styles for html2canvas capture ──────────────────────
   const root = {
@@ -67,12 +68,12 @@ const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResu
 
       {/* ── Score ── */}
       <div style={{
-        ...section(passed ? '#f0fdf9' : '#fff7ed', passed ? '#99f6e4' : '#fdba74'),
+        ...section(canReadLevel ? '#f0fdf9' : '#fff7ed', canReadLevel ? '#99f6e4' : '#fdba74'),
         display: 'flex', alignItems: 'center', gap: '20px',
       }}>
         <div style={{ textAlign: 'center', flexShrink: 0 }}>
           <div style={{ fontSize: '60px', fontWeight: 900, lineHeight: 1,
-                        color: passed ? '#0f766e' : '#ea580c',
+                        color: canReadLevel ? '#0f766e' : '#ea580c',
                         fontFamily: "'JetBrains Mono', monospace" }}>
             {score}
           </div>
@@ -82,13 +83,18 @@ const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResu
           <div style={{ fontSize: '13px', color: '#4b5563', marginBottom: '6px', fontWeight: 600 }}>
             答对：<strong>{correctCount}</strong> / {total} 题
           </div>
+          {durationText && (
+            <div style={{ fontSize: '13px', color: '#4b5563', marginBottom: '6px', fontWeight: 600 }}>
+              用时 ➭ {durationText}
+            </div>
+          )}
           <div style={{
             display: 'inline-block',
-            background: passed ? '#14b8a6' : '#f97316',
+            background: canReadLevel ? '#14b8a6' : '#f97316',
             color: 'white', borderRadius: '20px',
             padding: '5px 16px', fontSize: '13px', fontWeight: 800,
           }}>
-            {passed ? `✅ 可以读${levelId}级` : `📖 建议继续巩固${levelId}级`}
+            {canReadLevel ? `✅ 可以读${levelId}级别` : '📖 建议降级巩固'}
           </div>
         </div>
       </div>

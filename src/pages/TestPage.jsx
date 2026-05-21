@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import levelA from '../data/levels/a'
 import levelC from '../data/levels/c'
@@ -14,6 +14,7 @@ import BatchInput from '../components/BatchInput'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 import { openPrintPdf } from '../utils/printPdf'
+import { formatDurationText, formatTimer } from '../utils/testTiming'
 
 const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO }
 
@@ -113,7 +114,17 @@ export default function TestPage() {
   const [nameInput,     setNameInput]     = useState('')
   const [nameErr,       setNameErr]       = useState('')
   const [unanswered,    setUnanswered]    = useState([])
-  const [showPdfHint,   setShowPdfHint]   = useState(true)
+  const [startedAt]                       = useState(() => Date.now())
+  const [durationSeconds, setDurationSeconds] = useState(0)
+  const [timerStopped, setTimerStopped]   = useState(false)
+
+  useEffect(() => {
+    if (!levelData || timerStopped) return undefined
+    const tick = () => setDurationSeconds(Math.floor((Date.now() - startedAt) / 1000))
+    tick()
+    const timer = window.setInterval(tick, 1000)
+    return () => window.clearInterval(timer)
+  }, [levelData, startedAt, timerStopped])
 
   if (!levelData) {
     return <UnknownLevel levelId={levelId} />
@@ -151,6 +162,10 @@ export default function TestPage() {
     }
 
     const result     = gradeTest(levelData, answers)
+    const finalDurationSeconds = Math.floor((Date.now() - startedAt) / 1000)
+    const finalDurationText = formatDurationText(finalDurationSeconds)
+    setDurationSeconds(finalDurationSeconds)
+    setTimerStopped(true)
     const weakSkills = Object.entries(result.skillCounts)
       .sort((a, b) => b[1] - a[1]).slice(0, 2).map(([s]) => s)
 
@@ -167,6 +182,8 @@ export default function TestPage() {
       weakSkills,
       fictionWrong: result.fictionWrong,
       nonfictionWrong: result.nonfictionWrong,
+      durationSeconds: finalDurationSeconds,
+      durationText: finalDurationText,
       notes: '',
     }
 
@@ -179,7 +196,13 @@ export default function TestPage() {
       body: JSON.stringify(submission),
     }).catch(() => {})
 
-    navigate('/result', { state: { result, studentInfo, levelId: levelData.id } })
+    navigate('/result', {
+      state: {
+        result: { ...result, durationSeconds: finalDurationSeconds, durationText: finalDurationText },
+        studentInfo,
+        levelId: levelData.id,
+      },
+    })
   }
 
   const handleBatchFill = (tokens) => {
@@ -260,30 +283,37 @@ export default function TestPage() {
 
         {/* ── Main layout ── */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
-          {showPdfHint && (
-            <div className="mb-4 rounded-2xl border border-teal-200 bg-white p-3 sm:p-4 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-end">
-                <div className="flex flex-col sm:flex-row gap-2 sm:flex-shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setShowPdfHint(false)}
-                    className="min-h-[44px] px-4 rounded-xl bg-teal-500 hover:bg-teal-600
-                               text-white text-sm font-black transition-colors"
-                  >
-                    继续在线做题
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handlePrint}
-                    className="min-h-[44px] px-4 rounded-xl border border-teal-200 bg-teal-50
-                               hover:bg-teal-100 text-teal-700 text-sm font-black transition-colors"
-                  >
-                    📄 下载PDF试卷
-                  </button>
+          <div className="mb-4 rounded-2xl border border-teal-200 bg-white p-4 sm:p-5 shadow-sm">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:justify-between">
+              <div className="min-w-0">
+                <h2 className="text-base font-black text-gray-800 mb-1">测试说明</h2>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  4篇文章20题，约20分钟。可打开PDF记录答案，也可以直接在线答题。
+                </p>
+                <div className="mt-2 inline-flex items-center rounded-full bg-teal-50 px-3 py-1 text-sm font-black text-teal-700">
+                  已用时：{formatTimer(durationSeconds)}
                 </div>
               </div>
+              <div className="flex flex-col sm:flex-row gap-2 lg:flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="min-h-[44px] px-4 rounded-xl border border-teal-200 bg-teal-50
+                             hover:bg-teal-100 text-teal-700 text-sm font-black transition-colors"
+                >
+                  📄 下载PDF试卷
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowBatch(v => !v)}
+                  className="min-h-[44px] px-4 rounded-xl bg-purple-600 hover:bg-purple-700
+                             text-white text-sm font-black transition-colors"
+                >
+                  📝 批量输入答案
+                </button>
+              </div>
             </div>
-          )}
+          </div>
           <div className="flex flex-col md:flex-row gap-4 items-start">
 
             {/* ── Col 1: Question number sidebar (desktop only) ── */}
@@ -370,7 +400,7 @@ export default function TestPage() {
                       ? 'bg-purple-600 border-purple-600 text-white'
                       : 'bg-purple-50 border-purple-200 text-purple-700 hover:bg-purple-100'}`}
                 >
-                  📝 批量录入
+                  📝 批量输入答案
                 </button>
                 {answeredCount > 0 && (
                   <button

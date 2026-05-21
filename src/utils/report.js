@@ -9,8 +9,9 @@ export function generateReportText(studentInfo, gradingResult, levelId, testType
     skillCounts,
     fictionWrong,
     nonfictionWrong,
-    passed,
+    durationText,
   } = gradingResult
+  const canReadLevel = score >= 80
 
   const wrongList = wrongQuestions.map((q) => `Q${q.id}`).join('、')
   const wrongAnswerLines = wrongQuestions
@@ -31,7 +32,7 @@ export function generateReportText(studentInfo, gradingResult, levelId, testType
 
   let textureAnalysis = ''
   if (fictionWrong === 0 && nonfictionWrong === 0) {
-    textureAnalysis = '虚构和非虚构文章均全部答对，文体理解能力优秀！'
+    textureAnalysis = '虚构和非虚构文章均全部答对。'
   } else if (fictionWrong > nonfictionWrong) {
     textureAnalysis = `虚构类错题较多（${fictionWrong}题）：说明故事情节、人物动作和顺序理解还需加强。`
   } else if (nonfictionWrong > fictionWrong) {
@@ -40,17 +41,16 @@ export function generateReportText(studentInfo, gradingResult, levelId, testType
     textureAnalysis = `虚构错题${fictionWrong}题，非虚构错题${nonfictionWrong}题，两种文体表现较为均衡。`
   }
 
-  const suggestions = passed
+  const suggestions = canReadLevel
     ? [
-        '继续保持阅读习惯，每天朗读短文',
-        '可以尝试挑战下一个级别',
-        '多练习词汇，扩大词汇量',
+        `可以继续读${levelId}级别`,
+        '复盘少量错题，确认题干和选项理解',
+        '保持每天阅读，稳定推进',
       ]
     : [
-        '多读短句，每天坚持朗读',
-        '看清题目关键词，读完再选，不要着急',
-        '练习数字、动作、场景类词汇',
-        '跟着老师做图文配对练习',
+        '建议先降级巩固',
+        '补足基础词汇和句子理解',
+        '再挑战当前级别',
       ]
 
   const wrongSection =
@@ -64,7 +64,7 @@ export function generateReportText(studentInfo, gradingResult, levelId, testType
 🎯 成绩速览
 卷面得分：${score} / 100
 正确题数：${correctCount} / ${total}
-阅读判断：${passed ? `✅ 可以读${levelId}级` : `📖 建议继续巩固${levelId}级`}
+${durationText ? `用时 ➭ ${durationText}\n` : ''}阅读判断：${canReadLevel ? `✅ 可以读${levelId}级别` : '📖 建议降级巩固'}
 
 📊 错题情况
 ${wrongSection}

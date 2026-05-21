@@ -23,7 +23,10 @@ CORS(app, origins=[
 ], supports_credentials=True)
 
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "stacey2024")
-DB_PATH = os.path.join(os.path.dirname(__file__), "submissions.db")
+DB_PATH = os.environ.get(
+    "RAZ_DB_PATH",
+    os.path.join(os.path.dirname(__file__), "submissions.db"),
+)
 
 
 # ── Database ─────────────────────────────────────────────────────────────────
@@ -53,6 +56,13 @@ def init_db():
             created_at     TEXT DEFAULT (datetime('now','localtime'))
         )
     """)
+    existing_columns = {
+        row["name"] for row in conn.execute("PRAGMA table_info(submissions)").fetchall()
+    }
+    if "duration_seconds" not in existing_columns:
+        conn.execute("ALTER TABLE submissions ADD COLUMN duration_seconds INTEGER")
+    if "duration_text" not in existing_columns:
+        conn.execute("ALTER TABLE submissions ADD COLUMN duration_text TEXT")
     conn.commit()
     conn.close()
 
@@ -77,8 +87,9 @@ def api_submit():
     conn.execute("""
         INSERT INTO submissions
           (submitted_at, student_name, level_id, score, correct_count,
-           wrong_questions, passed, weak_skills, fiction_wrong, nonfiction_wrong, notes)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?)
+           wrong_questions, passed, weak_skills, fiction_wrong, nonfiction_wrong,
+           duration_seconds, duration_text, notes)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
     """, (
         data.get("submittedAt"),
         data.get("studentName"),
@@ -90,6 +101,8 @@ def api_submit():
         json.dumps(data.get("weakSkills", []), ensure_ascii=False),
         data.get("fictionWrong", 0),
         data.get("nonfictionWrong", 0),
+        data.get("durationSeconds"),
+        data.get("durationText"),
         data.get("notes", ""),
     ))
     conn.commit()
@@ -192,13 +205,14 @@ def export_csv():
 
     output = io.StringIO()
     w = csv.writer(output)
-    w.writerow(["提交时间","微信名","级别","分数","答对题数","错题","是否通过","薄弱能力","虚构错题","非虚构错题","备注"])
+    w.writerow(["提交时间","微信名","级别","分数","答对题数","用时","错题","是否通过","薄弱能力","虚构错题","非虚构错题","备注"])
     for r in rows:
         wq = json.loads(r["wrong_questions"] or "[]")
         ws = json.loads(r["weak_skills"] or "[]")
         w.writerow([
             r["submitted_at"], r["student_name"], r["level_id"],
             r["score"], r["correct_count"],
+            r["duration_text"] or "",
             " ".join(f"Q{q['id']}" for q in wq),
             "通过" if r["passed"] else "未通过",
             " / ".join(ws),

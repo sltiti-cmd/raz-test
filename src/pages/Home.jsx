@@ -63,7 +63,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-4 text-center text-xs text-gray-400">
-            每题 5 分 · 满分 100 分 · 80 分以上可读下一级别
+            每题 5 分 · 满分 100 分 · 80 分及以上可以读对应级别
           </p>
         </div>
       </section>

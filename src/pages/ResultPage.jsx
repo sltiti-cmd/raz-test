@@ -25,7 +25,8 @@ export default function ResultPage() {
 
   const { result, studentInfo, levelId, testType, testPath } = state
   const retestPath = testPath || `/test/${levelId.toLowerCase()}`
-  const { score, correctCount, total, wrongQuestions, passed } = result
+  const { score, correctCount, total, wrongQuestions, durationText } = result
+  const canReadLevel = score >= 80
 
   const handleDownload = async () => {
     if (!reportRef.current) return
@@ -97,10 +98,10 @@ export default function ResultPage() {
       {/* ── Score banner ── */}
       <div className="max-w-2xl mx-auto mb-4">
         <div className={`rounded-2xl p-4 sm:p-5 flex items-center gap-4 sm:gap-5 border-2
-          ${passed ? 'bg-teal-50/60 border-teal-200' : 'bg-orange-50/60 border-orange-200'}`}>
+          ${canReadLevel ? 'bg-teal-50/60 border-teal-200' : 'bg-orange-50/60 border-orange-200'}`}>
           <div className="text-center flex-shrink-0">
             <div className={`text-5xl sm:text-6xl font-black font-mono leading-none
-              ${passed ? 'text-teal-600' : 'text-orange-500'}`}>
+              ${canReadLevel ? 'text-teal-600' : 'text-orange-500'}`}>
               {score}
             </div>
             <div className="text-xs text-gray-400 font-semibold mt-0.5">/ 100 分</div>
@@ -115,9 +116,14 @@ export default function ResultPage() {
                 ? <span className="ml-1">· 错题：Q{wrongQuestions.map(q => q.id).join('、Q')}</span>
                 : <span className="ml-1 text-green-500">· 全部答对！</span>}
             </div>
+            {durationText && (
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-semibold">
+                用时 ➭ {durationText}
+              </div>
+            )}
             <div className={`inline-block mt-2 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-black
-              ${passed ? 'bg-teal-500 text-white' : 'bg-orange-500 text-white'}`}>
-              {passed ? `✅ 可以读${levelId}级` : `📖 建议继续巩固${levelId}级`}
+              ${canReadLevel ? 'bg-teal-500 text-white' : 'bg-orange-500 text-white'}`}>
+              {canReadLevel ? `✅ 可以读${levelId}级别` : '📖 建议降级巩固'}
             </div>
           </div>
         </div>

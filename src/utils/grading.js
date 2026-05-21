@@ -31,7 +31,7 @@ export function gradeTest(levelData, answers) {
 
   const total = levelData.passages.reduce((n, p) => n + p.questions.length, 0)
   const score = correctCount * pointsPerQuestion
-  const passed = score >= levelData.passScore
+  const passed = score >= 80
 
   return {
     score,

@@ -22,7 +22,7 @@ export function exportCsv(records) {
     r.score,
     r.correctCount,
     (r.wrongQuestions || []).map((q) => `Q${q.id}`).join(' '),
-    r.passed ? `可以读${r.levelId}级` : `建议继续巩固${r.levelId}级`,
+    r.score >= 80 ? `可以读${r.levelId}级别` : '建议降级巩固',
     (r.weakSkills || []).join(' / '),
     r.fictionWrong,
     r.nonfictionWrong,

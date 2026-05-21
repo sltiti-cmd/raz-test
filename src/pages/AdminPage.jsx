@@ -284,8 +284,8 @@ export default function AdminPage() {
                       </td>
                       <td className="px-4 py-3">
                         <span className={`text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap
-                          ${r.passed ? 'bg-green-100 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
-                          {r.passed ? '可升级' : '建议继续巩固'}
+                          ${r.score >= 80 ? 'bg-green-100 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
+                          {r.score >= 80 ? `可以读${r.levelId}级别` : '建议降级巩固'}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-xs font-mono text-center text-gray-500">

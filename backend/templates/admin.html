@@ -220,6 +220,7 @@
             <th>级别</th>
             <th><a href="?level={{ current_level }}&search={{ search }}&sort=score&order={{ 'asc' if sort=='score' and order=='desc' else 'desc' }}">分数</a></th>
             <th><a href="?level={{ current_level }}&search={{ search }}&sort=correct_count&order={{ 'asc' if sort=='correct_count' and order=='desc' else 'desc' }}">答对</a></th>
+            <th>用时</th>
             <th>错题</th>
             <th>判断</th>
             <th>薄弱能力</th>
@@ -238,6 +239,7 @@
               <span class="{{ 'score-high' if r.score >= 80 else 'score-low' }}">{{ r.score }}</span>
             </td>
             <td style="color:#374151;">{{ r.correct_count }} / {{ r.correct_count + r.wrong_questions|length }}</td>
+            <td style="color:#6b7280;font-size:12px;">{{ r.duration_text or '-' }}</td>
             <td class="wrong-list">
               {% if r.wrong_questions %}
                 {{ r.wrong_questions | map(attribute='id') | map('string') | map('prepend','Q') | join('、') }}
