@@ -173,7 +173,7 @@ export default function TestPage() {
     const existing = JSON.parse(localStorage.getItem('raz-submissions') || '[]')
     localStorage.setItem('raz-submissions', JSON.stringify([...existing, submission]))
 
-    fetch('http://localhost:8000/api/submit', {
+    fetch('/api/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(submission),

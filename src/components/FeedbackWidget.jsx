@@ -16,7 +16,7 @@ export default function FeedbackWidget() {
     }
     const existing = JSON.parse(localStorage.getItem('raz-feedback') || '[]')
     localStorage.setItem('raz-feedback', JSON.stringify([...existing, record]))
-    fetch('http://localhost:8000/api/feedback', {
+    fetch('/api/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(record),

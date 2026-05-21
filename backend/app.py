@@ -237,8 +237,9 @@ def clear_all():
 
 # ── Entry point ────────────────────────────────────────────────────────────────
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     print("\n✅ RAZ 后台已启动")
     print("   管理员入口: http://localhost:8000/admin/login")
     print("   默认密码:   stacey2024  (可在启动前设置环境变量 ADMIN_PASSWORD 修改)\n")
