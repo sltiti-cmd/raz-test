@@ -242,7 +242,7 @@
             <td style="color:#6b7280;font-size:12px;">{{ r.duration_text or '-' }}</td>
             <td class="wrong-list">
               {% if r.wrong_questions %}
-                {{ r.wrong_questions | map(attribute='id') | map('string') | map('prepend','Q') | join('、') }}
+                {% for q in r.wrong_questions %}Q{{ q.id }}{% if not loop.last %}、{% endif %}{% endfor %}
               {% else %}
                 <span style="color:#22c55e;">全对</span>
               {% endif %}
