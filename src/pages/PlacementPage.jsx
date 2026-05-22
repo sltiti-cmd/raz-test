@@ -15,7 +15,7 @@ import placementQ from '../data/placement/q'
 import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
-import BatchInput from '../components/BatchInput'
+import BatchInputModal from '../components/BatchInputModal'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 import { openPrintPdf } from '../utils/printPdf'
@@ -120,7 +120,7 @@ export default function PlacementPage() {
 
   const [answers,       setAnswers]       = useState({})
   const [currentIdx,    setCurrentIdx]    = useState(0)
-  const [showBatch,     setShowBatch]     = useState(false)
+  const [isBatchInputOpen, setIsBatchInputOpen] = useState(false)
   const [showConfirm,   setShowConfirm]   = useState(false)
   const [showNameEntry, setShowNameEntry] = useState(false)
   const [nameInput,     setNameInput]     = useState('')
@@ -222,8 +222,14 @@ export default function PlacementPage() {
     const newAnswers = {}
     allQuestions.forEach((q, idx) => { if (tokens[idx]) newAnswers[q.id] = tokens[idx] })
     setAnswers(newAnswers)
-    setShowBatch(false)
+    setIsBatchInputOpen(false)
     showToast(`已填入 ${tokens.length} 题答案`)
+  }
+
+  const openBatchInput = (e) => {
+    e?.preventDefault?.()
+    e?.stopPropagation?.()
+    setIsBatchInputOpen(true)
   }
 
   const handlePrint = () => openPrintPdf(levelData)
@@ -318,7 +324,7 @@ export default function PlacementPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setShowBatch(v => !v)}
+                  onClick={openBatchInput}
                   className="min-h-[44px] px-4 rounded-xl bg-purple-600 hover:bg-purple-700
                              text-white text-sm font-black transition-colors"
                 >
@@ -401,11 +407,10 @@ export default function PlacementPage() {
 
               <div className="flex gap-3 mt-2.5">
                 <button
-                  onClick={() => setShowBatch(v => !v)}
-                  className={`flex-1 py-2.5 rounded-xl border text-sm font-bold transition-colors
-                    ${showBatch
-                      ? 'bg-purple-600 border-purple-600 text-white'
-                      : 'bg-purple-50 border-purple-200 text-purple-700 hover:bg-purple-100'}`}
+                  type="button"
+                  onClick={openBatchInput}
+                  className="flex-1 py-2.5 rounded-xl border border-purple-200 bg-purple-50
+                             text-sm font-bold text-purple-700 transition-colors hover:bg-purple-100"
                 >
                   📝 批量输入答案
                 </button>
@@ -420,12 +425,6 @@ export default function PlacementPage() {
                 )}
               </div>
 
-              {showBatch && (
-                <div className="mt-3 animate-slide-up">
-                  <BatchInput totalQuestions={total} onFill={handleBatchFill} />
-                </div>
-              )}
-
               {/* Bottom spacer for mobile feedback button */}
               <div className="h-16 md:h-4" />
             </div>
@@ -433,6 +432,14 @@ export default function PlacementPage() {
           </div>
         </div>
       </div>
+
+      {isBatchInputOpen && (
+        <BatchInputModal
+          totalQuestions={total}
+          onFill={handleBatchFill}
+          onClose={() => setIsBatchInputOpen(false)}
+        />
+      )}
 
       {/* ── Unanswered confirmation modal ── */}
       {showConfirm && (

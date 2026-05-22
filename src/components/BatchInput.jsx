@@ -41,12 +41,14 @@ export default function BatchInput({ totalQuestions, onFill }) {
       )}
       <div className="flex gap-3 mt-3">
         <button
+          type="button"
           onClick={parse}
           className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 rounded-xl transition-colors"
         >
           批量填入
         </button>
         <button
+          type="button"
           onClick={() => {
             setRaw('')
             setError('')

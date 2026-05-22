@@ -22,7 +22,7 @@ CORS(app, origins=[
     "http://localhost:5177",
 ], supports_credentials=True)
 
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "stacey2024")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 DB_PATH = os.environ.get(
     "RAZ_DB_PATH",
     os.path.join(os.path.dirname(__file__), "submissions.db"),
@@ -116,10 +116,13 @@ def api_submit():
 def login():
     error = None
     if request.method == "POST":
-        if request.form.get("password") == ADMIN_PASSWORD:
+        if not ADMIN_PASSWORD:
+            error = "服务器未配置后台密码，请联系管理员"
+        elif request.form.get("password") == ADMIN_PASSWORD:
             session["logged_in"] = True
             return redirect(url_for("admin"))
-        error = "密码错误，请重试"
+        else:
+            error = "密码错误，请重试"
     return render_template("login.html", error=error)
 
 
@@ -256,5 +259,5 @@ init_db()
 if __name__ == "__main__":
     print("\n✅ RAZ 后台已启动")
     print("   管理员入口: http://localhost:8000/admin/login")
-    print("   默认密码:   stacey2024  (可在启动前设置环境变量 ADMIN_PASSWORD 修改)\n")
+    print("   后台密码:   请通过环境变量 ADMIN_PASSWORD 配置\n")
     app.run(host="0.0.0.0", port=8000, debug=True)
