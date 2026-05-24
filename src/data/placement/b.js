@@ -30,7 +30,7 @@ export const placementB = {
             { key: 'A', text: "Things are big and little." },
             { key: 'B', text: "The big and little pigs are sleeping." },
           ],
-          answer: "A",
+          answer: "B",
           skill: "主旨与细节",
         },
         {
@@ -51,7 +51,7 @@ export const placementB = {
           { key: 'A', text: "Plants can only be big." },
           { key: 'B', text: "Plants can be big and little." }
           ],
-          answer: "A",
+          answer: "B",
           skill: "主旨与细节",
         },
         {
@@ -73,7 +73,7 @@ export const placementB = {
           { key: 'A', text: "large" },
           { key: 'B', text: "small" }
           ],
-          answer: "A",
+          answer: "B",
           skill: "词汇理解",
         }
       ],
@@ -93,7 +93,7 @@ export const placementB = {
           { key: 'A', text: "outside" },
           { key: 'B', text: "inside" }
           ],
-          answer: "B",
+          answer: "A",
           skill: "推理判断",
         },
         {
@@ -104,7 +104,7 @@ export const placementB = {
           { key: 'A', text: "The lion wants a drink." },
           { key: 'B', text: "The lion wants to sleep." }
           ],
-          answer: "A",
+          answer: "B",
           skill: "因果关系",
         },
         {
@@ -179,7 +179,7 @@ export const placementB = {
           { key: 'A', text: "to the pond" },
           { key: 'B', text: "to his home" }
           ],
-          answer: "A",
+          answer: "B",
           skill: "顺序理解",
         },
         {
@@ -201,7 +201,7 @@ export const placementB = {
           { key: 'A', text: "water" },
           { key: 'B', text: "walk" }
           ],
-          answer: "A",
+          answer: "B",
           skill: "词汇理解",
         }
       ],
@@ -221,7 +221,7 @@ export const placementB = {
           { key: 'A', text: "They read a book." },
           { key: 'B', text: "They go to the zoo." }
           ],
-          answer: "A",
+          answer: "B",
           skill: "故事要素",
         },
         {
@@ -243,7 +243,7 @@ export const placementB = {
           { key: 'A', text: "a bus" },
           { key: 'B', text: "a cow" }
           ],
-          answer: "A",
+          answer: "B",
           skill: "分类理解",
         },
         {
@@ -265,7 +265,7 @@ export const placementB = {
           { key: 'A', text: "to count to the number ten" },
           { key: 'B', text: "to say written words out loud" }
           ],
-          answer: "A",
+          answer: "B",
           skill: "词汇理解",
         }
       ],

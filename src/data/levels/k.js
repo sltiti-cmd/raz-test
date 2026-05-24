@@ -106,7 +106,7 @@ Reading a map may seem difficult. But a map's tools make it easier to use.`,
             { key: "C", text: "tools that people can use to make maps" },
             { key: "D", text: "tools on maps and how they help people" }
           ],
-          answer: "C",
+          answer: "D",
           skill: "主旨理解"
         },
         {
@@ -119,7 +119,7 @@ Reading a map may seem difficult. But a map's tools make it easier to use.`,
             { key: "C", text: "a tool on a map that shows what different markings mean" },
             { key: "D", text: "a piece of metal that can fit into a lock used to protect a map" }
           ],
-          answer: "B",
+          answer: "C",
           skill: "词汇理解"
         },
         {
@@ -132,7 +132,7 @@ Reading a map may seem difficult. But a map's tools make it easier to use.`,
             { key: "C", text: "where to find the nearest flower shop" },
             { key: "D", text: "where rivers are on a map" }
           ],
-          answer: "C",
+          answer: "B",
           skill: "信息提取"
         },
         {
@@ -145,7 +145,7 @@ Reading a map may seem difficult. But a map's tools make it easier to use.`,
             { key: "C", text: "to entertain you with a story of how a family used a map as a tool" },
             { key: "D", text: "to describe a place that you will find if you use a map" }
           ],
-          answer: "A",
+          answer: "B",
           skill: "作者意图"
         },
         {
@@ -158,7 +158,7 @@ Reading a map may seem difficult. But a map's tools make it easier to use.`,
             { key: "C", text: "north" },
             { key: "D", text: "water" }
           ],
-          answer: "B",
+          answer: "C",
           skill: "符号理解"
         }
       ]
@@ -189,7 +189,7 @@ The animals cheered and shouted, "Let's go home!"`,
             { key: "C", text: "a circus" },
             { key: "D", text: "a forest" }
           ],
-          answer: "D",
+          answer: "B",
           skill: "情节理解"
         },
         {
@@ -202,7 +202,7 @@ The animals cheered and shouted, "Let's go home!"`,
             { key: "C", text: "from angry to joyful to angry again" },
             { key: "D", text: "from happy to sad to happy again" }
           ],
-          answer: "C",
+          answer: "D",
           skill: "情绪变化"
         },
         {
@@ -215,7 +215,7 @@ The animals cheered and shouted, "Let's go home!"`,
             { key: "C", text: "race quickly" },
             { key: "D", text: "stomp loudly" }
           ],
-          answer: "B",
+          answer: "A",
           skill: "词汇理解"
         },
         {
@@ -228,7 +228,7 @@ The animals cheered and shouted, "Let's go home!"`,
             { key: "C", text: "the gorilla" },
             { key: "D", text: "one of the donkeys" }
           ],
-          answer: "B",
+          answer: "C",
           skill: "问题解决"
         },
         {
@@ -241,7 +241,7 @@ The animals cheered and shouted, "Let's go home!"`,
             { key: "C", text: "They did not understand what the amphibian and mare had said." },
             { key: "D", text: "They did not agree with the amphibian and mare." }
           ],
-          answer: "C",
+          answer: "A",
           skill: "推理判断"
         }
       ]
@@ -279,7 +279,7 @@ The homes are all hard to build and cost money. They show that the Bronx Zoo car
             { key: "C", text: "kinds of animals" },
             { key: "D", text: "different kinds" }
           ],
-          answer: "D",
+          answer: "A",
           skill: "词汇理解"
         },
         {
@@ -292,7 +292,7 @@ The homes are all hard to build and cost money. They show that the Bronx Zoo car
             { key: "C", text: "in a forest" },
             { key: "D", text: "in a building" }
           ],
-          answer: "A",
+          answer: "C",
           skill: "场景理解"
         },
         {
@@ -318,7 +318,7 @@ The homes are all hard to build and cost money. They show that the Bronx Zoo car
             { key: "C", text: "to give you information about a zoo" },
             { key: "D", text: "to teach you how animals build their homes" }
           ],
-          answer: "A",
+          answer: "C",
           skill: "作者意图"
         }
       ]

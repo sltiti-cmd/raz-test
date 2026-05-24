@@ -113,7 +113,7 @@ export const levelA = {
             { key: 'B', text: 'in the sky' },
             { key: 'C', text: 'in the water' },
           ],
-          answer: 'A',
+          answer: 'B',
           skill: '场景理解',
         },
         {
@@ -227,7 +227,7 @@ export const levelA = {
             { key: 'B', text: 'to the tree' },
             { key: 'C', text: 'to the sky' },
           ],
-          answer: 'B',
+          answer: 'A',
           skill: '场景理解',
         },
         {
@@ -251,7 +251,7 @@ export const levelA = {
             { key: 'B', text: 'Birds fly high' },
             { key: 'C', text: 'Birds go home' },
           ],
-          answer: 'B',
+          answer: 'A',
           skill: '顺序理解',
         },
         {
@@ -263,7 +263,7 @@ export const levelA = {
             { key: 'B', text: 'three' },
             { key: 'C', text: 'one' },
           ],
-          answer: 'A',
+          answer: 'B',
           skill: '数量理解',
         },
         {
@@ -275,7 +275,7 @@ export const levelA = {
             { key: 'B', text: 'They are small' },
             { key: 'C', text: 'They are fast' },
           ],
-          answer: 'B',
+          answer: 'A',
           skill: '描述理解',
         },
       ],

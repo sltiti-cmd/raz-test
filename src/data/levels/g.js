@@ -125,7 +125,7 @@ export const levelG = {
             { key: 'B', text: 'do the same dance one more time' },
             { key: 'C', text: 'do the dance steps in a new order' },
           ],
-          answer: 'C',
+          answer: 'B',
           skill: '词汇理解',
         },
         {
@@ -137,7 +137,7 @@ export const levelG = {
             { key: 'B', text: 'as words for a song' },
             { key: 'C', text: 'as a list of steps' },
           ],
-          answer: 'A',
+          answer: 'C',
           skill: '文章结构',
         },
       ],
@@ -158,7 +158,7 @@ export const levelG = {
             { key: 'B', text: 'The puppy wants to play.' },
             { key: 'C', text: 'The puppy is dirty.' },
           ],
-          answer: 'A',
+          answer: 'C',
           skill: '因果理解',
         },
         {
@@ -170,7 +170,7 @@ export const levelG = {
             { key: 'B', text: "the girl's mom" },
             { key: 'C', text: 'the puppy' },
           ],
-          answer: 'B',
+          answer: 'C',
           skill: '故事要素',
         },
         {
@@ -182,7 +182,7 @@ export const levelG = {
             { key: 'B', text: 'because she knows Sally is dirty, and it is going to make a mess in the house' },
             { key: 'C', text: 'because she is playing with Sally' },
           ],
-          answer: 'C',
+          answer: 'B',
           skill: '推断理解',
         },
         {
@@ -194,7 +194,7 @@ export const levelG = {
             { key: 'B', text: 'The girl will wash the puppy.' },
             { key: 'C', text: 'The girl will play in the grass.' },
           ],
-          answer: 'C',
+          answer: 'B',
           skill: '推断理解',
         },
         {
@@ -206,7 +206,7 @@ export const levelG = {
             { key: 'B', text: 'continued' },
             { key: 'C', text: 'stopped' },
           ],
-          answer: 'A',
+          answer: 'B',
           skill: '词汇理解',
         },
       ],
@@ -227,7 +227,7 @@ export const levelG = {
             { key: 'B', text: 'If you want to make a garden, here are the steps.' },
             { key: 'C', text: 'Put dirt over the seeds and water them.' },
           ],
-          answer: 'A',
+          answer: 'B',
           skill: '作者目的',
         },
         {
@@ -239,7 +239,7 @@ export const levelG = {
             { key: 'B', text: 'It is important to water the garden.' },
             { key: 'C', text: 'It takes time to grow a garden.' },
           ],
-          answer: 'B',
+          answer: 'C',
           skill: '推断理解',
         },
         {
@@ -251,7 +251,7 @@ export const levelG = {
             { key: 'B', text: 'Dig in the dirt to make holes.' },
             { key: 'C', text: 'Wait and watch.' },
           ],
-          answer: 'C',
+          answer: 'A',
           skill: '顺序理解',
         },
         {
@@ -263,7 +263,7 @@ export const levelG = {
             { key: 'B', text: 'in the holes' },
             { key: 'C', text: 'under the leaves' },
           ],
-          answer: 'C',
+          answer: 'B',
           skill: '细节理解',
         },
         {
