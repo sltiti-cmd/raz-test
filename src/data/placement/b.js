@@ -27,8 +27,8 @@ export const placementB = {
           id: 1,
           question: "What is the main idea of this passage?",
           options: [
-            { key: 'A', text: "Things are big and little." },
-            { key: 'B', text: "The big and little pigs are sleeping." },
+            { key: 'A', text: "The big and little pigs are sleeping." },
+            { key: 'B', text: "Things are big and little." },
           ],
           answer: "B",
           skill: "主旨与细节",
