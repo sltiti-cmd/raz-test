@@ -69,8 +69,11 @@ export default function Home() {
       </section>
 
       <div className="pb-20 text-center">
-        <Link to="/placement" className="text-xs text-gray-300 hover:text-gray-400 transition-colors">
-          插班测试
+        <Link to="/placement"
+          className="inline-flex items-center justify-center min-h-[44px] px-6 rounded-xl
+                     text-sm text-gray-400 hover:text-gray-600 border border-cream-200
+                     bg-white/60 hover:bg-white transition-colors">
+          插班测试 →
         </Link>
       </div>
 

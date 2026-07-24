@@ -32,6 +32,32 @@ body {
 .animate-slide-up     { animation: slideUp    0.22s ease both; }
 .animate-toast-in     { animation: toastIn    0.25s ease both; }
 
+/* ── Candy buttons: 底部立体阴影 + 按压反馈（儿童友好） ── */
+@layer components {
+  .btn-candy {
+    @apply relative font-black rounded-2xl transition-all duration-100
+           active:translate-y-[3px];
+  }
+  .btn-candy:disabled {
+    @apply translate-y-0 cursor-not-allowed;
+  }
+  .btn-candy-teal {
+    @apply btn-candy bg-teal-500 text-white shadow-[0_3px_0_#0d9488]
+           hover:bg-teal-500 active:shadow-[0_0_0_#0d9488]
+           disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-[0_3px_0_#d1d5db];
+  }
+  .btn-candy-purple {
+    @apply btn-candy bg-purple-500 text-white shadow-[0_3px_0_#9333ea]
+           active:shadow-[0_0_0_#9333ea]
+           disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-[0_3px_0_#d1d5db];
+  }
+  .btn-candy-orange {
+    @apply btn-candy bg-orange-500 text-white shadow-[0_3px_0_#ea580c]
+           active:shadow-[0_0_0_#ea580c]
+           disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-[0_3px_0_#d1d5db];
+  }
+}
+
 /* ── Print ───────────────────────────────────────── */
 @media print {
   .no-print { display: none !important; }

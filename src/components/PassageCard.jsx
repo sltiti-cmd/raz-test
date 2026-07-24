@@ -36,13 +36,18 @@ export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTt
       <h3 className="text-base font-extrabold text-gray-700 mb-4">{passage.title}</h3>
 
       {/* Passage text */}
-      <div className="bg-cream-100 rounded-xl p-4 sm:p-5 border border-cream-200
-                      max-h-[40vh] md:max-h-none overflow-y-auto md:overflow-visible">
-        <p className="text-gray-800 text-base sm:text-lg lg:text-xl xl:text-[22px]
-                      leading-relaxed lg:leading-[1.9] font-bold tracking-wide
-                      whitespace-pre-line">
-          {passage.text}
-        </p>
+      <div className="relative">
+        <div className="bg-cream-100 rounded-xl p-4 sm:p-5 border border-cream-200
+                        max-h-[40vh] md:max-h-none overflow-y-auto md:overflow-visible">
+          <p className="text-gray-800 text-base sm:text-lg lg:text-xl xl:text-[22px]
+                        leading-relaxed lg:leading-[1.9] font-bold tracking-wide
+                        whitespace-pre-line">
+            {passage.text}
+          </p>
+        </div>
+        {/* 移动端底部渐隐，提示可上滑 */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 rounded-b-xl
+                        bg-gradient-to-t from-cream-100 to-transparent md:hidden" />
       </div>
     </div>
   )

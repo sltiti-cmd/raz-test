@@ -151,8 +151,7 @@ export default function ResultPage() {
       {/* ── Bottom action buttons ── */}
       <div className="max-w-2xl mx-auto mt-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-3 justify-center">
         <button onClick={handleDownload}
-          className="py-3 px-4 rounded-xl bg-teal-500 hover:bg-teal-600 text-white font-black
-                     transition-colors shadow-sm text-sm sm:text-base sm:px-6">
+          className="btn-candy-teal min-h-[48px] px-4 text-sm sm:text-base sm:px-6">
           ⬇ 下载报告
         </button>
         <button onClick={handleCopyText}

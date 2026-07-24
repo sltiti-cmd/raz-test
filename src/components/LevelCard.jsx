@@ -8,9 +8,7 @@ export default function LevelCard({ level, onClick, onPdfClick, theme = 'teal' }
   const accentText = isPurple ? 'text-purple-600' : 'text-teal-600'
   const accentBorder = isPurple ? 'border-purple-200' : 'border-teal-200'
   const accentBadge = isPurple ? 'bg-purple-100 text-purple-700' : 'bg-teal-100 text-teal-700'
-  const primaryButton = isPurple
-    ? 'bg-purple-500 hover:bg-purple-600 focus:ring-purple-300'
-    : 'bg-teal-500 hover:bg-teal-600 focus:ring-teal-300'
+  const primaryButton = isPurple ? 'btn-candy-purple' : 'btn-candy-teal'
   const secondaryButton = isPurple
     ? 'border-purple-200 text-purple-700 bg-purple-50 hover:bg-purple-100'
     : 'border-teal-200 text-teal-700 bg-teal-50 hover:bg-teal-100'
@@ -44,9 +42,9 @@ export default function LevelCard({ level, onClick, onPdfClick, theme = 'teal' }
           <button
             type="button"
             onClick={onClick}
-            className={`min-h-[44px] rounded-xl px-3 py-2.5 text-sm font-black text-white
-                       ${primaryButton} shadow-sm transition-colors focus:outline-none focus:ring-2
-                       focus:ring-offset-1`}
+            className={`min-h-[44px] px-3 text-sm ${primaryButton}
+                       focus:outline-none focus:ring-2 focus:ring-offset-1
+                       ${isPurple ? 'focus:ring-purple-300' : 'focus:ring-teal-300'}`}
           >
             在线做题
           </button>

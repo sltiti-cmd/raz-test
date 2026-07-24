@@ -1,14 +1,21 @@
 import { speakEnglish } from '../utils/tts'
 
-export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, hideZh, hideTts }) {
+export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, hideZh, hideTts, total, accent = 'teal' }) {
   const showOptionTts = !hideTts && tts?.options !== false
+  const c = accent === 'purple'
+    ? { selBg: 'bg-purple-50', selBorder: 'border-purple-400', keyBg: 'bg-purple-500',
+        hoverBorder: 'hover:border-purple-200', hoverKey: 'group-hover:border-purple-300 group-hover:text-purple-500',
+        text: 'text-purple-800', tts: 'hover:text-purple-500 hover:bg-purple-50', check: 'text-purple-500' }
+    : { selBg: 'bg-teal-50', selBorder: 'border-teal-400', keyBg: 'bg-teal-500',
+        hoverBorder: 'hover:border-teal-200', hoverKey: 'group-hover:border-teal-300 group-hover:text-teal-500',
+        text: 'text-teal-800', tts: 'hover:text-teal-500 hover:bg-teal-50', check: 'text-teal-500' }
   return (
-    <div className="bg-white rounded-2xl shadow-card p-6">
+    <div className="bg-white rounded-2xl shadow-card p-5 sm:p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <span className="font-mono text-xs font-bold text-gray-400 bg-gray-100
+        <span className="font-mono text-xs font-black text-gray-500 bg-gray-100
                          px-2.5 py-1 rounded-full">
-          Q{question.id}
+          Q{question.id}{total ? ` / ${total}` : ''}
         </span>
         <span className="text-xs font-bold bg-blue-50 text-blue-500
                          px-2.5 py-1 rounded-full">
@@ -24,9 +31,8 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, 
         {!hideTts && (
           <button
             onClick={() => speakEnglish(question.ttsText || question.question)}
-            className="flex-shrink-0 mt-0.5 w-7 h-7 flex items-center justify-center
-                       rounded-full text-gray-300 hover:text-teal-500 hover:bg-teal-50
-                       transition-colors"
+            className={`flex-shrink-0 mt-0.5 w-7 h-7 flex items-center justify-center
+                       rounded-full text-gray-300 transition-colors ${c.tts}`}
             title="朗读题目"
           >
             🔊
@@ -56,8 +62,8 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, 
               className={`group flex items-center px-4 py-3.5 rounded-xl border-2
                           cursor-pointer select-none transition-all duration-150
                 ${isSelected
-                  ? 'bg-teal-50 border-teal-400 shadow-sm'
-                  : 'bg-gray-50 border-gray-100 hover:bg-white hover:border-teal-200 hover:shadow-sm'
+                  ? `${c.selBg} ${c.selBorder} shadow-sm`
+                  : `bg-gray-50 border-gray-100 hover:bg-white ${c.hoverBorder} hover:shadow-sm`
                 }`}
             >
               {/* Key badge */}
@@ -65,8 +71,8 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, 
                 className={`flex-shrink-0 w-7 h-7 rounded-lg mr-3 flex items-center
                             justify-center text-xs font-black transition-colors
                   ${isSelected
-                    ? 'bg-teal-500 text-white'
-                    : 'bg-white text-gray-400 border border-gray-200 group-hover:border-teal-300 group-hover:text-teal-500'
+                    ? `${c.keyBg} text-white`
+                    : `bg-white text-gray-400 border border-gray-200 ${c.hoverKey}`
                   }`}
               >
                 {opt.key}
@@ -74,17 +80,21 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, 
 
               {/* Text */}
               <span className={`flex-1 text-sm sm:text-base font-semibold transition-colors
-                ${isSelected ? 'text-teal-800' : 'text-gray-700'}`}>
+                ${isSelected ? c.text : 'text-gray-700'}`}>
                 {opt.text}
               </span>
+
+              {/* Selected checkmark */}
+              {isSelected && (
+                <span className={`flex-shrink-0 ml-2 font-black ${c.check}`}>✓</span>
+              )}
 
               {/* TTS button — stopPropagation so it doesn't select */}
               {showOptionTts && (
                 <button
                   onClick={(e) => { e.stopPropagation(); speakEnglish(opt.text) }}
-                  className="flex-shrink-0 ml-2 w-6 h-6 flex items-center justify-center
-                             rounded-full text-gray-300 hover:text-teal-400 hover:bg-teal-50
-                             transition-colors text-sm"
+                  className={`flex-shrink-0 ml-2 w-6 h-6 flex items-center justify-center
+                             rounded-full text-gray-300 transition-colors text-sm ${c.tts}`}
                   title="朗读选项"
                 >
                   🔊

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import placementB from '../data/placement/b'
 import placementC from '../data/placement/c'
@@ -16,6 +16,7 @@ import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
 import BatchInputModal from '../components/BatchInputModal'
+import SubmitModal from '../components/SubmitModal'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 import { openPrintPdf } from '../utils/printPdf'
@@ -121,10 +122,7 @@ export default function PlacementPage() {
   const [answers,       setAnswers]       = useState({})
   const [currentIdx,    setCurrentIdx]    = useState(0)
   const [isBatchInputOpen, setIsBatchInputOpen] = useState(false)
-  const [showConfirm,   setShowConfirm]   = useState(false)
-  const [showNameEntry, setShowNameEntry] = useState(false)
-  const [nameInput,     setNameInput]     = useState('')
-  const [nameErr,       setNameErr]       = useState('')
+  const [showSubmit,    setShowSubmit]    = useState(false)
   const [unanswered,    setUnanswered]    = useState([])
   const [startedAt]                       = useState(() => Date.now())
   const [durationSeconds, setDurationSeconds] = useState(0)
@@ -138,10 +136,25 @@ export default function PlacementPage() {
     return () => window.clearInterval(timer)
   }, [levelData, startedAt, timerStopped])
 
+  // 手机上切到新文章时滚回顶部，避免孩子没注意到文章换了
+  const prevPassageRef = useRef(null)
+  useEffect(() => {
+    if (!levelData) return
+    const passageIds = levelData.passages.flatMap(p => p.questions.map(() => p.id))
+    const pid = passageIds[currentIdx]
+    if (prevPassageRef.current !== null && prevPassageRef.current !== pid
+        && window.innerWidth < 768) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+    prevPassageRef.current = pid
+  }, [currentIdx, levelData])
+
   if (levelData.passages.length === 0) {
     return <EmptyLevel levelId={levelData.id} />
   }
 
+  // A–F 级显示中文题干提示，G 级及以上不显示（与升级测试规则一致）
+  const isHighLevel     = !['A', 'B', 'C', 'D', 'E', 'F'].includes(levelData.id)
   const allQuestions    = levelData.passages.flatMap(p => p.questions.map(q => ({ ...q, passage: p })))
   const total           = allQuestions.length
   const currentQuestion = allQuestions[currentIdx]
@@ -155,18 +168,10 @@ export default function PlacementPage() {
   const handleSubmitRequest = () => {
     const missing = allQuestions.filter(q => !answers[q.id])
     setUnanswered(missing.map(q => q.id))
-    setShowConfirm(true)
+    setShowSubmit(true)
   }
 
-  const proceedToNameEntry = () => {
-    setShowConfirm(false)
-    setShowNameEntry(true)
-  }
-
-  const doSubmit = () => {
-    const name = nameInput.trim()
-    if (!name) { setNameErr('请填写微信名'); return }
-
+  const doSubmit = (name) => {
     const studentInfo = {
       name,
       date: new Date().toLocaleDateString('zh-CN'),
@@ -223,6 +228,9 @@ export default function PlacementPage() {
     allQuestions.forEach((q, idx) => { if (tokens[idx]) newAnswers[q.id] = tokens[idx] })
     setAnswers(newAnswers)
     setIsBatchInputOpen(false)
+    // 填完直接进入提交步骤，不用再点一次「提交」
+    setUnanswered(allQuestions.filter(q => !newAnswers[q.id]).map(q => q.id))
+    setShowSubmit(true)
     showToast(`已填入 ${tokens.length} 题答案`)
   }
 
@@ -250,7 +258,9 @@ export default function PlacementPage() {
           <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
-                <Link to="/placement" className="text-gray-400 hover:text-gray-600 text-lg flex-shrink-0 px-1">←</Link>
+                <Link to="/placement" aria-label="返回插班测试大厅"
+                  className="text-gray-400 hover:text-gray-600 text-lg flex-shrink-0 min-w-[40px] min-h-[40px]
+                             -ml-2 flex items-center justify-center">←</Link>
                 <span className="font-extrabold text-gray-800 text-sm sm:text-base">
                   RAZ <span className="font-mono text-purple-500">{levelData.id}</span>级
                   <span className="text-purple-400 font-semibold text-xs ml-1">插班</span>
@@ -270,9 +280,10 @@ export default function PlacementPage() {
                 </button>
               </div>
             </div>
-            <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-purple-500 rounded-full transition-all duration-500"
+                className="h-full rounded-full transition-all duration-500
+                           bg-gradient-to-r from-purple-500 to-purple-300"
                 style={{ width: `${(answeredCount / total) * 100}%` }}
               />
             </div>
@@ -302,22 +313,24 @@ export default function PlacementPage() {
 
         {/* ── Main layout ── */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
-          <div className="mb-4 rounded-2xl border border-purple-200 bg-white p-4 sm:p-5 shadow-sm">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:justify-between">
-              <div className="min-w-0">
-                <h2 className="text-base font-black text-gray-800 mb-1">测试说明</h2>
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  4篇文章20题，约20分钟。可打开PDF记录答案，也可以直接在线答题。
-                </p>
-                <div className="mt-2 inline-flex items-center rounded-full bg-purple-50 px-3 py-1 text-sm font-black text-purple-700">
+          <div className="mb-4 rounded-2xl border border-purple-200 bg-white p-3 sm:p-5 shadow-sm">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-3 sm:gap-4 lg:justify-between">
+              <div className="min-w-0 flex items-center justify-between gap-3 sm:block">
+                <div className="hidden sm:block">
+                  <h2 className="text-base font-black text-gray-800 mb-1">测试说明</h2>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    4篇文章20题，约20分钟。可打开PDF记录答案，也可以直接在线答题。
+                  </p>
+                </div>
+                <div className="sm:mt-2 inline-flex items-center rounded-full bg-purple-50 px-3 py-1 text-sm font-black text-purple-700 whitespace-nowrap">
                   已用时：{formatTimer(durationSeconds)}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row gap-2 lg:flex-shrink-0">
+              <div className="flex flex-row gap-2 lg:flex-shrink-0">
                 <button
                   type="button"
                   onClick={handlePrint}
-                  className="min-h-[44px] px-4 rounded-xl border border-purple-200 bg-purple-50
+                  className="flex-1 sm:flex-initial min-h-[44px] px-4 rounded-xl border border-purple-200 bg-purple-50
                              hover:bg-purple-100 text-purple-700 text-sm font-black transition-colors"
                 >
                   📄 下载PDF试卷
@@ -325,7 +338,7 @@ export default function PlacementPage() {
                 <button
                   type="button"
                   onClick={openBatchInput}
-                  className="min-h-[44px] px-4 rounded-xl bg-purple-600 hover:bg-purple-700
+                  className="flex-1 sm:flex-initial min-h-[44px] px-4 rounded-xl bg-purple-600 hover:bg-purple-700
                              text-white text-sm font-black transition-colors"
                 >
                   📝 批量输入答案
@@ -363,6 +376,7 @@ export default function PlacementPage() {
                   passage={currentPassage}
                   passageIndex={passageIndex}
                   tts={levelData.tts}
+                  hideZh={isHighLevel}
                 />
               </div>
             </div>
@@ -374,14 +388,17 @@ export default function PlacementPage() {
                 selectedAnswer={answers[currentQuestion.id]}
                 onAnswer={handleAnswer}
                 tts={levelData.tts}
+                hideZh={isHighLevel}
+                total={total}
+                accent="purple"
               />
 
               <div className="flex gap-3 mt-3">
                 <button
                   onClick={() => setCurrentIdx(p => Math.max(0, p - 1))}
                   disabled={currentIdx === 0}
-                  className="flex-1 py-3.5 rounded-xl bg-white border-2 border-gray-200
-                             hover:border-gray-300 text-gray-600 font-bold
+                  className="flex-1 min-h-[48px] rounded-2xl bg-white border-2 border-gray-200
+                             hover:border-gray-300 text-gray-600 font-black
                              disabled:opacity-40 transition-all text-sm"
                 >
                   ← 上一题
@@ -389,16 +406,14 @@ export default function PlacementPage() {
                 {currentIdx < total - 1 ? (
                   <button
                     onClick={() => setCurrentIdx(p => Math.min(total - 1, p + 1))}
-                    className="flex-1 py-3.5 rounded-xl bg-purple-500 hover:bg-purple-600
-                               text-white font-bold transition-colors text-sm shadow-sm"
+                    className="flex-1 min-h-[48px] btn-candy-purple text-sm"
                   >
                     下一题 →
                   </button>
                 ) : (
                   <button
                     onClick={handleSubmitRequest}
-                    className="flex-1 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600
-                               text-white font-black transition-colors text-sm shadow-sm"
+                    className="flex-1 min-h-[48px] btn-candy-orange text-sm"
                   >
                     提交答案 ✓
                   </button>
@@ -441,107 +456,20 @@ export default function PlacementPage() {
         />
       )}
 
-      {/* ── Unanswered confirmation modal ── */}
-      {showConfirm && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-end sm:items-center
-                        justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-7 max-w-sm w-full animate-fade-in-down">
-            <div className="text-4xl text-center mb-3">
-              {unanswered.length === 0 ? '🎯' : '⚠️'}
-            </div>
-            <h3 className="text-xl font-black text-center text-gray-800 mb-2">
-              {unanswered.length === 0 ? '全部作答完成！' : '有题目未作答'}
-            </h3>
-            {unanswered.length > 0 ? (
-              <p className="text-sm text-gray-500 text-center mb-5 leading-relaxed">
-                以下题目还未作答：
-                <span className="font-bold text-orange-500">
-                  {' '}Q{unanswered.join('、Q')}
-                </span>
-                <br />提交后不可修改。
-              </p>
-            ) : (
-              <p className="text-sm text-gray-500 text-center mb-5">
-                共 <strong>{total}</strong> 题已全部作答，提交后不可修改。
-              </p>
-            )}
-            <div className="flex gap-3">
-              {unanswered.length > 0 && (
-                <button
-                  onClick={() => {
-                    setShowConfirm(false)
-                    const i = allQuestions.findIndex(q => unanswered.includes(q.id))
-                    if (i !== -1) setCurrentIdx(i)
-                  }}
-                  className="flex-1 py-3 rounded-xl bg-purple-500 hover:bg-purple-600
-                             text-white font-black transition-colors"
-                >
-                  去补答
-                </button>
-              )}
-              <button
-                onClick={() => setShowConfirm(false)}
-                className="flex-1 py-3 rounded-xl bg-gray-100 hover:bg-gray-200
-                           text-gray-600 font-bold transition-colors"
-              >
-                取消
-              </button>
-              <button
-                onClick={proceedToNameEntry}
-                className="flex-1 py-3 rounded-xl bg-orange-500 hover:bg-orange-600
-                           text-white font-black transition-colors"
-              >
-                提交 →
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ── Name entry modal ── */}
-      {showNameEntry && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-end sm:items-center
-                        justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-7 max-w-sm w-full animate-fade-in-down">
-            <div className="text-center mb-5">
-              <div className="text-4xl mb-2">🎉</div>
-              <h3 className="text-xl font-black text-gray-800">测试完成！</h3>
-              <p className="text-sm text-gray-400 mt-1">请输入微信名，查看报告</p>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-bold text-gray-600 mb-1.5">
-                  微信名 <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={nameInput}
-                  onChange={(e) => { setNameInput(e.target.value); setNameErr('') }}
-                  placeholder="请输入微信名"
-                  autoFocus
-                  onKeyDown={(e) => e.key === 'Enter' && doSubmit()}
-                  className="w-full border-2 border-gray-100 focus:border-purple-400 rounded-xl
-                             px-4 py-3 text-base outline-none transition-colors bg-gray-50
-                             focus:bg-white"
-                />
-                {nameErr && <p className="text-red-400 text-xs mt-1">{nameErr}</p>}
-              </div>
-              <button
-                onClick={doSubmit}
-                className="w-full bg-purple-500 hover:bg-purple-600 active:bg-purple-700
-                           text-white font-black py-4 rounded-xl text-lg transition-colors shadow-sm"
-              >
-                查看报告 →
-              </button>
-              <button
-                onClick={() => setShowNameEntry(false)}
-                className="w-full text-center text-gray-400 text-sm py-1 hover:text-gray-600 transition-colors"
-              >
-                返回修改答案
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* ── Submit modal (confirm + name entry in one step) ── */}
+      {showSubmit && (
+        <SubmitModal
+          total={total}
+          unanswered={unanswered}
+          accent="purple"
+          onGoTo={() => {
+            setShowSubmit(false)
+            const i = allQuestions.findIndex(q => unanswered.includes(q.id))
+            if (i !== -1) setCurrentIdx(i)
+          }}
+          onClose={() => setShowSubmit(false)}
+          onSubmit={doSubmit}
+        />
       )}
     </div>
   )

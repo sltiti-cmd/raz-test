@@ -26,27 +26,29 @@ export const placementB = {
         {
           id: 1,
           question: "What is the main idea of this passage?",
+          questionZh: "这篇文章的主要意思是什么？",
           options: [
-            { key: 'A', text: "The big and little pigs are sleeping." },
-            { key: 'B', text: "Things are big and little." },
+            { key: 'A', text: "Things are big and little." },
+            { key: 'B', text: "The big and little pigs are sleeping." },
           ],
-          answer: "B",
+          answer: "A",
           skill: "主旨与细节",
         },
         {
           id: 2,
           question: "Which names something else that is big?",
+          questionZh: "下面哪个也是大的东西？",
           options: [
             { key: 'A', text: "a mouse" },
             { key: 'B', text: "a house" },
           ],
-          answer: "A",
+          answer: "B",
           skill: "推理判断",
         },
         {
           id: 3,
           question: "Which is true about plants?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "关于植物，哪一项是对的？",
           options: [
           { key: 'A', text: "Plants can only be big." },
           { key: 'B', text: "Plants can be big and little." }
@@ -57,7 +59,7 @@ export const placementB = {
         {
           id: 4,
           question: "Which means the opposite of little?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "哪个词和 little（小）意思相反？",
           options: [
           { key: 'A', text: "big" },
           { key: 'B', text: "many" }
@@ -68,7 +70,7 @@ export const placementB = {
         {
           id: 5,
           question: "Which word means the same as little?",
-          questionZh: "这个词是什么意思？", // TODO: verify — auto-generated
+          questionZh: "哪个词和 little（小）意思相同？",
           options: [
           { key: 'A', text: "large" },
           { key: 'B', text: "small" }
@@ -88,7 +90,7 @@ export const placementB = {
         {
           id: 6,
           question: "Where can you find a pond?",
-          questionZh: "...在哪里？", // TODO: verify — auto-generated
+          questionZh: "在哪里能找到池塘？",
           options: [
           { key: 'A', text: "outside" },
           { key: 'B', text: "inside" }
@@ -99,18 +101,18 @@ export const placementB = {
         {
           id: 7,
           question: "Why does the lion most likely go to the pond?",
-          questionZh: "为什么...？", // TODO: verify — auto-generated
+          questionZh: "狮子最有可能为什么去池塘？",
           options: [
           { key: 'A', text: "The lion wants a drink." },
           { key: 'B', text: "The lion wants to sleep." }
           ],
-          answer: "B",
+          answer: "A",
           skill: "因果关系",
         },
         {
           id: 8,
           question: "What is this passage mostly about?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "这篇文章主要讲了什么？",
           options: [
           { key: 'A', text: "The pond has a lot of water." },
           { key: 'B', text: "Many animals are near the pond." }
@@ -121,7 +123,7 @@ export const placementB = {
         {
           id: 9,
           question: "These words from the passage belong to which group: bug, duck, sheep?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "文中的 bug、duck、sheep 这些词属于哪一类？",
           options: [
           { key: 'A', text: "animals" },
           { key: 'B', text: "clothes" }
@@ -132,7 +134,7 @@ export const placementB = {
         {
           id: 10,
           question: "Something that is near is",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "near（附近）指的是什么？",
           options: [
           { key: 'A', text: "far away" },
           { key: 'B', text: "close by" }
@@ -152,7 +154,7 @@ export const placementB = {
         {
           id: 11,
           question: "Which of these is a detail in the story?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "下面哪一项是故事中的细节？",
           options: [
           { key: 'A', text: "Ted sees a turtle." },
           { key: 'B', text: "Ted hears a bird." }
@@ -163,7 +165,7 @@ export const placementB = {
         {
           id: 12,
           question: "What do the boy and dog do?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "男孩和小狗做了什么？",
           options: [
           { key: 'A', text: "go on a walk" },
           { key: 'B', text: "play with the ducks" }
@@ -174,7 +176,7 @@ export const placementB = {
         {
           id: 13,
           question: "Where is the last place Ted goes?",
-          questionZh: "...在哪里？", // TODO: verify — auto-generated
+          questionZh: "Ted 最后去的地方是哪里？",
           options: [
           { key: 'A', text: "to the pond" },
           { key: 'B', text: "to his home" }
@@ -185,7 +187,7 @@ export const placementB = {
         {
           id: 14,
           question: "Ted sees ducks, fish, and bugs. In which group do these belong?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "Ted 看到的鸭子、鱼和虫子属于哪一类？",
           options: [
           { key: 'A', text: "animals" },
           { key: 'B', text: "plants" }
@@ -196,12 +198,12 @@ export const placementB = {
         {
           id: 15,
           question: "Which word in the passage best describes a pond?",
-          questionZh: "哪个最准确？", // TODO: verify — auto-generated
+          questionZh: "文章中哪个词最能描述池塘？",
           options: [
           { key: 'A', text: "water" },
           { key: 'B', text: "walk" }
           ],
-          answer: "B",
+          answer: "A",
           skill: "词汇理解",
         }
       ],
@@ -216,18 +218,18 @@ export const placementB = {
         {
           id: 16,
           question: "What do the characters do in the story?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "故事里的人物做了什么？",
           options: [
           { key: 'A', text: "They read a book." },
           { key: 'B', text: "They go to the zoo." }
           ],
-          answer: "B",
+          answer: "A",
           skill: "故事要素",
         },
         {
           id: 17,
           question: "Which sentence tells a fact about the story?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "哪句话说的是故事中的事实？",
           options: [
           { key: 'A', text: "A puppy is an animal." },
           { key: 'B', text: "A puppy is the best animal." }
@@ -238,18 +240,18 @@ export const placementB = {
         {
           id: 18,
           question: "Which is not an animal?",
-          questionZh: "请根据文章内容作答。", // TODO: verify — auto-generated
+          questionZh: "哪一个不是动物？",
           options: [
           { key: 'A', text: "a bus" },
           { key: 'B', text: "a cow" }
           ],
-          answer: "B",
+          answer: "A",
           skill: "分类理解",
         },
         {
           id: 19,
           question: "How does the girl feel about the animals she reads about?",
-          questionZh: "...是怎样的？", // TODO: verify — auto-generated
+          questionZh: "女孩对她读到的动物有什么感觉？",
           options: [
           { key: 'A', text: "She likes the animals." },
           { key: 'B', text: "She does not like the animals." }
@@ -260,7 +262,7 @@ export const placementB = {
         {
           id: 20,
           question: "What does it mean to read?",
-          questionZh: "\"it\" 是什么意思？", // TODO: verify — auto-generated
+          questionZh: "read（读）是什么意思？",
           options: [
           { key: 'A', text: "to count to the number ten" },
           { key: 'B', text: "to say written words out loud" }

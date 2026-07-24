@@ -20,7 +20,9 @@ export default function PlacementHome() {
 
       <header className="bg-white/80 backdrop-blur border-b border-cream-200 sticky top-0 z-20">
         <div className="max-w-5xl mx-auto px-5 py-3 flex items-center gap-3">
-          <Link to="/" className="text-gray-400 hover:text-gray-600 font-bold text-lg">←</Link>
+          <Link to="/" aria-label="返回首页"
+            className="text-gray-400 hover:text-gray-600 font-bold text-lg min-w-[40px] min-h-[40px]
+                       -ml-2 flex items-center justify-center">←</Link>
           <div className="w-8 h-8 bg-purple-500 rounded-xl flex items-center justify-center
                           text-white font-black text-sm shadow-sm">
             P
