@@ -9,6 +9,7 @@ const ICONS = {
   G: '🌿',
   K: '🚀',
   O: '🏆',
+  R: '⭐',
 }
 
 export default function Home() {

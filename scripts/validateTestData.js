@@ -27,7 +27,7 @@ function checkPdfExists(printPdf) {
 
 // 插班测试 TTS 规则
 const TTS_QUESTION_ONLY = new Set(['B', 'C', 'E', 'F'])
-const TTS_NONE = new Set(['I', 'J', 'L', 'M', 'N', 'P', 'Q'])
+const TTS_NONE = new Set(['I', 'J', 'L', 'M', 'N', 'P', 'Q', 'S', 'T'])
 
 function validateLevel(level, { isPlacement }) {
   const issues = []

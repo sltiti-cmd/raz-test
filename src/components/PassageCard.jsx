@@ -1,10 +1,14 @@
 import { speakEnglish } from '../utils/tts'
 
-export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTts }) {
+export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTts, spacedParagraphs }) {
   const showPassageTts = !hideTts && tts?.passage !== false
   const typeDisplay = hideZh
     ? (passage.type === 'fiction' ? 'Fiction' : 'Non-fiction')
     : passage.typeLabel
+  // 高级别（G及以上）文章多段落，段间空行更易读；低级别每行一句保持紧凑
+  const paragraphs = passage.text.split('\n').map(s => s.trim()).filter(Boolean)
+  const textClass = 'text-gray-800 text-base sm:text-lg lg:text-xl xl:text-[22px] ' +
+                    'leading-relaxed lg:leading-[1.9] font-bold tracking-wide'
   return (
     <div className="bg-white rounded-2xl shadow-card p-6 h-full">
       {/* Tags row */}
@@ -39,11 +43,15 @@ export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTt
       <div className="relative">
         <div className="bg-cream-100 rounded-xl p-4 sm:p-5 border border-cream-200
                         max-h-[40vh] md:max-h-none overflow-y-auto md:overflow-visible">
-          <p className="text-gray-800 text-base sm:text-lg lg:text-xl xl:text-[22px]
-                        leading-relaxed lg:leading-[1.9] font-bold tracking-wide
-                        whitespace-pre-line">
-            {passage.text}
-          </p>
+          {spacedParagraphs ? (
+            <div className="space-y-3 lg:space-y-4">
+              {paragraphs.map((para, i) => (
+                <p key={i} className={textClass}>{para}</p>
+              ))}
+            </div>
+          ) : (
+            <p className={`${textClass} whitespace-pre-line`}>{passage.text}</p>
+          )}
         </div>
         {/* 移动端底部渐隐，提示可上滑 */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 rounded-b-xl

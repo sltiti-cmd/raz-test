@@ -12,6 +12,8 @@ import placementM from '../data/placement/m'
 import placementN from '../data/placement/n'
 import placementP from '../data/placement/p'
 import placementQ from '../data/placement/q'
+import placementS from '../data/placement/s'
+import placementT from '../data/placement/t'
 import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
@@ -22,7 +24,7 @@ import { useToast } from '../hooks/useToast'
 import { openPrintPdf } from '../utils/printPdf'
 import { formatDurationText, formatTimer } from '../utils/testTiming'
 
-const LEVELS = { b: placementB, c: placementC, e: placementE, f: placementF, h: placementH, i: placementI, j: placementJ, l: placementL, m: placementM, n: placementN, p: placementP, q: placementQ }
+const LEVELS = { b: placementB, c: placementC, e: placementE, f: placementF, h: placementH, i: placementI, j: placementJ, l: placementL, m: placementM, n: placementN, p: placementP, q: placementQ, s: placementS, t: placementT }
 
 // ─── Empty level placeholder ──────────────────────────────────────────────────
 function EmptyLevel({ levelId }) {
@@ -377,6 +379,7 @@ export default function PlacementPage() {
                   passageIndex={passageIndex}
                   tts={levelData.tts}
                   hideZh={isHighLevel}
+                  spacedParagraphs={isHighLevel}
                 />
               </div>
             </div>

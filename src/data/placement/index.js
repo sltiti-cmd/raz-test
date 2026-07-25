@@ -10,6 +10,8 @@ import { placementM } from './m'
 import { placementN } from './n'
 import { placementP } from './p'
 import { placementQ } from './q'
+import { placementS } from './s'
+import { placementT } from './t'
 
 export const placements = {
   B: placementB,
@@ -24,9 +26,11 @@ export const placements = {
   N: placementN,
   P: placementP,
   Q: placementQ,
+  S: placementS,
+  T: placementT,
 }
 
-export const placementList = [placementB, placementC, placementE, placementF, placementH, placementI, placementJ, placementL, placementM, placementN, placementP, placementQ]
+export const placementList = [placementB, placementC, placementE, placementF, placementH, placementI, placementJ, placementL, placementM, placementN, placementP, placementQ, placementS, placementT]
 
 export const placementLevels = placements
 export const placementLevelList = placementList

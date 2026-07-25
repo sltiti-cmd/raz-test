@@ -7,6 +7,7 @@ import levelE from '../data/levels/e'
 import levelG from '../data/levels/g'
 import levelK from '../data/levels/k'
 import levelO from '../data/levels/o'
+import levelR from '../data/levels/r'
 import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
@@ -17,7 +18,7 @@ import { useToast } from '../hooks/useToast'
 import { openPrintPdf } from '../utils/printPdf'
 import { formatDurationText, formatTimer } from '../utils/testTiming'
 
-const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO }
+const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO, r: levelR }
 
 function UnknownLevel({ levelId }) {
   const displayLevel = (levelId || '').toUpperCase()
@@ -141,7 +142,7 @@ export default function TestPage() {
     return <UnknownLevel levelId={levelId} />
   }
 
-  const isHighLevel     = ['G', 'K', 'O'].includes(levelData.id)
+  const isHighLevel     = ['G', 'K', 'O', 'R'].includes(levelData.id)
   const allQuestions    = levelData.passages.flatMap(p => p.questions.map(q => ({ ...q, passage: p })))
   const total           = allQuestions.length
   const currentQuestion = allQuestions[currentIdx]
@@ -363,6 +364,7 @@ export default function TestPage() {
                   tts={levelData.tts}
                   hideZh={isHighLevel}
                   hideTts={isHighLevel}
+                  spacedParagraphs={isHighLevel}
                 />
               </div>
             </div>
