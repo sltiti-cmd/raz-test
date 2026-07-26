@@ -3,6 +3,12 @@ export const levelD = {
   name: 'D级别',
   passScore: 80,
   printPdf: '/raw/D/D级别入门测试.pdf',
+  // 只保留题干朗读，去掉文章和选项的浏览器朗读
+  tts: {
+    passage: false,
+    question: true,
+    options: false,
+  },
   passages: [
     {
       id: 'D1',
