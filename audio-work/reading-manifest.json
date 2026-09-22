@@ -1,0 +1,3787 @@
+{
+  "schemaVersion": 1,
+  "source": "Current A-F reading test data; G and above have no audio",
+  "policy": "A titles once, A passages English twice, A-F questions English then Chinese once each, A options except six dot-picture choices once",
+  "counts": {
+    "title": 4,
+    "passage": 4,
+    "question": 120,
+    "option": 54
+  },
+  "entries": [
+    {
+      "id": "A-A1-title",
+      "kind": "title",
+      "level": "A",
+      "passageId": "A1",
+      "file": "reading/v1/A/A1-title.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "He Has Two",
+          "repeats": 1
+        }
+      ]
+    },
+    {
+      "id": "A-A1-passage",
+      "kind": "passage",
+      "level": "A",
+      "passageId": "A1",
+      "file": "reading/v1/A/A1-passage.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "He has two pencils. He has two crayons. He has many things.",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "A-q01",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 1,
+      "file": "reading/v1/A/q01.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How many of each thing does he have?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "他每种东西有多少个？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How many of each thing does he have?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q01-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 1,
+      "optionKey": "A",
+      "file": "reading/v1/A/q01-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "one",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "one"
+    },
+    {
+      "id": "A-q01-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 1,
+      "optionKey": "B",
+      "file": "reading/v1/A/q01-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "two",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "two"
+    },
+    {
+      "id": "A-q01-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 1,
+      "optionKey": "C",
+      "file": "reading/v1/A/q01-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "three",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "three"
+    },
+    {
+      "id": "A-q02",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 2,
+      "file": "reading/v1/A/q02.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Who is He?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "\"He\" 指的是谁？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Who is He?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "A-q02-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 2,
+      "optionKey": "A",
+      "file": "reading/v1/A/q02-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "the man",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "the man"
+    },
+    {
+      "id": "A-q02-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 2,
+      "optionKey": "B",
+      "file": "reading/v1/A/q02-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "the boy",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "the boy"
+    },
+    {
+      "id": "A-q02-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 2,
+      "optionKey": "C",
+      "file": "reading/v1/A/q02-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "the girl",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "the girl"
+    },
+    {
+      "id": "A-q03",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 3,
+      "file": "reading/v1/A/q03.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which shows two?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪一个表示 two？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which shows two?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "A-q04",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 4,
+      "file": "reading/v1/A/q04.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of his things can he use to write his name?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "他可以用哪种东西写名字？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of his things can he use to write his name?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q04-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 4,
+      "optionKey": "A",
+      "file": "reading/v1/A/q04-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "pencils and crayons",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "pencils and crayons"
+    },
+    {
+      "id": "A-q04-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 4,
+      "optionKey": "B",
+      "file": "reading/v1/A/q04-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "toys",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "toys"
+    },
+    {
+      "id": "A-q04-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 4,
+      "optionKey": "C",
+      "file": "reading/v1/A/q04-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "food",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "food"
+    },
+    {
+      "id": "A-q05",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 5,
+      "file": "reading/v1/A/q05.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "He has many things. What does many mean?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "many 是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "He has many things. What does many mean?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "A-q05-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 5,
+      "optionKey": "A",
+      "file": "reading/v1/A/q05-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "one",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "one"
+    },
+    {
+      "id": "A-q05-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 5,
+      "optionKey": "B",
+      "file": "reading/v1/A/q05-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "a lot",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "a lot"
+    },
+    {
+      "id": "A-q05-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A1",
+      "questionId": 5,
+      "optionKey": "C",
+      "file": "reading/v1/A/q05-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "none",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "none"
+    },
+    {
+      "id": "A-A2-title",
+      "kind": "title",
+      "level": "A",
+      "passageId": "A2",
+      "file": "reading/v1/A/A2-title.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This Plane",
+          "repeats": 1
+        }
+      ]
+    },
+    {
+      "id": "A-A2-passage",
+      "kind": "passage",
+      "level": "A",
+      "passageId": "A2",
+      "file": "reading/v1/A/A2-passage.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane goes up. This plane goes down. This plane goes in. This plane goes out.",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "A-q06",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 6,
+      "file": "reading/v1/A/q06.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the passage mostly about?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章主要讲什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the passage mostly about?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q06-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 6,
+      "optionKey": "A",
+      "file": "reading/v1/A/q06-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "a car",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "a car"
+    },
+    {
+      "id": "A-q06-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 6,
+      "optionKey": "B",
+      "file": "reading/v1/A/q06-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "how a plane moves",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "how a plane moves"
+    },
+    {
+      "id": "A-q06-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 6,
+      "optionKey": "C",
+      "file": "reading/v1/A/q06-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "a train",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "a train"
+    },
+    {
+      "id": "A-q07",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 7,
+      "file": "reading/v1/A/q07.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which sentence tells a fact about this plane?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话是关于飞机的事实？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which sentence tells a fact about this plane?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q07-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 7,
+      "optionKey": "A",
+      "file": "reading/v1/A/q07-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane goes up and down",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane goes up and down"
+    },
+    {
+      "id": "A-q07-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 7,
+      "optionKey": "B",
+      "file": "reading/v1/A/q07-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane is fun",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane is fun"
+    },
+    {
+      "id": "A-q07-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 7,
+      "optionKey": "C",
+      "file": "reading/v1/A/q07-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane is nice",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane is nice"
+    },
+    {
+      "id": "A-q08",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 8,
+      "file": "reading/v1/A/q08.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where is the plane?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "飞机在哪里？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where is the plane?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q08-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 8,
+      "optionKey": "A",
+      "file": "reading/v1/A/q08-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "on the ground",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "on the ground"
+    },
+    {
+      "id": "A-q08-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 8,
+      "optionKey": "B",
+      "file": "reading/v1/A/q08-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "in the sky",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "in the sky"
+    },
+    {
+      "id": "A-q08-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 8,
+      "optionKey": "C",
+      "file": "reading/v1/A/q08-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "in the water",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "in the water"
+    },
+    {
+      "id": "A-q09",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 9,
+      "file": "reading/v1/A/q09.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does the plane do to move?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "飞机是怎么移动的？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does the plane do to move?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q09-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 9,
+      "optionKey": "A",
+      "file": "reading/v1/A/q09-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "fly",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "fly"
+    },
+    {
+      "id": "A-q09-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 9,
+      "optionKey": "B",
+      "file": "reading/v1/A/q09-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "run",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "run"
+    },
+    {
+      "id": "A-q09-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 9,
+      "optionKey": "C",
+      "file": "reading/v1/A/q09-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "swim",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "swim"
+    },
+    {
+      "id": "A-q10",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 10,
+      "file": "reading/v1/A/q10.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane goes in. Which sentence tells the opposite?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话和 \"goes in\" 意思相反？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane goes in. Which sentence tells the opposite?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "A-q10-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 10,
+      "optionKey": "A",
+      "file": "reading/v1/A/q10-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane goes up",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane goes up"
+    },
+    {
+      "id": "A-q10-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 10,
+      "optionKey": "B",
+      "file": "reading/v1/A/q10-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane goes out",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane goes out"
+    },
+    {
+      "id": "A-q10-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A2",
+      "questionId": 10,
+      "optionKey": "C",
+      "file": "reading/v1/A/q10-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "This plane goes down",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "This plane goes down"
+    },
+    {
+      "id": "A-A3-title",
+      "kind": "title",
+      "level": "A",
+      "passageId": "A3",
+      "file": "reading/v1/A/A3-title.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Here Is a Number",
+          "repeats": 1
+        }
+      ]
+    },
+    {
+      "id": "A-A3-passage",
+      "kind": "passage",
+      "level": "A",
+      "passageId": "A3",
+      "file": "reading/v1/A/A3-passage.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Here is one. Here are two. Here are three. Here are five.",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "A-q11",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 11,
+      "file": "reading/v1/A/q11.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the passage about?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章是关于什么的？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the passage about?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q11-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 11,
+      "optionKey": "A",
+      "file": "reading/v1/A/q11-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "animals",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "animals"
+    },
+    {
+      "id": "A-q11-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 11,
+      "optionKey": "B",
+      "file": "reading/v1/A/q11-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "numbers",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "numbers"
+    },
+    {
+      "id": "A-q11-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 11,
+      "optionKey": "C",
+      "file": "reading/v1/A/q11-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "food",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "food"
+    },
+    {
+      "id": "A-q12",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 12,
+      "file": "reading/v1/A/q12.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word names 5?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个单词表示数字 5？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word names 5?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q12-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 12,
+      "optionKey": "A",
+      "file": "reading/v1/A/q12-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Five",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Five"
+    },
+    {
+      "id": "A-q12-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 12,
+      "optionKey": "B",
+      "file": "reading/v1/A/q12-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Ten",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Ten"
+    },
+    {
+      "id": "A-q12-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 12,
+      "optionKey": "C",
+      "file": "reading/v1/A/q12-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Three",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Three"
+    },
+    {
+      "id": "A-q13",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 13,
+      "file": "reading/v1/A/q13.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of these shows two?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪一个表示 two？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of these shows two?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "A-q14",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 14,
+      "file": "reading/v1/A/q14.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which number is more than six?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个数字比 six 大？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which number is more than six?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "A-q14-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 14,
+      "optionKey": "A",
+      "file": "reading/v1/A/q14-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "seven",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "7"
+    },
+    {
+      "id": "A-q14-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 14,
+      "optionKey": "B",
+      "file": "reading/v1/A/q14-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "five",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "5"
+    },
+    {
+      "id": "A-q14-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 14,
+      "optionKey": "C",
+      "file": "reading/v1/A/q14-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "three",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "3"
+    },
+    {
+      "id": "A-q15",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 15,
+      "file": "reading/v1/A/q15.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word from the passage is a number?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个单词是数字？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word from the passage is a number?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q15-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 15,
+      "optionKey": "A",
+      "file": "reading/v1/A/q15-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "cat",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "cat"
+    },
+    {
+      "id": "A-q15-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 15,
+      "optionKey": "B",
+      "file": "reading/v1/A/q15-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "three",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "three"
+    },
+    {
+      "id": "A-q15-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A3",
+      "questionId": 15,
+      "optionKey": "C",
+      "file": "reading/v1/A/q15-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "run",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "run"
+    },
+    {
+      "id": "A-A4-title",
+      "kind": "title",
+      "level": "A",
+      "passageId": "A4",
+      "file": "reading/v1/A/A4-title.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Three Birds",
+          "repeats": 1
+        }
+      ]
+    },
+    {
+      "id": "A-A4-passage",
+      "kind": "passage",
+      "level": "A",
+      "passageId": "A4",
+      "file": "reading/v1/A/A4-passage.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Three birds go out. The birds fly high. The birds go in. They go to their house.",
+          "repeats": 2
+        }
+      ]
+    },
+    {
+      "id": "A-q16",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 16,
+      "file": "reading/v1/A/q16.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where do the birds go?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "鸟去了哪里？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where do the birds go?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q16-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 16,
+      "optionKey": "A",
+      "file": "reading/v1/A/q16-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "to their house",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "to their house"
+    },
+    {
+      "id": "A-q16-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 16,
+      "optionKey": "B",
+      "file": "reading/v1/A/q16-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "to the tree",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "to the tree"
+    },
+    {
+      "id": "A-q16-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 16,
+      "optionKey": "C",
+      "file": "reading/v1/A/q16-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "to the sky",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "to the sky"
+    },
+    {
+      "id": "A-q17",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 17,
+      "file": "reading/v1/A/q17.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How do the birds go?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "鸟是怎么去的？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How do the birds go?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q17-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 17,
+      "optionKey": "A",
+      "file": "reading/v1/A/q17-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "they fly",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "they fly"
+    },
+    {
+      "id": "A-q17-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 17,
+      "optionKey": "B",
+      "file": "reading/v1/A/q17-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "they run",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "they run"
+    },
+    {
+      "id": "A-q17-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 17,
+      "optionKey": "C",
+      "file": "reading/v1/A/q17-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "they walk",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "they walk"
+    },
+    {
+      "id": "A-q18",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 18,
+      "file": "reading/v1/A/q18.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What happens first?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "先发生了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What happens first?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q18-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 18,
+      "optionKey": "A",
+      "file": "reading/v1/A/q18-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Three birds go out",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Three birds go out"
+    },
+    {
+      "id": "A-q18-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 18,
+      "optionKey": "B",
+      "file": "reading/v1/A/q18-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Birds fly high",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Birds fly high"
+    },
+    {
+      "id": "A-q18-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 18,
+      "optionKey": "C",
+      "file": "reading/v1/A/q18-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Birds go home",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Birds go home"
+    },
+    {
+      "id": "A-q19",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 19,
+      "file": "reading/v1/A/q19.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How many birds go in?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "有几只鸟飞进去？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How many birds go in?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q19-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 19,
+      "optionKey": "A",
+      "file": "reading/v1/A/q19-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "two",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "two"
+    },
+    {
+      "id": "A-q19-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 19,
+      "optionKey": "B",
+      "file": "reading/v1/A/q19-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "three",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "three"
+    },
+    {
+      "id": "A-q19-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 19,
+      "optionKey": "C",
+      "file": "reading/v1/A/q19-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "one",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "one"
+    },
+    {
+      "id": "A-q20",
+      "kind": "question",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 20,
+      "file": "reading/v1/A/q20.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which tells about the birds when they are over?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话描述鸟在上方时的状态？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which tells about the birds when they are over?",
+      "reviewFlags": []
+    },
+    {
+      "id": "A-q20-A",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 20,
+      "optionKey": "A",
+      "file": "reading/v1/A/q20-A.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "They are high",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "They are high"
+    },
+    {
+      "id": "A-q20-B",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 20,
+      "optionKey": "B",
+      "file": "reading/v1/A/q20-B.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "They are small",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "They are small"
+    },
+    {
+      "id": "A-q20-C",
+      "kind": "option",
+      "level": "A",
+      "passageId": "A4",
+      "questionId": 20,
+      "optionKey": "C",
+      "file": "reading/v1/A/q20-C.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "They are fast",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "They are fast"
+    },
+    {
+      "id": "B-q01",
+      "kind": "question",
+      "level": "B",
+      "passageId": "B1",
+      "questionId": 1,
+      "file": "reading/v1/B/q01.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the main idea of this passage?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章的主要意思是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the main idea of this passage?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q02",
+      "kind": "question",
+      "level": "B",
+      "passageId": "B1",
+      "questionId": 2,
+      "file": "reading/v1/B/q02.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which names something else that is big?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "下面哪个也是大的东西？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which names something else that is big?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q03",
+      "kind": "question",
+      "level": "B",
+      "passageId": "B1",
+      "questionId": 3,
+      "file": "reading/v1/B/q03.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which is true about plants?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "关于植物，哪一项是对的？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which is true about plants?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q04",
+      "kind": "question",
+      "level": "B",
+      "passageId": "B1",
+      "questionId": 4,
+      "file": "reading/v1/B/q04.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which means the opposite of little?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个词和 little（小）意思相反？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which means the opposite of little?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "B-q05",
+      "kind": "question",
+      "level": "B",
+      "passageId": "B1",
+      "questionId": 5,
+      "file": "reading/v1/B/q05.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word means the same as little?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个词和 little（小）意思相同？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word means the same as little?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "B-q06",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P2",
+      "questionId": 6,
+      "file": "reading/v1/B/q06.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where can you find a pond?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "在哪里能找到池塘？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where can you find a pond?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q07",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P2",
+      "questionId": 7,
+      "file": "reading/v1/B/q07.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why does the lion most likely go to the pond?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "狮子最有可能为什么去池塘？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why does the lion most likely go to the pond?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q08",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P2",
+      "questionId": 8,
+      "file": "reading/v1/B/q08.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is this passage mostly about?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章主要讲了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is this passage mostly about?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q09",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P2",
+      "questionId": 9,
+      "file": "reading/v1/B/q09.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "These words from the passage belong to which group: bug, duck, sheep?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "文中的 bug、duck、sheep 这些词属于哪一类？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "These words from the passage belong to which group: bug, duck, sheep?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "B-q10",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P2",
+      "questionId": 10,
+      "file": "reading/v1/B/q10.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Something that is near is",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "near（附近）指的是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Something that is near is",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "B-q11",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P3",
+      "questionId": 11,
+      "file": "reading/v1/B/q11.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of these is a detail in the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "下面哪一项是故事中的细节？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of these is a detail in the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q12",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P3",
+      "questionId": 12,
+      "file": "reading/v1/B/q12.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What do the boy and dog do?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "男孩和小狗做了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What do the boy and dog do?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q13",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P3",
+      "questionId": 13,
+      "file": "reading/v1/B/q13.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where is the last place Ted goes?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "Ted 最后去的地方是哪里？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where is the last place Ted goes?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "B-q14",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P3",
+      "questionId": 14,
+      "file": "reading/v1/B/q14.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Ted sees ducks, fish, and bugs. In which group do these belong?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "Ted 看到的鸭子、鱼和虫子属于哪一类？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Ted sees ducks, fish, and bugs. In which group do these belong?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "B-q15",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P3",
+      "questionId": 15,
+      "file": "reading/v1/B/q15.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word in the passage best describes a pond?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "文章中哪个词最能描述池塘？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word in the passage best describes a pond?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q16",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P4",
+      "questionId": 16,
+      "file": "reading/v1/B/q16.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What do the characters do in the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "故事里的人物做了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What do the characters do in the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q17",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P4",
+      "questionId": 17,
+      "file": "reading/v1/B/q17.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which sentence tells a fact about the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话说的是故事中的事实？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which sentence tells a fact about the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q18",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P4",
+      "questionId": 18,
+      "file": "reading/v1/B/q18.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which is not an animal?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪一个不是动物？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which is not an animal?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q19",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P4",
+      "questionId": 19,
+      "file": "reading/v1/B/q19.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How does the girl feel about the animals she reads about?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "女孩对她读到的动物有什么感觉？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How does the girl feel about the animals she reads about?",
+      "reviewFlags": []
+    },
+    {
+      "id": "B-q20",
+      "kind": "question",
+      "level": "B",
+      "passageId": "P4",
+      "questionId": 20,
+      "file": "reading/v1/B/q20.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does it mean to read?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "read（读）是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does it mean to read?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "C-q01",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C1",
+      "questionId": 1,
+      "file": "reading/v1/C/q01.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is under the orange moon?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "橙色月亮下面有什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is under the orange moon?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q02",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C1",
+      "questionId": 2,
+      "file": "reading/v1/C/q02.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "In what way are the tree and the owl the same?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "树和猫头鹰有什么相同点？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "In what way are the tree and the owl the same?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q03",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C1",
+      "questionId": 3,
+      "file": "reading/v1/C/q03.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why can the moon look different?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "为什么月亮看起来会不同？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why can the moon look different?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q04",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C1",
+      "questionId": 4,
+      "file": "reading/v1/C/q04.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What word in the passage is used to tell how something tastes?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "文章中哪个词是用来描述味道的？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What word in the passage is used to tell how something tastes?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q05",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C1",
+      "questionId": 5,
+      "file": "reading/v1/C/q05.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does the word under mean?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "under 是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does the word under mean?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "C-q06",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C2",
+      "questionId": 6,
+      "file": "reading/v1/C/q06.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word best describes a party?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个词最能描述 party？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word best describes a party?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "C-q07",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C2",
+      "questionId": 7,
+      "file": "reading/v1/C/q07.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What will you do at the party?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "你会在 party 上做什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What will you do at the party?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "C-q08",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C2",
+      "questionId": 8,
+      "file": "reading/v1/C/q08.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which sentence tells an opinion?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话表达的是观点？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which sentence tells an opinion?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q09",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C2",
+      "questionId": 9,
+      "file": "reading/v1/C/q09.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How does the author think you will feel at the birthday party?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "作者认为你在生日派对上会感觉怎样？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How does the author think you will feel at the birthday party?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q10",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C2",
+      "questionId": 10,
+      "file": "reading/v1/C/q10.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Likely, what sentence will you write on the card?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "你最可能在卡片上写哪句话？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Likely, what sentence will you write on the card?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q11",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C3",
+      "questionId": 11,
+      "file": "reading/v1/C/q11.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the story mostly about?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这个故事主要讲什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the story mostly about?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q12",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C3",
+      "questionId": 12,
+      "file": "reading/v1/C/q12.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does the child open first?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "孩子最先打开了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does the child open first?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q13",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C3",
+      "questionId": 13,
+      "file": "reading/v1/C/q13.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How does the girl feel about her birthday party?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "女孩对她的生日派对感觉怎样？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How does the girl feel about her birthday party?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q14",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C3",
+      "questionId": 14,
+      "file": "reading/v1/C/q14.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What was in the box?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "盒子里有什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What was in the box?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q15",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C3",
+      "questionId": 15,
+      "file": "reading/v1/C/q15.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "A birthday is the day someone was ... Which word completes the sentence?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "birthday 指的是某人哪一天？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "A birthday is the day someone was _____.",
+      "reviewFlags": [
+        "spoken-cloze-override",
+        "blank-in-source",
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "C-q16",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C4",
+      "questionId": 16,
+      "file": "reading/v1/C/q16.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the main idea of the passage?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章的主要意思是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the main idea of the passage?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q17",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C4",
+      "questionId": 17,
+      "file": "reading/v1/C/q17.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word names a feeling?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个词表示一种感觉？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word names a feeling?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q18",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C4",
+      "questionId": 18,
+      "file": "reading/v1/C/q18.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does the word many mean?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "many 是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does the word many mean?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "C-q19",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C4",
+      "questionId": 19,
+      "file": "reading/v1/C/q19.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How are monkeys like you and me?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "猴子和我们有什么相似之处？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How are monkeys like you and me?",
+      "reviewFlags": []
+    },
+    {
+      "id": "C-q20",
+      "kind": "question",
+      "level": "C",
+      "passageId": "C4",
+      "questionId": 20,
+      "file": "reading/v1/C/q20.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "In this sentence, busy means that monkeys ... Which phrase completes the sentence?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "busy 在这里表示猴子怎么样？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "In this sentence, busy means that monkeys _____.",
+      "reviewFlags": [
+        "spoken-cloze-override",
+        "blank-in-source",
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "D-q01",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D1",
+      "questionId": 1,
+      "file": "reading/v1/D/q01.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the main idea of the passage?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章的主旨是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the main idea of the passage?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q02",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D1",
+      "questionId": 2,
+      "file": "reading/v1/D/q02.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Food is ... for all animals. Which word completes the sentence?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "\"食物对所有动物来说都是___的。\"空格里填什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Food is _______ for all animals.",
+      "reviewFlags": [
+        "spoken-cloze-override",
+        "blank-in-source"
+      ]
+    },
+    {
+      "id": "D-q03",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D1",
+      "questionId": 3,
+      "file": "reading/v1/D/q03.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How are birds and deer the same?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "鸟和鹿有什么相同点？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How are birds and deer the same?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q04",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D1",
+      "questionId": 4,
+      "file": "reading/v1/D/q04.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "In which group do bugs, seeds, fish, and deer belong?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "虫子、种子、鱼和鹿属于哪一类？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "In which group do bugs, seeds, fish, and deer belong?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q05",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D1",
+      "questionId": 5,
+      "file": "reading/v1/D/q05.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Some deer like to eat seeds, too. Which word means the same as \"too\"?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "\"too\"和哪个词意思相同？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Some deer like to eat seeds, too. Which word means the same as \"too\"?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "D-q06",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D2",
+      "questionId": 6,
+      "file": "reading/v1/D/q06.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where is the playground in the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "故事里的操场在哪里？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where is the playground in the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q07",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D2",
+      "questionId": 7,
+      "file": "reading/v1/D/q07.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why does the girl go to the playground?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "女孩为什么去操场？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why does the girl go to the playground?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q08",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D2",
+      "questionId": 8,
+      "file": "reading/v1/D/q08.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the last thing the girl does at the playground?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "女孩在操场做的最后一件事是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the last thing the girl does at the playground?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q09",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D2",
+      "questionId": 9,
+      "file": "reading/v1/D/q09.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "In order to play on the slide, the girl first has to ... Which action completes the sentence?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "为了玩滑梯，女孩首先要做什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "In order to play on the slide, the girl first has to _______.",
+      "reviewFlags": [
+        "spoken-cloze-override",
+        "blank-in-source"
+      ]
+    },
+    {
+      "id": "D-q10",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D2",
+      "questionId": 10,
+      "file": "reading/v1/D/q10.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which item from the story is not on the ground?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "故事中哪样东西不在地面上？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which item from the story is not on the ground?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q11",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D3",
+      "questionId": 11,
+      "file": "reading/v1/D/q11.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the setting of the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "故事发生在哪里？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the setting of the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q12",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D3",
+      "questionId": 12,
+      "file": "reading/v1/D/q12.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is one thing the workers do?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "工人们做了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is one thing the workers do?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q13",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D3",
+      "questionId": 13,
+      "file": "reading/v1/D/q13.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does the boy like about the woods?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "男孩喜欢树林里的什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does the boy like about the woods?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q14",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D3",
+      "questionId": 14,
+      "file": "reading/v1/D/q14.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why do the workers plant seeds?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "工人们为什么种种子？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why do the workers plant seeds?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q15",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D3",
+      "questionId": 15,
+      "file": "reading/v1/D/q15.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "I see workers saw down tall trees. What does the word \"saw\" mean?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "\"saw\"在这句话里是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "I see workers saw down tall trees. What does the word \"saw\" mean?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "D-q16",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D4",
+      "questionId": 16,
+      "file": "reading/v1/D/q16.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What do all of our senses help us do?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "我们的感官帮助我们做什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What do all of our senses help us do?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q17",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D4",
+      "questionId": 17,
+      "file": "reading/v1/D/q17.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "In the passage, what did they hear in the woods?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "在树林里他们听到了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "In the passage, what did they hear in the woods?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q18",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D4",
+      "questionId": 18,
+      "file": "reading/v1/D/q18.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What can you learn from touching a tree?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "摸一棵树你能了解什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What can you learn from touching a tree?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q19",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D4",
+      "questionId": 19,
+      "file": "reading/v1/D/q19.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of the following does not have senses?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "下列哪个没有感官？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of the following does not have senses?",
+      "reviewFlags": []
+    },
+    {
+      "id": "D-q20",
+      "kind": "question",
+      "level": "D",
+      "passageId": "D4",
+      "questionId": 20,
+      "file": "reading/v1/D/q20.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What do you use most to touch?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "你主要用什么来触摸？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What do you use most to touch?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q01",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E1",
+      "questionId": 1,
+      "file": "reading/v1/E/q01.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What will happen if the boy wears slippers?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "如果男孩穿 slippers，会发生什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What will happen if the boy wears slippers?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q02",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E1",
+      "questionId": 2,
+      "file": "reading/v1/E/q02.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "The boy probably wants to ... Which phrase completes the sentence?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "男孩可能想要做什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "The boy probably wants to _____.",
+      "reviewFlags": [
+        "spoken-cloze-override",
+        "blank-in-source"
+      ]
+    },
+    {
+      "id": "E-q03",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E1",
+      "questionId": 3,
+      "file": "reading/v1/E/q03.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why does the boy decide to wear sneakers?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "男孩为什么决定穿 sneakers？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why does the boy decide to wear sneakers?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q04",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E1",
+      "questionId": 4,
+      "file": "reading/v1/E/q04.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of the following best describes soccer?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "下面哪个最能描述 soccer？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of the following best describes soccer?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q05",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E1",
+      "questionId": 5,
+      "file": "reading/v1/E/q05.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does special mean?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "special 是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does special mean?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q06",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E2",
+      "questionId": 6,
+      "file": "reading/v1/E/q06.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why do Ben and Jen visit the farm?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "Ben 和 Jen 为什么去农场？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why do Ben and Jen visit the farm?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q07",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E2",
+      "questionId": 7,
+      "file": "reading/v1/E/q07.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of the following are not found on the farm in the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "故事中的农场没有出现哪一组？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of the following are not found on the farm in the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q08",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E2",
+      "questionId": 8,
+      "file": "reading/v1/E/q08.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How are corn and pumpkins the same?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "corn 和 pumpkins 有什么相同点？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How are corn and pumpkins the same?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q09",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E2",
+      "questionId": 9,
+      "file": "reading/v1/E/q09.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which is true about seeds?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "关于 seeds，哪句话是正确的？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which is true about seeds?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q10",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E2",
+      "questionId": 10,
+      "file": "reading/v1/E/q10.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is a farm?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "farm 是什么地方？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is a farm?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q11",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E3",
+      "questionId": 11,
+      "file": "reading/v1/E/q11.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which shoes are best to wear in the summer?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "夏天最适合穿哪种鞋？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which shoes are best to wear in the summer?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q12",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E3",
+      "questionId": 12,
+      "file": "reading/v1/E/q12.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What kind of shoes does the passage say are best to wear when it is cold?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "文章说天气冷时最适合穿什么鞋？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What kind of shoes does the passage say are best to wear when it is cold?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q13",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E3",
+      "questionId": 13,
+      "file": "reading/v1/E/q13.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How are boots and flip flops most alike?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "boots 和 flip flops 最相同的地方是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How are boots and flip flops most alike?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "E-q14",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E3",
+      "questionId": 14,
+      "file": "reading/v1/E/q14.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word makes this sentence an opinion?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个词让这句话变成了观点？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word makes this sentence an opinion?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q15",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E3",
+      "questionId": 15,
+      "file": "reading/v1/E/q15.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of the following are all seasons?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "下面哪一组都是季节？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of the following are all seasons?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q16",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E4",
+      "questionId": 16,
+      "file": "reading/v1/E/q16.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is the main idea of the passage?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "这篇文章的主要意思是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is the main idea of the passage?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q17",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E4",
+      "questionId": 17,
+      "file": "reading/v1/E/q17.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why did the author write the passage?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "作者为什么写这篇文章？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why did the author write the passage?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q18",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E4",
+      "questionId": 18,
+      "file": "reading/v1/E/q18.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where would you not find a bird nest?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "你在哪里不会找到鸟巢？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where would you not find a bird nest?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q19",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E4",
+      "questionId": 19,
+      "file": "reading/v1/E/q19.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why do birds need nests?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "鸟为什么需要巢？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why do birds need nests?",
+      "reviewFlags": []
+    },
+    {
+      "id": "E-q20",
+      "kind": "question",
+      "level": "E",
+      "passageId": "E4",
+      "questionId": 20,
+      "file": "reading/v1/E/q20.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What does the word different mean?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "different 是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What does the word different mean?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q01",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F1",
+      "questionId": 1,
+      "file": "reading/v1/F/q01.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why does Jake go inside the tunnel?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "Jake 为什么走进 tunnel？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why does Jake go inside the tunnel?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q02",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F1",
+      "questionId": 2,
+      "file": "reading/v1/F/q02.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Where does the tunnel go?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "tunnel 通向哪里？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Where does the tunnel go?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q03",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F1",
+      "questionId": 3,
+      "file": "reading/v1/F/q03.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why is the tunnel cool and dark?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "tunnel 为什么又凉又暗？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why is the tunnel cool and dark?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q04",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F1",
+      "questionId": 4,
+      "file": "reading/v1/F/q04.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which of the following happens first in the story?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "故事中最先发生了什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which of the following happens first in the story?",
+      "reviewFlags": []
+    },
+    {
+      "id": "F-q05",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F1",
+      "questionId": 5,
+      "file": "reading/v1/F/q05.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word means the same as running in this sentence?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "running 在这句话里是什么意思？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word means the same as running in this sentence?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q06",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F2",
+      "questionId": 6,
+      "file": "reading/v1/F/q06.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Why do workers carry the rocks away from the tunnel?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "工人为什么要把 rocks 从 tunnel 里运走？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Why do workers carry the rocks away from the tunnel?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q07",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F2",
+      "questionId": 7,
+      "file": "reading/v1/F/q07.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What do the workers do first when they make a tunnel?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "工人建 tunnel 时最先做什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What do the workers do first when they make a tunnel?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q08",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F2",
+      "questionId": 8,
+      "file": "reading/v1/F/q08.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Using the information in the passage, where are the workers most likely making the tunnel?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "根据文章信息，工人最可能在哪里建 tunnel？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Using the information in the passage, where are the workers most likely making the tunnel?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q09",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F2",
+      "questionId": 9,
+      "file": "reading/v1/F/q09.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which sentence tells an opinion the author shares?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话表达了作者的观点？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which sentence tells an opinion the author shares?",
+      "reviewFlags": []
+    },
+    {
+      "id": "F-q10",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F2",
+      "questionId": 10,
+      "file": "reading/v1/F/q10.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which word means the same as make?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "make 的意思和哪个词相近？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which word means the same as make?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q11",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F3",
+      "questionId": 11,
+      "file": "reading/v1/F/q11.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is one thing the girl does to use her body's energy?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "女孩做了什么来使用身体的 energy？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is one thing the girl does to use her body's energy?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q12",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F3",
+      "questionId": 12,
+      "file": "reading/v1/F/q12.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which sentence is a fact?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪句话是事实？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which sentence is a fact?",
+      "reviewFlags": []
+    },
+    {
+      "id": "F-q13",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F3",
+      "questionId": 13,
+      "file": "reading/v1/F/q13.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What gives your body energy?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "什么给身体提供 energy？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What gives your body energy?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q14",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F3",
+      "questionId": 14,
+      "file": "reading/v1/F/q14.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What is an effect of using your body's energy?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "使用身体 energy 会带来什么结果？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What is an effect of using your body's energy?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q15",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F3",
+      "questionId": 15,
+      "file": "reading/v1/F/q15.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which are both ways to move?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪一组都是移动的方式？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "Which are both ways to move?",
+      "reviewFlags": []
+    },
+    {
+      "id": "F-q16",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F4",
+      "questionId": 16,
+      "file": "reading/v1/F/q16.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "Which is the name of a color?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "哪个是颜色的名称？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "_____ is the name of a color.",
+      "reviewFlags": [
+        "blank-in-source"
+      ]
+    },
+    {
+      "id": "F-q17",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F4",
+      "questionId": 17,
+      "file": "reading/v1/F/q17.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "How do you make the color purple?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "怎样调出 purple？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "How do you make the color purple?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    },
+    {
+      "id": "F-q18",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F4",
+      "questionId": 18,
+      "file": "reading/v1/F/q18.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What must you add to red paint to make it darker?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "要让红色颜料变深，需要加什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What must you add to red paint to make it darker?",
+      "reviewFlags": []
+    },
+    {
+      "id": "F-q19",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F4",
+      "questionId": 19,
+      "file": "reading/v1/F/q19.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "If you add all the colors together, what color will you get?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "如果把所有颜色加在一起，会得到什么颜色？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "If you add all the colors together, what color will you get?",
+      "reviewFlags": []
+    },
+    {
+      "id": "F-q20",
+      "kind": "question",
+      "level": "F",
+      "passageId": "F4",
+      "questionId": 20,
+      "file": "reading/v1/F/q20.mp3",
+      "segments": [
+        {
+          "lang": "en-US",
+          "text": "What words mean the opposite of add?",
+          "repeats": 1
+        },
+        {
+          "lang": "zh-CN",
+          "text": "add 的反义表达是什么？",
+          "repeats": 1
+        }
+      ],
+      "sourceText": "What words mean the opposite of add?",
+      "reviewFlags": [
+        "English-word-in-Chinese"
+      ]
+    }
+  ],
+  "sourceSha256": "f90b46f71cfa90888fb079aee9e88186d2403de90a181fe62a64e92580841433"
+}

@@ -1,7 +1,7 @@
-import { speakEnglish } from '../utils/tts'
+import { playReadingPassage, playReadingTitle } from '../utils/readingAudio'
 
-export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTts, spacedParagraphs }) {
-  const showPassageTts = !hideTts && tts?.passage !== false
+export default function PassageCard({ passage, passageIndex, levelId, tts, hideZh, hideTts, spacedParagraphs }) {
+  const showPassageTts = !hideTts && levelId === 'A' && tts?.passage !== false
   const typeDisplay = hideZh
     ? (passage.type === 'fiction' ? 'Fiction' : 'Non-fiction')
     : passage.typeLabel
@@ -26,7 +26,7 @@ export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTt
         <div className="flex-1" />
         {showPassageTts && (
           <button
-            onClick={() => speakEnglish(passage.text.replace(/\n/g, '. '))}
+            onClick={() => playReadingPassage(passage.id)}
             className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-teal-500
                        bg-gray-50 hover:bg-teal-50 px-3 py-1.5 rounded-full border
                        border-gray-100 hover:border-teal-200 transition-colors font-semibold"
@@ -37,7 +37,19 @@ export default function PassageCard({ passage, passageIndex, tts, hideZh, hideTt
       </div>
 
       {/* Title */}
-      <h3 className="text-base font-extrabold text-gray-700 mb-4">{passage.title}</h3>
+      <div className="flex items-center gap-2 mb-4">
+        <h3 className="text-base font-extrabold text-gray-700">{passage.title}</h3>
+        {showPassageTts && (
+          <button
+            onClick={() => playReadingTitle(passage.id)}
+            className="text-sm text-gray-400 hover:text-teal-500"
+            aria-label="朗读文章标题"
+            title="朗读文章标题"
+          >
+            🔊
+          </button>
+        )}
+      </div>
 
       {/* Passage text */}
       <div className="relative">

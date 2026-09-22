@@ -17,6 +17,7 @@ import placementT from '../data/placement/t'
 import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
+import { stopReadingAudio } from '../utils/readingAudio'
 import BatchInputModal from '../components/BatchInputModal'
 import SubmitModal from '../components/SubmitModal'
 import Toast from '../components/Toast'
@@ -123,6 +124,7 @@ export default function PlacementPage() {
 
   const [answers,       setAnswers]       = useState({})
   const [currentIdx,    setCurrentIdx]    = useState(0)
+  useEffect(() => () => stopReadingAudio(), [currentIdx, levelId])
   const [isBatchInputOpen, setIsBatchInputOpen] = useState(false)
   const [showSubmit,    setShowSubmit]    = useState(false)
   const [unanswered,    setUnanswered]    = useState([])
@@ -377,8 +379,10 @@ export default function PlacementPage() {
                 <PassageCard
                   passage={currentPassage}
                   passageIndex={passageIndex}
+                  levelId={levelData.id}
                   tts={levelData.tts}
                   hideZh={isHighLevel}
+                  hideTts={isHighLevel}
                   spacedParagraphs={isHighLevel}
                 />
               </div>
@@ -388,10 +392,12 @@ export default function PlacementPage() {
             <div className="w-full md:w-[46%] lg:w-[44%] flex-shrink-0">
               <QuestionCard
                 question={currentQuestion}
+                levelId={levelData.id}
                 selectedAnswer={answers[currentQuestion.id]}
                 onAnswer={handleAnswer}
                 tts={levelData.tts}
                 hideZh={isHighLevel}
+                hideTts={isHighLevel}
                 total={total}
                 accent="purple"
               />

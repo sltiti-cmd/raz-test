@@ -1,7 +1,8 @@
-import { speakEnglish } from '../utils/tts'
+import { playReadingOption, playReadingQuestion } from '../utils/readingAudio'
 
-export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, hideZh, hideTts, total, accent = 'teal' }) {
-  const showOptionTts = !hideTts && tts?.options !== false
+export default function QuestionCard({ question, selectedAnswer, onAnswer, levelId, tts, hideZh, hideTts, total, accent = 'teal' }) {
+  const showQuestionTts = !hideTts && ['A', 'B', 'C', 'D', 'E', 'F'].includes(levelId) && tts?.question !== false
+  const showOptionTts = !hideTts && levelId === 'A' && tts?.options !== false
   const c = accent === 'purple'
     ? { selBg: 'bg-purple-50', selBorder: 'border-purple-400', keyBg: 'bg-purple-500',
         hoverBorder: 'hover:border-purple-200', hoverKey: 'group-hover:border-purple-300 group-hover:text-purple-500',
@@ -28,9 +29,9 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, 
         <p className="flex-1 text-base sm:text-lg font-extrabold text-gray-800 leading-snug">
           {question.question}
         </p>
-        {!hideTts && (
+        {showQuestionTts && (
           <button
-            onClick={() => speakEnglish(question.ttsText || question.question)}
+            onClick={() => playReadingQuestion(levelId, question.id)}
             className={`flex-shrink-0 mt-0.5 w-7 h-7 flex items-center justify-center
                        rounded-full text-gray-300 transition-colors ${c.tts}`}
             title="朗读题目"
@@ -90,9 +91,9 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, tts, 
               )}
 
               {/* TTS button — stopPropagation so it doesn't select */}
-              {showOptionTts && (
+              {showOptionTts && !/^[●\s]+$/.test(opt.text) && (
                 <button
-                  onClick={(e) => { e.stopPropagation(); speakEnglish(opt.text) }}
+                  onClick={(e) => { e.stopPropagation(); playReadingOption(question.id, opt.key) }}
                   className={`flex-shrink-0 ml-2 w-6 h-6 flex items-center justify-center
                              rounded-full text-gray-300 transition-colors text-sm ${c.tts}`}
                   title="朗读选项"

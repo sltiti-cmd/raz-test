@@ -11,6 +11,7 @@ import levelR from '../data/levels/r'
 import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
+import { stopReadingAudio } from '../utils/readingAudio'
 import BatchInputModal from '../components/BatchInputModal'
 import SubmitModal from '../components/SubmitModal'
 import Toast from '../components/Toast'
@@ -110,6 +111,7 @@ export default function TestPage() {
 
   const [answers,       setAnswers]       = useState({})
   const [currentIdx,    setCurrentIdx]    = useState(0)
+  useEffect(() => () => stopReadingAudio(), [currentIdx, levelId])
   const [isBatchInputOpen, setIsBatchInputOpen] = useState(false)
   const [showSubmit,    setShowSubmit]    = useState(false)
   const [unanswered,    setUnanswered]    = useState([])
@@ -361,6 +363,7 @@ export default function TestPage() {
                 <PassageCard
                   passage={currentPassage}
                   passageIndex={passageIndex}
+                  levelId={levelData.id}
                   tts={levelData.tts}
                   hideZh={isHighLevel}
                   hideTts={isHighLevel}
@@ -373,6 +376,7 @@ export default function TestPage() {
             <div className="w-full md:w-[46%] lg:w-[44%] flex-shrink-0">
               <QuestionCard
                 question={currentQuestion}
+                levelId={levelData.id}
                 selectedAnswer={answers[currentQuestion.id]}
                 onAnswer={handleAnswer}
                 tts={levelData.tts}
