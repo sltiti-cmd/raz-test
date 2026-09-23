@@ -1,7 +1,7 @@
 export function exportCsv(records) {
   const headers = [
     '提交时间',
-    '微信名',
+    '小朋友姓名',
     '测试类型',
     '测试级别',
     '分数',
@@ -17,12 +17,14 @@ export function exportCsv(records) {
   const rows = records.map((r) => [
     r.submittedAt,
     r.studentName,
-    (r.testType || 'upgrade') === 'placement' ? '插班测试' : '升级测试',
+    ({ upgrade: '阅读测试', placement: '插班测试', listening: '听力测试' })[r.testType || 'upgrade'] || '其他测试',
     r.levelId + '级别',
     r.score,
     r.correctCount,
     (r.wrongQuestions || []).map((q) => `Q${q.id}`).join(' '),
-    r.score >= 80 ? `可以读${r.levelId}级别` : '建议降级巩固',
+    (r.testType || 'upgrade') === 'listening'
+      ? (r.score >= 80 ? '听力测试合格' : '听力测试未达合格线')
+      : (r.score >= 80 ? `可以读${r.levelId}级别` : '建议降级巩固'),
     (r.weakSkills || []).join(' / '),
     r.fictionWrong,
     r.nonfictionWrong,

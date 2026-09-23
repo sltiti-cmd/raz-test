@@ -7,9 +7,9 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
     ? { selBg: 'bg-purple-50', selBorder: 'border-purple-400', keyBg: 'bg-purple-500',
         hoverBorder: 'hover:border-purple-200', hoverKey: 'group-hover:border-purple-300 group-hover:text-purple-500',
         text: 'text-purple-800', tts: 'hover:text-purple-500 hover:bg-purple-50', check: 'text-purple-500' }
-    : { selBg: 'bg-teal-50', selBorder: 'border-teal-400', keyBg: 'bg-teal-500',
-        hoverBorder: 'hover:border-teal-200', hoverKey: 'group-hover:border-teal-300 group-hover:text-teal-500',
-        text: 'text-teal-800', tts: 'hover:text-teal-500 hover:bg-teal-50', check: 'text-teal-500' }
+    : { selBg: 'bg-[#edf3ee]', selBorder: 'border-[#7e9784]', keyBg: 'bg-[#5f7a67]',
+        hoverBorder: 'hover:border-[#b6c6b9]', hoverKey: 'group-hover:border-[#9caf9f] group-hover:text-[#5f7a67]',
+        text: 'text-[#385044]', tts: 'hover:text-[#5f7a67] hover:bg-[#edf3ee]', check: 'text-[#5f7a67]' }
   return (
     <div className="bg-white rounded-2xl shadow-card p-5 sm:p-6">
       {/* Header */}
@@ -18,7 +18,7 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
                          px-2.5 py-1 rounded-full">
           Q{question.id}{total ? ` / ${total}` : ''}
         </span>
-        <span className="text-xs font-bold bg-blue-50 text-blue-500
+        <span className="text-xs font-bold bg-[#f0eee6] text-[#6e786f]
                          px-2.5 py-1 rounded-full">
           {question.skill}
         </span>
@@ -79,11 +79,19 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
                 {opt.key}
               </span>
 
-              {/* Text */}
-              <span className={`flex-1 text-sm sm:text-base font-semibold transition-colors
-                ${isSelected ? c.text : 'text-gray-700'}`}>
-                {opt.text}
-              </span>
+              {/* 原卷中的纯图形选项保留图像，不朗读，也不补写答案文字。 */}
+              {opt.image ? (
+                <img
+                  src={`${import.meta.env.BASE_URL}${opt.image.replace(/^\//, '')}`}
+                  alt={opt.imageAlt || '图形选项'}
+                  className="flex-1 h-20 w-auto max-w-full object-contain object-left"
+                />
+              ) : (
+                <span className={`flex-1 text-sm sm:text-base font-semibold transition-colors
+                  ${isSelected ? c.text : 'text-gray-700'}`}>
+                  {opt.text}
+                </span>
+              )}
 
               {/* Selected checkmark */}
               {isSelected && (
@@ -91,7 +99,7 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
               )}
 
               {/* TTS button — stopPropagation so it doesn't select */}
-              {showOptionTts && !/^[●\s]+$/.test(opt.text) && (
+              {showOptionTts && !opt.graphicOnly && !/^[●\s]+$/.test(opt.text) && (
                 <button
                   onClick={(e) => { e.stopPropagation(); playReadingOption(question.id, opt.key) }}
                   className={`flex-shrink-0 ml-2 w-6 h-6 flex items-center justify-center

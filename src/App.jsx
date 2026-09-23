@@ -6,6 +6,7 @@ import PlacementPage from './pages/PlacementPage'
 import ResultPage from './pages/ResultPage'
 import AdminPage from './pages/AdminPage'
 import FeedbackWidget from './components/FeedbackWidget'
+import ListeningPage from './pages/ListeningPage'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/placement/:levelId" element={<PlacementPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/listening" element={<ListeningPage />} />
       </Routes>
       <FeedbackWidget />
     </BrowserRouter>

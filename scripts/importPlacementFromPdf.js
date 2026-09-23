@@ -10,6 +10,7 @@
 import { createRequire } from 'module'
 import fs from 'fs'
 import path from 'path'
+import process from 'process'
 import { fileURLToPath } from 'url'
 
 const require = createRequire(import.meta.url)
@@ -180,14 +181,13 @@ function parseTestText(rawText) {
           explicitTitle = l; break
         }
       }
-      const format = hasInlineQ ? 'inline' : 'standalone'
-      questionBlocks.push({ lines, explicitTitle, format })
+      questionBlocks.push({ lines, explicitTitle })
     }
   }
 
   // Parse each question block, using positional fallback to passage-text block for title/text
   for (let qi = 0; qi < questionBlocks.length; qi++) {
-    const { lines, explicitTitle, format } = questionBlocks[qi]
+    const { lines, explicitTitle } = questionBlocks[qi]
     const passageInfo = passageTextBlocks[qi]
     const title = explicitTitle || (passageInfo && passageInfo.title) || `Passage ${qi + 1}`
     const text = (passageInfo && passageInfo.text) || ''
@@ -303,13 +303,11 @@ function parseAnswerText(rawText) {
     // Parse: question number, answer letter, skill
     const baseNum = passageIdx * 5
     let qNum = null
-    let i = 0
-
     // Find where actual answers start (skip past "Answer Sheet" header)
     const answerSheetIdx = lines.findIndex(l => l === 'Answer Sheet')
     const startIdx = answerSheetIdx >= 0 ? answerSheetIdx + 1 : 0
 
-    for (i = 0; i < lines.length; i++) {
+    for (let i = startIdx; i < lines.length; i++) {
       const line = lines[i]
       const numM = line.match(/^(\d+)\.?\s*$/)
       if (numM) {
@@ -387,7 +385,6 @@ function mergeAnswers(passages, answers) {
 function generateJsContent(level, testPdfPath, answerPdfPath, passages, parseWarnings, pdfDirPrefix) {
   const varName = `placement${level}`
   const prefix = pdfDirPrefix || `/raw/placement/${level}`
-  const hasAnyPassage = passages.length > 0
   const totalQ = passages.reduce((s, p) => s + p.questions.length, 0)
 
   const passagesStr = passages.map((p, pi) => {
@@ -470,7 +467,7 @@ async function main() {
   // Ensure rawExtracted dir exists
   fs.mkdirSync(RAW_EXTRACTED_DIR, { recursive: true })
 
-  let levelDirs = []
+  let levelDirs
 
   if (cliLevels.length > 0) {
     // Use specified levels, resolve PDF dir from raw/ directly
@@ -551,7 +548,7 @@ async function main() {
     }
 
     // ── B/C. Extract raw text and save ──
-    let testRawText = ''
+    let testRawText
     let answerRawText = ''
     let parseWarnings = []
 

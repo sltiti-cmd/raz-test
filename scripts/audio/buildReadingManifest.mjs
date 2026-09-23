@@ -77,10 +77,10 @@ for (const level of levels) {
       })
       if (level.id !== 'A') continue
       for (const option of question.options) {
-        // These are pictures of dots, not words. Reading their counts gives away the answer.
-        if (/^[●\s]+$/.test(option.text)) continue
+        // 原卷的苹果与点数是纯图形；读出数量会直接泄露答案。
+        if (option.graphicOnly || option.image || /^[●\s]+$/.test(option.text)) continue
         const spoken = /^\d$/.test(option.text)
-          ? { 3: 'three', 5: 'five', 7: 'seven' }[option.text] || option.text
+          ? { 1: 'one', 3: 'three', 5: 'five', 7: 'seven' }[option.text] || option.text
           : option.text
         entries.push({
           id: `A-${qid}-${option.key}`, kind: 'option', level: 'A',
@@ -97,14 +97,14 @@ for (const level of levels) {
 const counts = Object.fromEntries(['title', 'passage', 'question', 'option'].map(kind => [
   kind, entries.filter(entry => entry.kind === kind).length,
 ]))
-if (counts.title !== 4 || counts.passage !== 4 || counts.question !== 120 || counts.option !== 54) {
+if (counts.title !== 4 || counts.passage !== 4 || counts.question !== 120 || counts.option !== 36) {
   throw new Error(`Unexpected inventory: ${JSON.stringify(counts)}`)
 }
 
 const manifest = {
   schemaVersion: 1,
   source: 'Current A-F reading test data; G and above have no audio',
-  policy: 'A titles once, A passages English twice, A-F questions English then Chinese once each, A options except six dot-picture choices once',
+  policy: 'A titles once, A passages English twice, A-F questions English then Chinese once each, A text options once; four graphic choices silent',
   counts,
   entries,
 }

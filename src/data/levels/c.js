@@ -16,6 +16,8 @@ export const levelC = {
       title: "The Moon Can Look Different",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/c-the-moon-can-look-different.jpg",
+      imageAlt: "《The Moon Can Look Different》原 PDF 插图",
       text: `The moon can look different.
 It can look orange, white, and red.
 I see an orange moon at nighttime.
@@ -100,6 +102,8 @@ I like to see the orange moon.`,
       title: "What Will You Have At a Party?",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/c-what-will-you-have-at-a-party.jpg",
+      imageAlt: "《What Will You Have At a Party?》原 PDF 插图",
       text: `What will you have at a party?
 Is it a birthday party?
 It is a birthday party.
@@ -184,6 +188,8 @@ You will like a birthday party.`,
       title: "It Is a Birthday Party",
       type: "fiction",
       typeLabel: "虚构",
+      image: "/images/passages/c-it-is-a-birthday-party.jpg",
+      imageAlt: "《It Is a Birthday Party》原 PDF 插图",
       text: `I open the door.
 The children sing "Happy Birthday."
 It is a birthday party.
@@ -269,6 +275,8 @@ It is a happy birthday party!`,
       title: "Monkeys Have Many Feelings",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/c-monkeys-have-many-feelings.jpg",
+      imageAlt: "《Monkeys Have Many Feelings》原 PDF 插图",
       text: `Monkeys are busy animals.
 They have many feelings.
 They can feel angry sometimes.

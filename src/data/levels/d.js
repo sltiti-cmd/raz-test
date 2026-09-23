@@ -15,6 +15,8 @@ export const levelD = {
       title: 'Animals Like to Eat',
       type: 'nonfiction',
       typeLabel: '非虚构',
+      image: '/images/passages/d-animals-like-to-eat.jpg',
+      imageAlt: '《Animals Like to Eat》原 PDF 插图',
       text: 'Animals need to eat food.\nWhat do animals like to eat?\nSome bears like to eat fish.\nSome whales like to eat fish, too.\nSome birds like to eat bugs.\nSome birds like to eat seeds.\nSome deer like to eat seeds, too.\nSome lions like to eat deer.\nAnimals need to eat food.\nAnimals like to eat different things.',
       questions: [
         {
@@ -84,6 +86,8 @@ export const levelD = {
       title: 'At the Playground',
       type: 'fiction',
       typeLabel: '虚构',
+      image: '/images/passages/d-at-the-playground.jpg',
+      imageAlt: '《At the Playground》原 PDF 插图',
       text: 'A playground is near my house.\nThe playground is where I play.\nAt the playground I look up.\nI look up at the sky.\nI look up at the clouds.\nAt the playground I slide.\nI slide down the slide.\nI slide down to the ground.\nAt the playground I run.\nI run on the ground.\nI run on the grass.\nI like to play at the playground.',
       questions: [
         {
@@ -153,6 +157,8 @@ export const levelD = {
       title: 'I See Tall Trees',
       type: 'fiction',
       typeLabel: '虚构',
+      image: '/images/passages/d-i-see-tall-trees.jpg',
+      imageAlt: '《I See Tall Trees》原 PDF 插图',
       text: 'The woods have tall trees.\nI like to walk in the woods.\nI like to see and smell trees.\nI see workers in the woods.\nI see workers saw down tall trees.\nI see tall trees fall.\nI hear tall trees fall.\nI see workers plant seeds.\nI see seeds grow into trees.\nI like to see tall trees in the woods.',
       questions: [
         {
@@ -222,6 +228,8 @@ export const levelD = {
       title: 'We Use Our Senses',
       type: 'nonfiction',
       typeLabel: '非虚构',
+      image: '/images/passages/d-we-use-our-senses.jpg',
+      imageAlt: '《We Use Our Senses》原 PDF 插图',
       text: 'There are things in the woods.\nWe can learn what is in the woods.\nWe can use our senses.\nWe can hear birds in the woods.\nWe can smell flowers in the woods.\nWe can touch trees in the woods.\nWe can taste a nut in the woods.\nWe can see a deer in the woods.\nWe can use our senses to learn.',
       questions: [
         {

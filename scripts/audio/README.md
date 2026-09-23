@@ -7,9 +7,9 @@ The current reading-test data is the text source. Run `node scripts/audio/buildR
 | A titles | English once | 4 |
 | A passages | English twice, one-second pause | 4 |
 | A–F question stems | English once, then Chinese once | 120 |
-| A answer choices | English once | 54 |
+| A text answer choices | English once | 36 |
 
-The six A-level dot pictures have no audio or playback button. G and above have no reading audio. The standalone listening-test module is outside this batch.
+The four A-level graphic choices (two apple pictures and two dot patterns) have no audio or playback button. G and above have no reading audio. The standalone listening-test module is outside this batch. A-level question and option text follows the student test PDF's order; the separate answer PDF has a different option-letter order in several questions, so never copy its letters without remapping to the student PDF.
 
 `generateReadingAudio.py` uses local Kokoro models: `hexgrad/Kokoro-82M` with `af_heart` for American English, and `hexgrad/Kokoro-82M-v1.1-zh` with `zf_001` for Mandarin. Both models are published under Apache-2.0. The Chinese pipeline includes an English grapheme-to-phoneme callback, so embedded words such as “party” and “tunnel” are not dropped. Five cloze stems have explicit audio-only phrasing in `buildReadingManifest.mjs`; their displayed text and answers are unchanged.
 

@@ -1,6 +1,7 @@
 import BatchInput from './BatchInput'
 
-export default function BatchInputModal({ totalQuestions, onFill, onClose }) {
+export default function BatchInputModal({ totalQuestions, onFill, onClose, allowedKeysByQuestion }) {
+  const allAB = allowedKeysByQuestion?.every(keys => keys.length === 2 && keys.includes('A') && keys.includes('B'))
   return (
     <div
       className="fixed inset-0 z-[80] overflow-y-auto bg-black/45 backdrop-blur-sm"
@@ -14,7 +15,7 @@ export default function BatchInputModal({ totalQuestions, onFill, onClose }) {
           <div>
             <h3 className="text-lg font-black text-gray-800">批量输入答案</h3>
             <p className="text-xs font-medium text-gray-500">
-              支持 ABCD、A B C D、A,B,C,D 或每5题换行。
+              {allAB ? '本级别按原卷输入 A/B；可用空格、逗号或换行分隔。' : '支持 ABCD、A B C D、A,B,C,D 或每5题换行。'}
             </p>
           </div>
           <button
@@ -27,7 +28,7 @@ export default function BatchInputModal({ totalQuestions, onFill, onClose }) {
             ×
           </button>
         </div>
-        <BatchInput totalQuestions={totalQuestions} onFill={onFill} />
+        <BatchInput totalQuestions={totalQuestions} onFill={onFill} allowedKeysByQuestion={allowedKeysByQuestion} />
       </div>
       </div>
     </div>

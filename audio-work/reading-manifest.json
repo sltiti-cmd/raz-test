@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "source": "Current A-F reading test data; G and above have no audio",
-  "policy": "A titles once, A passages English twice, A-F questions English then Chinese once each, A options except six dot-picture choices once",
+  "policy": "A titles once, A passages English twice, A-F questions English then Chinese once each, A text options once; four graphic choices silent",
   "counts": {
     "title": 4,
     "passage": 4,
     "question": 120,
-    "option": 54
+    "option": 36
   },
   "entries": [
     {
@@ -32,7 +32,7 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "He has two pencils. He has two crayons. He has many things.",
+          "text": "He has many things. He has two hands. He has two dollars. He has two flowers. He has two shoes. He has two pencils. He has two crayons. He has two kittens.",
           "repeats": 2
         }
       ]
@@ -70,11 +70,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "one",
+          "text": "two",
           "repeats": 1
         }
       ],
-      "sourceText": "one"
+      "sourceText": "two"
     },
     {
       "id": "A-q01-B",
@@ -84,23 +84,6 @@
       "questionId": 1,
       "optionKey": "B",
       "file": "reading/v1/A/q01-B.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "two",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "two"
-    },
-    {
-      "id": "A-q01-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A1",
-      "questionId": 1,
-      "optionKey": "C",
-      "file": "reading/v1/A/q01-C.mp3",
       "segments": [
         {
           "lang": "en-US",
@@ -162,28 +145,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "the boy",
+          "text": "the kitten",
           "repeats": 1
         }
       ],
-      "sourceText": "the boy"
-    },
-    {
-      "id": "A-q02-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A1",
-      "questionId": 2,
-      "optionKey": "C",
-      "file": "reading/v1/A/q02-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "the girl",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "the girl"
+      "sourceText": "the kitten"
     },
     {
       "id": "A-q03",
@@ -242,11 +208,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "pencils and crayons",
+          "text": "flowers and kittens",
           "repeats": 1
         }
       ],
-      "sourceText": "pencils and crayons"
+      "sourceText": "flowers and kittens"
     },
     {
       "id": "A-q04-B",
@@ -259,28 +225,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "toys",
+          "text": "pencils and crayons",
           "repeats": 1
         }
       ],
-      "sourceText": "toys"
-    },
-    {
-      "id": "A-q04-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A1",
-      "questionId": 4,
-      "optionKey": "C",
-      "file": "reading/v1/A/q04-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "food",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "food"
+      "sourceText": "pencils and crayons"
     },
     {
       "id": "A-q05",
@@ -292,7 +241,7 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "He has many things. What does many mean?",
+          "text": "Listen to this sentence from the passage: He has many things. What does many mean?",
           "repeats": 1
         },
         {
@@ -301,7 +250,7 @@
           "repeats": 1
         }
       ],
-      "sourceText": "He has many things. What does many mean?",
+      "sourceText": "Listen to this sentence from the passage: He has many things. What does many mean?",
       "reviewFlags": [
         "English-word-in-Chinese"
       ]
@@ -317,11 +266,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "one",
+          "text": "only one",
           "repeats": 1
         }
       ],
-      "sourceText": "one"
+      "sourceText": "only one"
     },
     {
       "id": "A-q05-B",
@@ -339,23 +288,6 @@
         }
       ],
       "sourceText": "a lot"
-    },
-    {
-      "id": "A-q05-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A1",
-      "questionId": 5,
-      "optionKey": "C",
-      "file": "reading/v1/A/q05-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "none",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "none"
     },
     {
       "id": "A-A2-title",
@@ -380,7 +312,7 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "This plane goes up. This plane goes down. This plane goes in. This plane goes out.",
+          "text": "This plane goes up. This plane goes down. This plane goes in. This plane goes out. This plane goes over. This plane goes and goes.",
           "repeats": 2
         }
       ]
@@ -418,11 +350,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "a car",
+          "text": "going to new places",
           "repeats": 1
         }
       ],
-      "sourceText": "a car"
+      "sourceText": "going to new places"
     },
     {
       "id": "A-q06-B",
@@ -440,23 +372,6 @@
         }
       ],
       "sourceText": "how a plane moves"
-    },
-    {
-      "id": "A-q06-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A2",
-      "questionId": 6,
-      "optionKey": "C",
-      "file": "reading/v1/A/q06-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "a train",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "a train"
     },
     {
       "id": "A-q07",
@@ -491,11 +406,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "This plane goes up and down",
+          "text": "This plane goes up and down.",
           "repeats": 1
         }
       ],
-      "sourceText": "This plane goes up and down"
+      "sourceText": "This plane goes up and down."
     },
     {
       "id": "A-q07-B",
@@ -508,28 +423,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "This plane is fun",
+          "text": "This is the best plane.",
           "repeats": 1
         }
       ],
-      "sourceText": "This plane is fun"
-    },
-    {
-      "id": "A-q07-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A2",
-      "questionId": 7,
-      "optionKey": "C",
-      "file": "reading/v1/A/q07-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "This plane is nice",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "This plane is nice"
+      "sourceText": "This is the best plane."
     },
     {
       "id": "A-q08",
@@ -564,11 +462,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "on the ground",
+          "text": "in the sky",
           "repeats": 1
         }
       ],
-      "sourceText": "on the ground"
+      "sourceText": "in the sky"
     },
     {
       "id": "A-q08-B",
@@ -581,28 +479,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "in the sky",
+          "text": "on the ground",
           "repeats": 1
         }
       ],
-      "sourceText": "in the sky"
-    },
-    {
-      "id": "A-q08-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A2",
-      "questionId": 8,
-      "optionKey": "C",
-      "file": "reading/v1/A/q08-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "in the water",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "in the water"
+      "sourceText": "on the ground"
     },
     {
       "id": "A-q09",
@@ -654,28 +535,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "run",
+          "text": "drive",
           "repeats": 1
         }
       ],
-      "sourceText": "run"
-    },
-    {
-      "id": "A-q09-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A2",
-      "questionId": 9,
-      "optionKey": "C",
-      "file": "reading/v1/A/q09-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "swim",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "swim"
+      "sourceText": "drive"
     },
     {
       "id": "A-q10",
@@ -687,7 +551,7 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "This plane goes in. Which sentence tells the opposite?",
+          "text": "Listen to this sentence from the passage: This plane goes in. Which sentence tells the opposite?",
           "repeats": 1
         },
         {
@@ -696,7 +560,7 @@
           "repeats": 1
         }
       ],
-      "sourceText": "This plane goes in. Which sentence tells the opposite?",
+      "sourceText": "Listen to this sentence from the passage: This plane goes in. Which sentence tells the opposite?",
       "reviewFlags": [
         "English-word-in-Chinese"
       ]
@@ -712,11 +576,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "This plane goes up",
+          "text": "This plane goes down.",
           "repeats": 1
         }
       ],
-      "sourceText": "This plane goes up"
+      "sourceText": "This plane goes down."
     },
     {
       "id": "A-q10-B",
@@ -729,28 +593,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "This plane goes out",
+          "text": "This plane goes out.",
           "repeats": 1
         }
       ],
-      "sourceText": "This plane goes out"
-    },
-    {
-      "id": "A-q10-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A2",
-      "questionId": 10,
-      "optionKey": "C",
-      "file": "reading/v1/A/q10-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "This plane goes down",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "This plane goes down"
+      "sourceText": "This plane goes out."
     },
     {
       "id": "A-A3-title",
@@ -775,7 +622,7 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "Here is one. Here are two. Here are three. Here are five.",
+          "text": "Here is a seven. Here is a six. Here is a five. Here is a four. Here is a three. Here is a two. Here is a one.",
           "repeats": 2
         }
       ]
@@ -813,11 +660,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "animals",
+          "text": "letters",
           "repeats": 1
         }
       ],
-      "sourceText": "animals"
+      "sourceText": "letters"
     },
     {
       "id": "A-q11-B",
@@ -835,23 +682,6 @@
         }
       ],
       "sourceText": "numbers"
-    },
-    {
-      "id": "A-q11-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A3",
-      "questionId": 11,
-      "optionKey": "C",
-      "file": "reading/v1/A/q11-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "food",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "food"
     },
     {
       "id": "A-q12",
@@ -886,11 +716,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "Five",
+          "text": "five",
           "repeats": 1
         }
       ],
-      "sourceText": "Five"
+      "sourceText": "five"
     },
     {
       "id": "A-q12-B",
@@ -903,28 +733,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "Ten",
+          "text": "four",
           "repeats": 1
         }
       ],
-      "sourceText": "Ten"
-    },
-    {
-      "id": "A-q12-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A3",
-      "questionId": 12,
-      "optionKey": "C",
-      "file": "reading/v1/A/q12-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "Three",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "Three"
+      "sourceText": "four"
     },
     {
       "id": "A-q13",
@@ -985,11 +798,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "seven",
+          "text": "one",
           "repeats": 1
         }
       ],
-      "sourceText": "7"
+      "sourceText": "1"
     },
     {
       "id": "A-q14-B",
@@ -1002,28 +815,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "five",
+          "text": "seven",
           "repeats": 1
         }
       ],
-      "sourceText": "5"
-    },
-    {
-      "id": "A-q14-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A3",
-      "questionId": 14,
-      "optionKey": "C",
-      "file": "reading/v1/A/q14-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "three",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "3"
+      "sourceText": "7"
     },
     {
       "id": "A-q15",
@@ -1058,11 +854,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "cat",
+          "text": "here",
           "repeats": 1
         }
       ],
-      "sourceText": "cat"
+      "sourceText": "here"
     },
     {
       "id": "A-q15-B",
@@ -1080,23 +876,6 @@
         }
       ],
       "sourceText": "three"
-    },
-    {
-      "id": "A-q15-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A3",
-      "questionId": 15,
-      "optionKey": "C",
-      "file": "reading/v1/A/q15-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "run",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "run"
     },
     {
       "id": "A-A4-title",
@@ -1121,7 +900,7 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "Three birds go out. The birds fly high. The birds go in. They go to their house.",
+          "text": "Three birds go out. Three birds go over. Three birds go under. Three birds go on. Three birds go in. Three birds go up. Three birds go down. Three birds jump.",
           "repeats": 2
         }
       ]
@@ -1176,28 +955,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "to the tree",
+          "text": "to their school",
           "repeats": 1
         }
       ],
-      "sourceText": "to the tree"
-    },
-    {
-      "id": "A-q16-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A4",
-      "questionId": 16,
-      "optionKey": "C",
-      "file": "reading/v1/A/q16-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "to the sky",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "to the sky"
+      "sourceText": "to their school"
     },
     {
       "id": "A-q17",
@@ -1256,23 +1018,6 @@
       "sourceText": "they run"
     },
     {
-      "id": "A-q17-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A4",
-      "questionId": 17,
-      "optionKey": "C",
-      "file": "reading/v1/A/q17-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "they walk",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "they walk"
-    },
-    {
       "id": "A-q18",
       "kind": "question",
       "level": "A",
@@ -1305,11 +1050,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "Three birds go out",
+          "text": "Three birds go out.",
           "repeats": 1
         }
       ],
-      "sourceText": "Three birds go out"
+      "sourceText": "Three birds go out."
     },
     {
       "id": "A-q18-B",
@@ -1322,28 +1067,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "Birds fly high",
+          "text": "Three birds jump.",
           "repeats": 1
         }
       ],
-      "sourceText": "Birds fly high"
-    },
-    {
-      "id": "A-q18-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A4",
-      "questionId": 18,
-      "optionKey": "C",
-      "file": "reading/v1/A/q18-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "Birds go home",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "Birds go home"
+      "sourceText": "Three birds jump."
     },
     {
       "id": "A-q19",
@@ -1378,11 +1106,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "two",
+          "text": "five",
           "repeats": 1
         }
       ],
-      "sourceText": "two"
+      "sourceText": "five"
     },
     {
       "id": "A-q19-B",
@@ -1400,23 +1128,6 @@
         }
       ],
       "sourceText": "three"
-    },
-    {
-      "id": "A-q19-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A4",
-      "questionId": 19,
-      "optionKey": "C",
-      "file": "reading/v1/A/q19-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "one",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "one"
     },
     {
       "id": "A-q20",
@@ -1451,11 +1162,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "They are high",
+          "text": "They are high.",
           "repeats": 1
         }
       ],
-      "sourceText": "They are high"
+      "sourceText": "They are high."
     },
     {
       "id": "A-q20-B",
@@ -1468,28 +1179,11 @@
       "segments": [
         {
           "lang": "en-US",
-          "text": "They are small",
+          "text": "They are low.",
           "repeats": 1
         }
       ],
-      "sourceText": "They are small"
-    },
-    {
-      "id": "A-q20-C",
-      "kind": "option",
-      "level": "A",
-      "passageId": "A4",
-      "questionId": 20,
-      "optionKey": "C",
-      "file": "reading/v1/A/q20-C.mp3",
-      "segments": [
-        {
-          "lang": "en-US",
-          "text": "They are fast",
-          "repeats": 1
-        }
-      ],
-      "sourceText": "They are fast"
+      "sourceText": "They are low."
     },
     {
       "id": "B-q01",
@@ -3783,5 +3477,5 @@
       ]
     }
   ],
-  "sourceSha256": "f90b46f71cfa90888fb079aee9e88186d2403de90a181fe62a64e92580841433"
+  "sourceSha256": "8b9909a7d2e53d438a8f0e17947677dc04ce7dd3d43d7ea28d2ef609d995a895"
 }

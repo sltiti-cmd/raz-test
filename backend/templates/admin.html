@@ -186,7 +186,7 @@
         {% endfor %}
       </select>
 
-      <input type="text" name="search" value="{{ search }}" placeholder="搜索微信名…">
+      <input type="text" name="search" value="{{ search }}" placeholder="搜索小朋友姓名…">
 
       <button type="submit" class="btn btn-primary">查询</button>
       {% if search or current_level %}
@@ -216,7 +216,8 @@
         <thead>
           <tr>
             <th><a href="?level={{ current_level }}&search={{ search }}&sort=submitted_at&order={{ 'asc' if sort=='submitted_at' and order=='desc' else 'desc' }}">提交时间</a></th>
-            <th><a href="?level={{ current_level }}&search={{ search }}&sort=student_name&order={{ 'asc' if sort=='student_name' and order=='desc' else 'desc' }}">微信名</a></th>
+            <th><a href="?level={{ current_level }}&search={{ search }}&sort=student_name&order={{ 'asc' if sort=='student_name' and order=='desc' else 'desc' }}">小朋友姓名</a></th>
+            <th>类型</th>
             <th>级别</th>
             <th><a href="?level={{ current_level }}&search={{ search }}&sort=score&order={{ 'asc' if sort=='score' and order=='desc' else 'desc' }}">分数</a></th>
             <th><a href="?level={{ current_level }}&search={{ search }}&sort=correct_count&order={{ 'asc' if sort=='correct_count' and order=='desc' else 'desc' }}">答对</a></th>
@@ -234,6 +235,15 @@
           <tr>
             <td style="color:#6b7280;font-size:12px;">{{ r.submitted_at }}</td>
             <td><strong>{{ r.student_name }}</strong></td>
+            <td>
+              {% if r.test_type == 'listening' %}
+              <span class="badge badge-teal">听力</span>
+              {% elif r.test_type == 'placement' %}
+              <span class="badge">插班</span>
+              {% else %}
+              <span class="badge">阅读</span>
+              {% endif %}
+            </td>
             <td><span class="badge badge-teal">{{ r.level_id }}级</span></td>
             <td>
               <span class="{{ 'score-high' if r.score >= 80 else 'score-low' }}">{{ r.score }}</span>

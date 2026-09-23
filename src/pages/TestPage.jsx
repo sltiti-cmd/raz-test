@@ -11,13 +11,14 @@ import levelR from '../data/levels/r'
 import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
+import TestHeader from '../components/TestHeader'
 import { stopReadingAudio } from '../utils/readingAudio'
 import BatchInputModal from '../components/BatchInputModal'
+import PdfAnswerWorkspace from '../components/PdfAnswerWorkspace'
 import SubmitModal from '../components/SubmitModal'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
-import { openPrintPdf } from '../utils/printPdf'
-import { formatDurationText, formatTimer } from '../utils/testTiming'
+import { formatDurationText } from '../utils/testTiming'
 
 const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO, r: levelR }
 
@@ -32,12 +33,12 @@ function UnknownLevel({ levelId }) {
           级别暂未开放
         </h2>
         <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-          {displayLevel ? `${displayLevel}级别暂未接入升级测试，` : ''}请返回选择页面。
+          {displayLevel ? `${displayLevel}级别暂未开放，` : ''}请返回选择页面。
         </p>
         <Link to="/"
           className="inline-block px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-600
                      text-white font-black transition-colors">
-          返回升级测试大厅
+          返回测试大厅
         </Link>
       </div>
     </div>
@@ -49,7 +50,7 @@ function PrintContent({ levelData }) {
   const total = levelData.passages.reduce((n, p) => n + p.questions.length, 0)
   return (
     <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold text-center mb-1">Stacey老师RAZ升级测试</h1>
+      <h1 className="text-2xl font-bold text-center mb-1">Stacey老师RAZ阅读测评</h1>
       <h2 className="text-lg font-semibold text-center text-gray-600 mb-1">{levelData.name} 测试卷</h2>
       <p className="text-center text-gray-500 text-sm mb-6">共{total}题 · 每题5分 · 满分100分</p>
       <div className="flex gap-12 mb-8 text-sm">
@@ -91,7 +92,7 @@ function QNumBtn({ q, idx, currentIdx, answered, onClick }) {
       onClick={() => onClick(idx)}
       className={`w-8 h-8 rounded-lg text-xs font-mono font-bold transition-all
         ${isCurrent
-          ? 'bg-teal-500 text-white shadow-sm ring-2 ring-teal-300 ring-offset-1 scale-110'
+          ? 'bg-[#29465b] text-white shadow-sm ring-2 ring-[#c7b87e] ring-offset-1 scale-110'
           : isAnswered
             ? 'bg-green-100 text-green-700 border border-green-200'
             : 'bg-white text-gray-500 border border-gray-200 hover:border-teal-300 hover:text-teal-600'
@@ -113,6 +114,7 @@ export default function TestPage() {
   const [currentIdx,    setCurrentIdx]    = useState(0)
   useEffect(() => () => stopReadingAudio(), [currentIdx, levelId])
   const [isBatchInputOpen, setIsBatchInputOpen] = useState(false)
+  const [isPdfWorkspaceOpen, setIsPdfWorkspaceOpen] = useState(false)
   const [showSubmit,    setShowSubmit]    = useState(false)
   const [unanswered,    setUnanswered]    = useState([])
   const [startedAt]                       = useState(() => Date.now())
@@ -144,8 +146,10 @@ export default function TestPage() {
     return <UnknownLevel levelId={levelId} />
   }
 
-  const isHighLevel     = ['G', 'K', 'O', 'R'].includes(levelData.id)
+  const isHighLevel     = !['A', 'B', 'C', 'D', 'E', 'F'].includes(levelData.id)
   const allQuestions    = levelData.passages.flatMap(p => p.questions.map(q => ({ ...q, passage: p })))
+  const passageStartIndices = levelData.passages.map((_, passageIndex) =>
+    levelData.passages.slice(0, passageIndex).reduce((sum, passage) => sum + passage.questions.length, 0))
   const total           = allQuestions.length
   const currentQuestion = allQuestions[currentIdx]
   const currentPassage  = currentQuestion.passage
@@ -228,10 +232,8 @@ export default function TestPage() {
     setIsBatchInputOpen(true)
   }
 
-  const handlePrint = () => openPrintPdf(levelData)
-
   return (
-    <div className="min-h-screen bg-cream-100">
+    <div className="raz-test-page min-h-screen">
       <Toast toast={toast} />
 
       {/* ── Print-only ── */}
@@ -241,103 +243,46 @@ export default function TestPage() {
 
       <div className="print:hidden">
 
-        {/* ── Sticky header ── */}
-        <header className="bg-white/90 backdrop-blur border-b border-cream-200 sticky top-0 z-20">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5">
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 min-w-0">
-                <Link to="/" aria-label="返回升级测试大厅"
-                  className="text-gray-400 hover:text-gray-600 text-lg flex-shrink-0 min-w-[40px] min-h-[40px]
-                             -ml-2 flex items-center justify-center">←</Link>
-                <span className="font-extrabold text-gray-800 text-sm sm:text-base">
-                  RAZ <span className="font-mono text-teal-500">{levelData.id}</span>级
-                </span>
-              </div>
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <span className="text-xs font-mono text-gray-500">
-                  <span className="text-teal-600 font-bold">{answeredCount}</span>/{total}
-                </span>
-                <button
-                  onClick={handlePrint}
-                  className="min-h-[36px] text-xs bg-teal-50 hover:bg-teal-100 text-teal-700
-                             border border-teal-200 px-3 py-1.5 rounded-lg transition-colors
-                             whitespace-nowrap no-print font-black"
-                >
-                  📄 PDF试卷
-                </button>
-              </div>
-            </div>
-            {/* Progress bar */}
-            <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className="h-full rounded-full transition-all duration-500
-                           bg-gradient-to-r from-teal-500 to-teal-300"
-                style={{ width: `${(answeredCount / total) * 100}%` }}
-              />
-            </div>
-          </div>
+        <TestHeader
+          backTo="/"
+          backLabel="返回测试大厅"
+          levelData={levelData}
+          currentPassage={currentPassage}
+          passageStartIndices={passageStartIndices}
+          onSelectPassage={setCurrentIdx}
+          answeredCount={answeredCount}
+          total={total}
+          durationSeconds={durationSeconds}
+          onOpenPdf={() => setIsPdfWorkspaceOpen(true)}
+          onBatchInput={openBatchInput}
+          accent="teal"
+        />
 
-          {/* Question number scroll (tablet and below) */}
-          <div className="lg:hidden overflow-x-auto border-t border-cream-200">
-            <div className="flex gap-1.5 px-3 sm:px-4 py-2 w-max">
-              {allQuestions.map((q, idx) => (
-                <QNumBtn key={q.id} q={q} idx={idx} currentIdx={currentIdx}
-                         answered={answers} onClick={setCurrentIdx} />
-              ))}
-              <button
-                onClick={() => {
-                  const i = allQuestions.findIndex(q => !answers[q.id])
-                  if (i !== -1) setCurrentIdx(i)
-                }}
-                className="px-3 h-8 rounded-lg text-xs font-bold bg-orange-50
-                           text-orange-600 border border-orange-200 hover:bg-orange-100
-                           whitespace-nowrap flex-shrink-0 transition-colors"
-              >
-                未答
-              </button>
-            </div>
+        {/* Question number scroll (tablet and below) */}
+        <div className="lg:hidden overflow-x-auto border-b border-[#e8e1d2] bg-[#fffdf6]">
+          <div className="flex gap-1.5 px-3 sm:px-4 py-2 w-max">
+            {allQuestions.map((q, idx) => (
+              <QNumBtn key={q.id} q={q} idx={idx} currentIdx={currentIdx}
+                       answered={answers} onClick={setCurrentIdx} />
+            ))}
+            <button
+              onClick={() => {
+                const i = allQuestions.findIndex(q => !answers[q.id])
+                if (i !== -1) setCurrentIdx(i)
+              }}
+              className="px-3 h-8 rounded-lg text-xs font-bold bg-orange-50 text-orange-600 border border-orange-200 hover:bg-orange-100 whitespace-nowrap flex-shrink-0 transition-colors"
+            >
+              未答
+            </button>
           </div>
-        </header>
+        </div>
 
         {/* ── Main layout ── */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
-          <div className="mb-4 rounded-2xl border border-teal-200 bg-white p-3 sm:p-5 shadow-sm">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-3 sm:gap-4 lg:justify-between">
-              <div className="min-w-0 flex items-center justify-between gap-3 sm:block">
-                <div className="hidden sm:block">
-                  <h2 className="text-base font-black text-gray-800 mb-1">测试说明</h2>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    4篇文章20题，约20分钟。可打开PDF记录答案，也可以直接在线答题。
-                  </p>
-                </div>
-                <div className="sm:mt-2 inline-flex items-center rounded-full bg-teal-50 px-3 py-1 text-sm font-black text-teal-700 whitespace-nowrap">
-                  已用时：{formatTimer(durationSeconds)}
-                </div>
-              </div>
-              <div className="flex flex-row gap-2 lg:flex-shrink-0">
-                <button
-                  type="button"
-                  onClick={handlePrint}
-                  className="flex-1 sm:flex-initial min-h-[44px] px-4 rounded-xl border border-teal-200 bg-teal-50
-                             hover:bg-teal-100 text-teal-700 text-sm font-black transition-colors"
-                >
-                  📄 下载PDF试卷
-                </button>
-                <button
-                  type="button"
-                  onClick={openBatchInput}
-                  className="flex-1 sm:flex-initial min-h-[44px] px-4 rounded-xl bg-purple-600 hover:bg-purple-700
-                             text-white text-sm font-black transition-colors"
-                >
-                  📝 批量输入答案
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row gap-4 items-start">
+          <div className="flex flex-col lg:flex-row gap-4 items-start">
 
             {/* ── Col 1: Question number sidebar (desktop only) ── */}
-            <aside className="hidden lg:block flex-shrink-0 w-[72px] sticky top-[88px]">
+            <aside className="hidden lg:block flex-shrink-0 w-[72px] sticky top-[166px]">
               <div className="grid grid-cols-2 gap-1.5 mb-2">
                 {allQuestions.map((q, idx) => (
                   <QNumBtn key={q.id} q={q} idx={idx} currentIdx={currentIdx}
@@ -359,7 +304,7 @@ export default function TestPage() {
 
             {/* ── Col 2: Passage ── */}
             <div className="flex-1 min-w-0 w-full">
-              <div className="md:sticky md:top-[88px]">
+              <div className="lg:sticky lg:top-[166px]">
                 <PassageCard
                   passage={currentPassage}
                   passageIndex={passageIndex}
@@ -373,7 +318,7 @@ export default function TestPage() {
             </div>
 
             {/* ── Col 3: Question + navigation ── */}
-            <div className="w-full md:w-[46%] lg:w-[44%] flex-shrink-0">
+            <div className="w-full lg:w-[40%] flex-shrink-0">
               <QuestionCard
                 question={currentQuestion}
                 levelId={levelData.id}
@@ -414,27 +359,6 @@ export default function TestPage() {
                 )}
               </div>
 
-              {/* Batch + quick submit row */}
-              <div className="flex gap-3 mt-2.5">
-                <button
-                  type="button"
-                  onClick={openBatchInput}
-                  className="flex-1 py-2.5 rounded-xl border border-purple-200 bg-purple-50
-                             text-sm font-bold text-purple-700 transition-colors hover:bg-purple-100"
-                >
-                  📝 批量输入答案
-                </button>
-                {answeredCount > 0 && (
-                  <button
-                    onClick={handleSubmitRequest}
-                    className="flex-1 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600
-                               text-white text-sm font-black transition-colors"
-                  >
-                    提交 ✓
-                  </button>
-                )}
-              </div>
-
               {/* Bottom spacer for mobile feedback button */}
               <div className="h-16 md:h-4" />
             </div>
@@ -446,8 +370,23 @@ export default function TestPage() {
       {isBatchInputOpen && (
         <BatchInputModal
           totalQuestions={total}
+          allowedKeysByQuestion={allQuestions.map(q => q.options.map(option => option.key))}
           onFill={handleBatchFill}
           onClose={() => setIsBatchInputOpen(false)}
+        />
+      )}
+
+      {isPdfWorkspaceOpen && (
+        <PdfAnswerWorkspace
+          levelData={levelData}
+          questions={allQuestions}
+          currentAnswers={answers}
+          onApply={(nextAnswers) => {
+            setAnswers(nextAnswers)
+            setIsPdfWorkspaceOpen(false)
+            showToast(`已保存 ${Object.keys(nextAnswers).length} 题答案`)
+          }}
+          onClose={() => setIsPdfWorkspaceOpen(false)}
         />
       )}
 

@@ -3,12 +3,15 @@ export const levelG = {
   name: 'G级别',
   passScore: 80,
   printPdf: '/raw/G/G级别入门测试.pdf',
+  pdfPreviewPages: Array.from({ length: 8 }, (_, index) => `/pdf-previews/g/page-${index + 1}.jpg`),
   passages: [
     {
       id: 'G1',
       title: 'Fruit From My Garden',
       type: 'fiction',
       typeLabel: '虚构',
+      image: '/images/passages/g-fruit-from-my-garden.jpg',
+      imageAlt: '《Fruit From My Garden》原 PDF 插图',
       text: 'I walk into the garden to see how my plants have grown.\nMy plants have dark, green leaves and pretty red fruit that I like to eat.\nI start to pick some fruit from the plants.\nI gently squeeze and poke the fruit to see what is ready to pick.\nAfter I pick for a while, I look into my bag.\nThere is so much fruit inside.\nMy hands go into the bag as if they have a mind of their own.\nThey pick up that yummy red fruit that I want to taste.\nI cannot wait to get inside to wash it and eat it.\nI eat a strawberry right there in the garden.\nYum!',
       questions: [
         {
@@ -78,6 +81,8 @@ export const levelG = {
       title: 'How to Penguin Dance',
       type: 'nonfiction',
       typeLabel: '非虚构',
+      image: '/images/passages/g-how-to-penguin-dance.jpg',
+      imageAlt: '《How to Penguin Dance》原 PDF 插图',
       text: 'Here is how you do a dance called The Penguin.\nStand like a penguin.\nPut your feet together and put your arms down by your sides.\nTake two small steps to the left.\nTake two small steps to the right.\nJump with your feet together and arms out.\nJump again.\nFall to your belly and slide forward like a penguin.\nMove your arms as if you could swim.\nStand up and start the dance again.\nMake up a dance to a song you like.',
       questions: [
         {
@@ -147,6 +152,8 @@ export const levelG = {
       title: "Sally's Bath",
       type: 'fiction',
       typeLabel: '虚构',
+      image: '/images/passages/g-sally-s-bath.jpg',
+      imageAlt: "《Sally's Bath》原 PDF 插图",
       text: 'I really needed to wash my puppy.\nShe had grass and mud all in her hair.\nShe kept running away from me inside the house.\n"Stop, Sally!" I said as she jumped up on the couch.\n"Get down, Sally!" I said, and she ran fast to my bedroom.\nShe ran around my room, and then she ran outside through the kitchen.\n"Oh, what are you going to do now?" I asked.\nI saw her roll and roll in the grass and mud.\nThen, she came right to me and sat down.\n"Now, you really need a bath!" I said.',
       questions: [
         {
@@ -199,7 +206,7 @@ export const levelG = {
         },
         {
           id: 15,
-          question: 'She kept running away from me. Which word can replace "kept" and still have the same meaning?',
+          question: 'Listen to this sentence from the passage: She kept running away from me inside the house. Which word can replace "kept" in this sentence and still have the same meaning?',
           questionZh: '哪个词可以替换"kept"，且意思不变？',
           options: [
             { key: 'A', text: 'enjoyed' },
@@ -216,6 +223,8 @@ export const levelG = {
       title: 'Steps to Make a Garden',
       type: 'nonfiction',
       typeLabel: '非虚构',
+      image: '/images/passages/g-steps-to-make-a-garden.jpg',
+      imageAlt: '《Steps to Make a Garden》原 PDF 插图',
       text: 'If you want to make a garden, here are the steps.\nFirst, pick out where you want your garden to go.\nNext, dig up the dirt to make holes for your seeds.\nThen, put the seeds in the holes.\nPut dirt over the seeds and water them.\nThen, wait and watch and water some more.\nLast, small green leaves will poke through the ground.\nYour plants will grow as you wait, watch, and water.\nThat\'s how you make a garden in your yard.',
       questions: [
         {

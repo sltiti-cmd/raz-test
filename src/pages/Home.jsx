@@ -32,21 +32,36 @@ export default function Home() {
             R
           </div>
           <span className="font-extrabold text-gray-700 text-sm tracking-tight">
-            Stacey老师RAZ测试系统
+            Stacey老师英语能力测试
           </span>
         </div>
       </header>
 
       <section className="max-w-3xl mx-auto px-4 pt-8 pb-5 text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 leading-tight mb-3 tracking-tight">
-          Stacey老师<span className="text-teal-500">RAZ</span>测试
+          Stacey老师<span className="text-teal-500">英语能力</span>测试
         </h1>
         <p className="text-gray-500 text-sm sm:text-base max-w-xs sm:max-w-lg mx-auto leading-relaxed">
-          选择级别，在线完成测试，或下载PDF打印后再录入答案。
+          选择阅读或听力，找到适合孩子的下一步练习内容。
         </p>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 pb-10">
+      <section className="max-w-3xl mx-auto px-4 pb-7 grid sm:grid-cols-2 gap-4">
+        <a href="#reading" className="bg-white rounded-2xl shadow-card border-2 border-teal-200 p-5 sm:p-6 hover:shadow-card-hover transition-shadow">
+          <div className="text-3xl mb-3">📖</div>
+          <h2 className="text-xl font-black text-gray-800">RAZ 阅读测试</h2>
+          <p className="text-sm text-gray-500 mt-2">按阅读级别选择试卷，自动判分，支持打印。</p>
+          <div className="text-sm font-black text-teal-700 mt-4">查看阅读级别 ↓</div>
+        </a>
+        <Link to="/listening" className="bg-white rounded-2xl shadow-card border-2 border-purple-200 p-5 sm:p-6 hover:shadow-card-hover transition-shadow">
+          <div className="text-3xl mb-3">🎧</div>
+          <h2 className="text-xl font-black text-gray-800">听力测试</h2>
+          <p className="text-sm text-gray-500 mt-2">按当前 RAZ 级别进入对应的 10 题听力测试。</p>
+          <div className="text-sm font-black text-purple-700 mt-4">选择听力级别 →</div>
+        </Link>
+      </section>
+
+      <section id="reading" className="max-w-3xl mx-auto px-4 pb-10 scroll-mt-20">
         <div className="bg-white rounded-2xl shadow-card border-2 border-teal-200 p-5 sm:p-6">
           <div className="flex items-center justify-center gap-4 text-xs text-gray-400 mb-4 flex-wrap">
             <span>✅ 自动判分</span>

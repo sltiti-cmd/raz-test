@@ -1,6 +1,6 @@
 export function generateReportText(studentInfo, gradingResult, levelId, testType = 'upgrade') {
   const testLabel = testType === 'placement' ? '插班' : '入门'
-  const footerLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ升级测试'
+  const footerLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ阅读测评'
   const {
     score,
     correctCount,
@@ -21,7 +21,7 @@ export function generateReportText(studentInfo, gradingResult, levelId, testType
   const sortedSkills = Object.entries(skillCounts).sort((a, b) => b[1] - a[1])
   const topSkills = sortedSkills.slice(0, 2).map(([s]) => s)
 
-  let skillDiagnosis = ''
+  let skillDiagnosis
   if (topSkills.length === 0) {
     skillDiagnosis = '全部答对，非常出色！'
   } else if (topSkills.length === 1) {
@@ -30,7 +30,7 @@ export function generateReportText(studentInfo, gradingResult, levelId, testType
     skillDiagnosis = `本次错题主要集中在"${topSkills[0]}"和"${topSkills[1]}"，说明这两个方面还需要多加练习。`
   }
 
-  let textureAnalysis = ''
+  let textureAnalysis
   if (fictionWrong === 0 && nonfictionWrong === 0) {
     textureAnalysis = '虚构和非虚构文章均全部答对。'
   } else if (fictionWrong > nonfictionWrong) {

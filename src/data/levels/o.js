@@ -3,12 +3,15 @@ export const levelO = {
   name: "O级别",
   passScore: 80,
   printPdf: "/raw/O/O级别-测试.pdf",
+  pdfPreviewPages: Array.from({ length: 10 }, (_, index) => `/pdf-previews/o/page-${String(index + 1).padStart(2, '0')}.jpg`),
   passages: [
     {
       id: "O1",
       title: "New Ways to Surf",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/o-new-ways-to-surf.jpg",
+      imageAlt: "《New Ways to Surf》原 PDF 插图",
       text: `Surfing is a sport that takes balance and energy. The basic idea of surfing is to stand on a board and ride waves. People have been surfing for hundreds of years.
 People have also found other ways to ride boards over water. Kiteboarding and stand-up paddleboarding are two newer sports that offer a twist on surfing.
 Kiteboarding is like flying a kite while surfing. You stand on a board. The wind hits your kite. It pulls you along. You use the cords of the kite to control your direction. You must also respond to the wind and the waves.
@@ -86,6 +89,8 @@ In stand-up paddleboarding, you use a board, but no kite. You also use a paddle 
       title: "Take a Break",
       type: "fiction",
       typeLabel: "虚构",
+      image: "/images/passages/o-take-a-break.jpg",
+      imageAlt: "《Take a Break》原 PDF 插图",
       text: `Heart pounding and sweat dripping down her face, Carmen dribbled the basketball toward the hoop. She could hear her team running up behind her as she stopped, took the shot—and missed. Carmen groaned.
 Coach blew her whistle. "It's okay, Carmen. It's only practice," she said. "Let's take a break, everyone. Get some water."
 The others headed for the benches, but Carmen stayed on the court. She took a few more practice shots, missing each one.
@@ -166,6 +171,8 @@ Carmen wiped the sweat from her forehead. "I don't need a break, Coach. I need t
       title: "Lost at the Beach",
       type: "fiction",
       typeLabel: "虚构",
+      image: "/images/passages/o-lost-at-the-beach.jpg",
+      imageAlt: "《Lost at the Beach》原 PDF 插图",
       text: `Angela stopped looking at the ocean to admire her bracelet. Her grandmother had given it to her, and it was very special. Then Angela slipped off her shoes to enjoy a barefoot walk along the beach.
 A woman in a boat passed by. She waved, and Angela waved back. Then she stared down at her arm in shock. Granny's bracelet was gone!
 Angela returned to her family and told them about her bracelet disaster. They burst into action.
@@ -246,6 +253,8 @@ It was time to go home. Angela blinked back tears. She picked up her shoe. Out f
       title: "MyPlate",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/o-myplate.jpg",
+      imageAlt: "《MyPlate》原 PDF 插图",
       text: `When you plan a meal, there are many tasty foods from which to choose. How can you choose wisely? Eating only tasty doughnuts, for example, would cause health problems. To help people balance the foods they eat, experts created a chart called MyPlate.
 MyPlate looks like a plate divided into colored sections. People can tell how much of their daily diet should come from each food group by comparing the sections. The one for vegetables is the largest. A healthy diet has more vegetables than proteins, fruits, or grains. There is also a circle near the plate that looks like a cup. This shows how much milk and other dairy food to eat daily.
 MyPlate is easy to understand because it shows portions on a plate just like a plate you might use to eat. It helps people eat healthy meals each day.`,

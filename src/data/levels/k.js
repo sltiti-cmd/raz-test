@@ -9,6 +9,8 @@ export const levelK = {
       title: "The Treasure Map",
       type: "fiction",
       typeLabel: "虚构",
+      image: "/images/passages/k-the-treasure-map.jpg",
+      imageAlt: "《The Treasure Map》原 PDF 插图",
       text: `Jayda and Sara sat on their porch.
 "I wish we had a treasure map," Jayda said.
 Sara nodded. "We can probably make one," she said.
@@ -91,6 +93,8 @@ Then, when Jayda sat down to create the map, she realized there was a problem.
       title: "Map Tools",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/k-map-tools.jpg",
+      imageAlt: "《Map Tools》原 PDF 插图",
       text: `Maps help us find places when we travel. They show us how many miles one place is from another place. They show how land areas look from above.
 Markings on a map stand for real things in the world. Many maps have a tool called a key. The key tells us what the markings mean. For example, blue lines might show rivers.
 Most maps have a tool called a compass rose. This tool shows a map's directions: north, east, south, and west.
@@ -168,6 +172,8 @@ Reading a map may seem difficult. But a map's tools make it easier to use.`,
       title: "The Great Zoo Escape",
       type: "fiction",
       typeLabel: "虚构",
+      image: "/images/passages/k-the-great-zoo-escape.jpg",
+      imageAlt: "《The Great Zoo Escape》原 PDF 插图",
       text: `"I promised we would escape," the old ostrich told her flock.
 A younger ostrich said, "Yahoo, no more zoo!"
 Each creature looked happy. The animals had run away on tiptoe past the zoo patrol.
@@ -251,6 +257,8 @@ The animals cheered and shouted, "Let's go home!"`,
       title: "The Bronx Zoo Cares",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/k-the-bronx-zoo-cares.jpg",
+      imageAlt: "《The Bronx Zoo Cares》原 PDF 插图",
       text: `The Bronx Zoo is enormous. It has 650 different kinds of animals. It has a total of 4,000 animals.
 On a tour, you can see the animal homes. They are like the places where the animals live in the wild. For example, the gorillas in the zoo live in a forest with streams and trees.
 Tigers have special homes, too. Tigers like warm rocks and cool water, and they have these at the zoo. The zoo controls the temperatures.

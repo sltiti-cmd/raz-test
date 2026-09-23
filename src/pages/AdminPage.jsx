@@ -4,6 +4,8 @@ import { exportCsv } from '../utils/exportCsv'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 
+const TEST_TYPE_LABELS = { upgrade: '阅读', placement: '插班', listening: '听力' }
+
 // ── Score distribution bar ────────────────────────────────────────────────────
 function DistBar({ label, count, total, color }) {
   const pct = total > 0 ? Math.round((count / total) * 100) : 0
@@ -92,19 +94,19 @@ export default function AdminPage() {
     showToast('数据已清空')
   }
 
-  const SortArrow = ({ field }) => {
+  const renderSortArrow = field => {
     if (sortField !== field) return <span className="text-gray-200 ml-1">↕</span>
     return <span className="text-teal-400 ml-1">{sortDir === 'asc' ? '↑' : '↓'}</span>
   }
 
-  const Th = ({ field, children, center }) => (
+  const renderSortableHeader = (field, label, center = false) => (
     <th
       onClick={() => handleSort(field)}
       className={`px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase
                   tracking-wider cursor-pointer hover:text-gray-600 select-none
                   whitespace-nowrap ${center ? 'text-center' : ''}`}
     >
-      {children}<SortArrow field={field} />
+      {label}{renderSortArrow(field)}
     </th>
   )
 
@@ -181,8 +183,9 @@ export default function AdminPage() {
                        focus:border-purple-400 outline-none bg-gray-50"
           >
             <option value="all">全部类型</option>
-            <option value="upgrade">升级测试</option>
+            <option value="upgrade">阅读测试</option>
             <option value="placement">插班测试</option>
+            <option value="listening">听力测试</option>
           </select>
 
           <select
@@ -199,7 +202,7 @@ export default function AdminPage() {
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="搜索微信名…"
+            placeholder="搜索小朋友姓名…"
             className="border-2 border-gray-100 rounded-xl px-3 py-2 text-sm font-semibold
                        focus:border-teal-400 outline-none bg-gray-50 w-48"
           />
@@ -230,14 +233,14 @@ export default function AdminPage() {
               <table className="min-w-full divide-y divide-gray-50">
                 <thead className="bg-gray-50">
                   <tr>
-                    <Th field="submittedAt">提交时间</Th>
-                    <Th field="studentName">微信名</Th>
+                    {renderSortableHeader('submittedAt', '提交时间')}
+                    {renderSortableHeader('studentName', '小朋友姓名')}
                     <th className="px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase tracking-wider whitespace-nowrap">类型</th>
                     <th className="px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase tracking-wider whitespace-nowrap">级别</th>
-                    <Th field="score">分数</Th>
-                    <Th field="correctCount">答对</Th>
+                    {renderSortableHeader('score', '分数')}
+                    {renderSortableHeader('correctCount', '答对')}
                     <th className="px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase tracking-wider whitespace-nowrap">错题</th>
-                    <Th field="passed">判断</Th>
+                    {renderSortableHeader('passed', '判断')}
                     <th className="px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase tracking-wider whitespace-nowrap">虚构错题</th>
                     <th className="px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase tracking-wider whitespace-nowrap">非虚构错题</th>
                     <th className="px-4 py-3 text-left text-[11px] font-black text-gray-400 uppercase tracking-wider whitespace-nowrap">薄弱能力</th>
@@ -253,15 +256,9 @@ export default function AdminPage() {
                         {r.studentName}
                       </td>
                       <td className="px-4 py-3">
-                        {(r.testType || 'upgrade') === 'placement' ? (
-                          <span className="text-xs font-black bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full whitespace-nowrap">
-                            插班
-                          </span>
-                        ) : (
-                          <span className="text-xs font-black bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full whitespace-nowrap">
-                            升级
-                          </span>
-                        )}
+                        <span className={`text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap ${(r.testType || 'upgrade') === 'listening' ? 'bg-amber-100 text-amber-700' : (r.testType || 'upgrade') === 'placement' ? 'bg-purple-100 text-purple-700' : 'bg-teal-100 text-teal-700'}`}>
+                          {TEST_TYPE_LABELS[r.testType || 'upgrade'] || '其他'}
+                        </span>
                       </td>
                       <td className="px-4 py-3">
                         <span className="text-xs font-black bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
@@ -285,7 +282,9 @@ export default function AdminPage() {
                       <td className="px-4 py-3">
                         <span className={`text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap
                           ${r.score >= 80 ? 'bg-green-100 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
-                          {r.score >= 80 ? `可以读${r.levelId}级别` : '建议降级巩固'}
+                          {(r.testType || 'upgrade') === 'listening'
+                            ? (r.score >= 80 ? '听力合格' : '听力未达标')
+                            : (r.score >= 80 ? `可以读${r.levelId}级别` : '建议降级巩固')}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-xs font-mono text-center text-gray-500">

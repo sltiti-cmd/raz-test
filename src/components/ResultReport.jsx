@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 
 const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResult, levelId, testType }, ref) {
-  const testLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ升级测试'
+  const testLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ阅读测评'
   const { score, correctCount, total, wrongQuestions, skillCounts,
           fictionWrong, nonfictionWrong, durationText } = gradingResult
   const canReadLevel = score >= 80

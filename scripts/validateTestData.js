@@ -7,6 +7,7 @@
 import { readdir, writeFile } from 'fs/promises'
 import { existsSync } from 'fs'
 import { join, resolve, dirname } from 'path'
+import process from 'process'
 import { fileURLToPath, pathToFileURL } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -141,12 +142,7 @@ function validateLevel(level, { isPlacement }) {
 
 async function loadLevel(filePath) {
   const url = pathToFileURL(filePath).href
-  let mod
-  try {
-    mod = await import(url)
-  } catch (e) {
-    throw e
-  }
+  const mod = await import(url)
   // 优先找命名导出中有 id 字段的对象
   for (const [key, val] of Object.entries(mod)) {
     if (key !== 'default' && val && typeof val === 'object' && val.id) return val

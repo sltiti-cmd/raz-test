@@ -1,4 +1,4 @@
-export default function ProgressBar({ current, total, answered }) {
+export default function ProgressBar({ total, answered }) {
   const pct = Math.round((answered / total) * 100)
 
   return (

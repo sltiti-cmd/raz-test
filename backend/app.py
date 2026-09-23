@@ -63,6 +63,8 @@ def init_db():
         conn.execute("ALTER TABLE submissions ADD COLUMN duration_seconds INTEGER")
     if "duration_text" not in existing_columns:
         conn.execute("ALTER TABLE submissions ADD COLUMN duration_text TEXT")
+    if "test_type" not in existing_columns:
+        conn.execute("ALTER TABLE submissions ADD COLUMN test_type TEXT DEFAULT 'upgrade'")
     conn.commit()
     conn.close()
 
@@ -86,14 +88,15 @@ def api_submit():
     conn = get_db()
     conn.execute("""
         INSERT INTO submissions
-          (submitted_at, student_name, level_id, score, correct_count,
+          (submitted_at, student_name, level_id, test_type, score, correct_count,
            wrong_questions, passed, weak_skills, fiction_wrong, nonfiction_wrong,
            duration_seconds, duration_text, notes)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     """, (
         data.get("submittedAt"),
         data.get("studentName"),
         data.get("levelId"),
+        data.get("testType", "upgrade"),
         data.get("score"),
         data.get("correctCount"),
         json.dumps(data.get("wrongQuestions", []), ensure_ascii=False),
@@ -208,12 +211,13 @@ def export_csv():
 
     output = io.StringIO()
     w = csv.writer(output)
-    w.writerow(["提交时间","微信名","级别","分数","答对题数","用时","错题","是否通过","薄弱能力","虚构错题","非虚构错题","备注"])
+    w.writerow(["提交时间","小朋友姓名","测试类型","级别","分数","答对题数","用时","错题","是否通过","薄弱能力","虚构错题","非虚构错题","备注"])
     for r in rows:
         wq = json.loads(r["wrong_questions"] or "[]")
         ws = json.loads(r["weak_skills"] or "[]")
+        test_type_labels = {"upgrade": "阅读测试", "placement": "插班测试", "listening": "听力测试"}
         w.writerow([
-            r["submitted_at"], r["student_name"], r["level_id"],
+            r["submitted_at"], r["student_name"], test_type_labels.get(r["test_type"] or "upgrade", "其他测试"), r["level_id"],
             r["score"], r["correct_count"],
             r["duration_text"] or "",
             " ".join(f"Q{q['id']}" for q in wq),

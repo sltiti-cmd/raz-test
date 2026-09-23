@@ -16,6 +16,8 @@ export const levelE = {
       title: "I Need Shoes to Play Soccer",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/e-i-need-shoes-to-play-soccer.jpg",
+      imageAlt: "《I Need Shoes to Play Soccer》原 PDF 插图",
       text: `I need special shoes to play soccer.
 I need special shoes that help me to run and stop fast.
 Do I need slippers?
@@ -101,6 +103,8 @@ I will wear sneakers to play soccer.`,
       title: "Jen and Ben Learn About Farms",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/e-jen-and-ben-learn-about-farms.jpg",
+      imageAlt: "《Jen and Ben Learn About Farms》原 PDF 插图",
       text: `Jen and Ben want to learn about farms.
 They go to farms that grow many different plants.
 They learn about how corn grows.
@@ -186,6 +190,8 @@ Jen and Ben learn how many plants grow on farms.`,
       title: "Shoes in Different Seasons",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/e-shoes-in-different-seasons.jpg",
+      imageAlt: "《Shoes in Different Seasons》原 PDF 插图",
       text: `Different shoes are the best for different seasons.
 Boots are the best shoes in the winter.
 Boots are the best when it is cold.
@@ -270,6 +276,8 @@ Slippers are the best in all seasons!`,
       title: "Where Birds Make Nests",
       type: "nonfiction",
       typeLabel: "非虚构",
+      image: "/images/passages/e-where-birds-make-nests.jpg",
+      imageAlt: "《Where Birds Make Nests》原 PDF 插图",
       text: `Different birds need different nests.
 Birds make their nests in many different places.
 The places birds make nests are where they like best.
