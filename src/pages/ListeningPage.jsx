@@ -222,13 +222,15 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
       </nav>
 
       <div className="lt-test-layout">
-        <aside className="lt-test-aside">
-          <section className="lt-audio-card">
+        <section className="lt-audio-card lt-audio-card-top">
+          <div className="lt-audio-copy">
             <div className="lt-audio-heading">
               <BrandMark />
               <div><span className="lt-eyebrow">LISTEN CAREFULLY</span><h2>{current.section.title}</h2></div>
             </div>
             <p>{current.section.instruction}</p>
+          </div>
+          <div className="lt-audio-player">
             <div className="lt-native-audio">
               <audio
                 key={`${current.section.id}-${isGrouped ? 'group' : current.id}`}
@@ -239,16 +241,11 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
               />
               <small>已精确裁切 · 可以听 2 遍</small>
             </div>
-          </section>
-
-          <section className="lt-page-tip">
-            <span>{isGrouped ? current.section.questions.length : current.sectionQuestionIndex + 1}</span>
-            <div>
-              <strong>{isGrouped ? '题同页完成' : `本组第 ${current.sectionQuestionIndex + 1} 题`}</strong>
-              <p>{isGrouped ? '播放同一段音频，依次选择答案' : '作答后进入下一题'}</p>
-            </div>
-          </section>
-        </aside>
+            <p className="lt-audio-status">
+              {isGrouped ? `${current.section.questions.length} 题共用本段录音` : `本组第 ${current.sectionQuestionIndex + 1} 题`}
+            </p>
+          </div>
+        </section>
 
         <section className="lt-question-card">
           <header>

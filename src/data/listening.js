@@ -31,10 +31,6 @@ const makeAudioTextQuestions = (...args) => (
   }))
 )
 
-const placeOptionImages = Object.fromEntries(
-  'ABCDEFGH'.split('').map(option => [option, `/images/listening/questions/gj-p3-option-${option}.jpg`]),
-)
-
 export const LISTENING_PASS_SCORE = 70
 
 export const listeningTests = [
@@ -113,22 +109,21 @@ export const listeningTests = [
     levelRange: 'G–J',
     exam: 'G-J 级听力',
     examEnglish: 'CORE LISTENING',
-    description: '连续对话与图片选择',
+    description: '图片选择 · 每题独立音频',
     questionCount: 10,
     passScore: LISTENING_PASS_SCORE,
     sections: [
       {
-        id: 'gj-test1-part3',
-        title: '第一组 · 连续对话',
-        instruction: '一段连续对话对应 5 个物品；边听边在同一页完成配对。',
-        grouped: true,
-        audioSrc: '/audio/listening/questions/gj-p3-group.mp3',
-        pageImages: ['/images/listening/official/gj-test1-part3-a.jpg', '/images/listening/official/gj-test1-part3-b.jpg'],
-        questions: makeQuestions('gj-p3', ['diary', 'plate', 'drum', 'rock', 'box'], ['C', 'A', 'E', 'B', 'G'], ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).map(question => ({
-          ...question,
-          promptImage: `/images/listening/questions/gj-p3-item-${question.label}.jpg`,
-          optionImages: placeOptionImages,
-        })),
+        id: 'gj-test2-part4',
+        title: '第一组 · 图片选择',
+        instruction: '每题听一段对话，根据图片选择 A、B 或 C。',
+        audioSrc: '/audio/listening/official/gj-test2-part4.mp3',
+        pageImages: ['/images/listening/official/gj-test2-part4-a.jpg', '/images/listening/official/gj-test2-part4-b.jpg'],
+        questions: makeImageQuestions(
+          'gj-p4b',
+          ['Why does the family want to go to London?', 'What will Jack and his mother buy?', 'What must Jack find out about on the computer?', 'What can Jack’s best friend do well on his computer?', 'What’s wrong with the computer now?'],
+          ['A', 'A', 'C', 'B', 'B'],
+        ),
       },
       {
         id: 'gj-test1-part4',

@@ -29,8 +29,12 @@ $segments = @(
   @{ Source = 'df-test2-part4.mp3'; Output = 'df-t2-4.mp3'; Start = 182.50; End = 208.65 },
   @{ Source = 'df-test2-part4.mp3'; Output = 'df-t2-5.mp3'; Start = 210.30; End = 242.00 },
 
-  # Cambridge Flyers Part 3 is one passage for five items; Part 4 is one clip per item.
-  @{ Source = 'gj-test1-part3.mp3'; Output = 'gj-p3-group.mp3'; Start = 55.45; End = 157.70 },
+  # Cambridge Flyers Part 4: first complete play-through only; intro and example removed.
+  @{ Source = 'gj-test2-part4.mp3'; Output = 'gj-p4b-1.mp3'; Start = 91.80; End = 113.20 },
+  @{ Source = 'gj-test2-part4.mp3'; Output = 'gj-p4b-2.mp3'; Start = 117.75; End = 147.50 },
+  @{ Source = 'gj-test2-part4.mp3'; Output = 'gj-p4b-3.mp3'; Start = 152.10; End = 193.00 },
+  @{ Source = 'gj-test2-part4.mp3'; Output = 'gj-p4b-4.mp3'; Start = 197.50; End = 229.55 },
+  @{ Source = 'gj-test2-part4.mp3'; Output = 'gj-p4b-5.mp3'; Start = 234.20; End = 266.35 },
   @{ Source = 'gj-test1-part4.mp3'; Output = 'gj-p4-1.mp3'; Start = 41.60; End = 63.15 },
   @{ Source = 'gj-test1-part4.mp3'; Output = 'gj-p4-2.mp3'; Start = 66.35; End = 94.50 },
   @{ Source = 'gj-test1-part4.mp3'; Output = 'gj-p4-3.mp3'; Start = 97.80; End = 122.00 },

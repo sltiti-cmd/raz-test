@@ -16,7 +16,7 @@ const expected = {
     { id: 'df-test2-part4', sourceNumbers: [1, 2, 3, 4, 5], answers: 'CABBA' },
   ],
   'g-j': [
-    { id: 'gj-test1-part3', sourceNumbers: [1, 2, 3, 4, 5], answers: 'CAEBG' },
+    { id: 'gj-test2-part4', sourceNumbers: [1, 2, 3, 4, 5], answers: 'AACBB' },
     { id: 'gj-test1-part4', sourceNumbers: [1, 2, 3, 4, 5], answers: 'CCBAB' },
   ],
   'k-n': [
