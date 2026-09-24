@@ -65,21 +65,21 @@ export default function TestHeader({
             <a
               href={pdfSrc}
               download
-              className="flex min-h-[42px] items-center justify-center rounded-xl border border-[#d8d4c9] bg-white px-2.5 text-xs sm:text-sm font-black text-[#52616a] shadow-[0_2px_0_#d4d0c5] transition-all hover:bg-[#f4f2ec] active:translate-y-[1px] active:shadow-none whitespace-nowrap"
+              className="raz-tool-btn flex min-h-[42px] items-center justify-center rounded-xl border border-[#d8d4c9] bg-white px-2.5 text-xs sm:text-sm font-black text-[#52616a] shadow-[0_2px_0_#d4d0c5] transition-all hover:bg-[#f4f2ec] active:translate-y-[1px] active:shadow-none whitespace-nowrap"
             >
               <span aria-hidden="true">⇩</span>&nbsp; 下载PDF
             </a>
             <button
               type="button"
               onClick={onOpenPdf}
-              className="flex min-h-[42px] items-center justify-center rounded-xl border border-[#c9b979] bg-[#f5edcf] px-3 text-xs sm:text-sm font-black text-[#655b38] shadow-[0_2px_0_#c2b273] transition-all hover:bg-[#eee2b7] active:translate-y-[1px] active:shadow-none whitespace-nowrap"
+              className="raz-tool-btn flex min-h-[42px] items-center justify-center rounded-xl border border-[#c9b979] bg-[#f5edcf] px-3 text-xs sm:text-sm font-black text-[#655b38] shadow-[0_2px_0_#c2b273] transition-all hover:bg-[#eee2b7] active:translate-y-[1px] active:shadow-none whitespace-nowrap"
             >
               <span aria-hidden="true">▤</span>&nbsp; PDF对照答题
             </button>
             <button
               type="button"
               onClick={onBatchInput}
-              className={`flex min-h-[42px] items-center justify-center rounded-xl px-3 text-xs sm:text-sm font-black text-white transition-all active:translate-y-[2px] active:shadow-none whitespace-nowrap ${batchClasses}`}
+              className={`raz-tool-btn flex min-h-[42px] items-center justify-center rounded-xl px-3 text-xs sm:text-sm font-black text-white transition-all active:translate-y-[2px] active:shadow-none whitespace-nowrap ${batchClasses}`}
             >
               <span aria-hidden="true">✎</span>&nbsp; 批量输入答案
             </button>

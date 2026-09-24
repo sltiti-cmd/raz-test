@@ -87,7 +87,7 @@ function LevelChooser({ onStart }) {
                 <span className="lt-level-number">{accent.label}</span>
                 <span className="lt-level-range">RAZ {test.levelRange}</span>
               </div>
-              <div className="lt-level-icon" aria-hidden="true"><BrandMark /></div>
+              <button type="button" className="lt-level-icon" onClick={() => onStart(test.id)} aria-label={`进入 ${test.levelRange} 级听力测试`}><BrandMark /></button>
               <h3><b>{test.levelRange}</b> 级听力</h3>
               <p>{test.description}</p>
               <div className="lt-level-meta">
