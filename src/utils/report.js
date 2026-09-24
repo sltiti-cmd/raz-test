@@ -1,6 +1,5 @@
 export function generateReportText(studentInfo, gradingResult, levelId, testType = 'upgrade') {
   const testLabel = testType === 'placement' ? '插班' : '入门'
-  const footerLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ阅读测评'
   const {
     score,
     correctCount,
@@ -79,5 +78,5 @@ ${textureAnalysis}
 ${suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n')}
 
 ━━━━━━━━━━━━━━━━━━
-Stacey老师${footerLabel} · ${studentInfo.date}`
+Stacey老师测评网站 · ${studentInfo.date}`
 }

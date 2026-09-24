@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 
 const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResult, levelId, testType }, ref) {
-  const testLabel = testType === 'placement' ? 'RAZ插班测试' : 'RAZ阅读测评'
+  const reportTitle = testType === 'placement' ? '插班诊断报告' : '阅读诊断报告'
   const { score, correctCount, total, wrongQuestions, skillCounts,
           fictionWrong, nonfictionWrong, durationText } = gradingResult
   const canReadLevel = score >= 80
@@ -56,10 +56,10 @@ const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResu
                     borderBottom: '2px solid #e8dcc8' }}>
         <div style={{ fontSize: '11px', color: '#9ca3af', letterSpacing: '2px',
                       textTransform: 'uppercase', marginBottom: '8px' }}>
-          STACEY老师 · {testLabel}
+          STACEY老师测评网站
         </div>
         <div style={{ fontSize: '22px', fontWeight: 900, color: '#1f2937', marginBottom: '4px' }}>
-          阅读诊断报告
+          {reportTitle}
         </div>
         <div style={{ fontSize: '14px', color: '#6b7280', fontWeight: 600 }}>
           {studentInfo.name} · {levelId}级 · {studentInfo.date}
@@ -180,7 +180,7 @@ const ResultReport = forwardRef(function ResultReport({ studentInfo, gradingResu
       {/* ── Footer ── */}
       <div style={{ textAlign: 'center', fontSize: '11px', color: '#d1d5db',
                     paddingTop: '16px', borderTop: '1px solid #e8dcc8' }}>
-        Stacey老师{testLabel} · 仅供参考
+        Stacey老师测评网站 · 仅供参考
       </div>
     </div>
   )

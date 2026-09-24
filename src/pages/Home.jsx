@@ -33,12 +33,11 @@ function StudyBuddy() {
 
 export default function Home() {
   const navigate = useNavigate()
-  const upgradeLevels = levelList.map(level => ({ ...level, status: level.passages.length > 0 ? 'open' : 'coming' }))
 
   return (
     <div className="home-soft">
       <header className="home-topbar">
-        <Link to="/" className="home-brand" aria-label="Stacey老师英语能力测试首页">
+        <Link to="/" className="home-brand" aria-label="Stacey老师测评网站首页">
           <span className="home-brand-spark"><Sparkle /></span>
           <span><strong>Stacey老师</strong><small>测评网站</small></span>
         </Link>
@@ -65,7 +64,7 @@ export default function Home() {
           </div>
           <div className="home-level-journey">
             <div className="home-level-line" aria-hidden="true" />
-            {upgradeLevels.map((level, index) => (
+            {levelList.map((level, index) => (
               <div className={`home-level-stop tone-${index + 1}`} key={level.id}>
                 <button type="button" className="home-level-button" onClick={() => navigate(`/test/${level.id.toLowerCase()}`)} aria-label={`进入 ${level.id} 级阅读测试`}><span>{level.id}</span></button>
                 <strong>{LEVEL_COPY[level.id]}</strong>

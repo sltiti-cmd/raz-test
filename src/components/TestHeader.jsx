@@ -47,7 +47,7 @@ export default function TestHeader({
               </svg>
             </span>
             <span className="font-black text-[#26384a] text-sm sm:text-lg whitespace-nowrap">
-              Stacey老师 RAZ阅读测评
+              Stacey老师测评网站
             </span>
             <span className={`hidden md:inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-black whitespace-nowrap ${levelClasses}`}>
               {levelData.id}级{testLabel ? ` · ${testLabel}` : ''}

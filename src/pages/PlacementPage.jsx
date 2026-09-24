@@ -63,7 +63,7 @@ function PrintContent({ levelData }) {
   const total = levelData.passages.reduce((n, p) => n + p.questions.length, 0)
   return (
     <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold text-center mb-1">Stacey老师RAZ插班测试</h1>
+      <h1 className="text-2xl font-bold text-center mb-1">Stacey老师测评网站 · 插班测试</h1>
       <h2 className="text-lg font-semibold text-center text-gray-600 mb-1">{levelData.name} 测试卷</h2>
       <p className="text-center text-gray-500 text-sm mb-6">共{total}题 · 每题5分 · 满分100分</p>
       <div className="flex gap-12 mb-8 text-sm">
