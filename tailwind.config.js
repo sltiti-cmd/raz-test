@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Nunito', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Fraunces', 'Noto Sans SC', 'serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       colors: {

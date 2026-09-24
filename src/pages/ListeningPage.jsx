@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { listeningTests, listeningTestsById } from '../data/listening'
+import BackArrow from '../components/BackArrow'
 
 const levelAccents = [
   { color: '#1f9e93', soft: '#def2ef', label: '01' },
@@ -54,7 +55,6 @@ function LevelChooser({ onStart }) {
         <div className="lt-hero-copy">
           <span className="lt-eyebrow lt-eyebrow-light">LISTENING CHECK · 10 QUESTIONS</span>
           <h1>听力测试</h1>
-          <p>选择当前 RAZ 级别开始。</p>
           <div className="lt-hero-tags">
             <span>建议在安静环境听</span>
             <span>可以听 2 遍</span>
@@ -72,7 +72,6 @@ function LevelChooser({ onStart }) {
           <span className="lt-eyebrow">CHOOSE A LEVEL</span>
           <h2>选择测试级别</h2>
         </div>
-        <p>无需提前填写姓名，完成后再提交成绩</p>
       </div>
 
       <div className="lt-level-grid">
@@ -186,7 +185,7 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
     <div className="lt-workspace-width">
       <section className="lt-test-banner">
         <div className="lt-test-identity">
-          <button type="button" onClick={onExit}>← 重新选级别</button>
+          <button type="button" onClick={onExit} className="lt-inline-back"><BackArrow className="w-4 h-4" /> 重新选级别</button>
           <div>
             <span className="lt-eyebrow lt-eyebrow-light">RAZ {test.levelRange} · LISTENING CHECK</span>
             <h1>{test.levelRange} 级听力测试</h1>
@@ -289,8 +288,8 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
           )}
 
           <footer className="lt-question-actions">
-            <button type="button" onClick={() => goToStep(previousIndex)} disabled={previousIndex < 0} className="secondary">
-              ← {isGrouped ? '上一页' : '上一题'}
+            <button type="button" onClick={() => goToStep(previousIndex)} disabled={previousIndex < 0} className="secondary lt-inline-back">
+              <BackArrow className="w-4 h-4" /> {isGrouped ? '上一页' : '上一题'}
             </button>
             {isLastPage ? (
               <button type="button" onClick={onSubmit} disabled={!allAnswered} className="primary honey">
@@ -499,7 +498,7 @@ export default function ListeningPage() {
       <div className="lt-aurora" aria-hidden="true"><i /><i /><i /><i /></div>
       <header className="lt-topbar">
         <div>
-          <Link to="/" className="lt-home-link"><span>←</span> 返回测试首页</Link>
+          <Link to="/" className="lt-home-link"><BackArrow className="w-4 h-4" /> 返回测试首页</Link>
           <div className="lt-brand-title"><BrandMark /><strong>Stacey老师测评网站</strong></div>
           <span className="lt-top-pill">听力测试</span>
         </div>

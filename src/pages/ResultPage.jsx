@@ -5,6 +5,7 @@ import ResultReport from '../components/ResultReport'
 import { generateReportText } from '../utils/report'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
+import BackArrow from '../components/BackArrow'
 
 export default function ResultPage() {
   const { state }  = useLocation()
@@ -17,7 +18,7 @@ export default function ResultPage() {
       <div className="min-h-screen bg-cream-100 flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-400 mb-4">没有找到测试结果</p>
-          <Link to="/" className="text-teal-600 font-bold hover:underline">← 返回大厅</Link>
+          <Link to="/" className="inline-flex items-center gap-1.5 text-teal-600 font-bold hover:underline"><BackArrow className="w-4 h-4" /> 返回大厅</Link>
         </div>
       </div>
     )
@@ -66,8 +67,8 @@ export default function ResultPage() {
       {/* ── Top action bar ── */}
       <div className="max-w-2xl mx-auto mb-4">
         <div className="flex items-center justify-between gap-3 flex-wrap">
-          <Link to="/" className="text-gray-400 hover:text-gray-700 font-bold text-sm">
-            ← 返回大厅
+          <Link to="/" className="inline-flex items-center gap-1.5 text-gray-400 hover:text-gray-700 font-bold text-sm">
+            <BackArrow className="w-4 h-4" /> 返回大厅
           </Link>
           <div className="flex flex-wrap gap-2">
             <button

@@ -18,6 +18,7 @@ import { gradeTest } from '../utils/grading'
 import PassageCard from '../components/PassageCard'
 import QuestionCard from '../components/QuestionCard'
 import TestHeader from '../components/TestHeader'
+import BackArrow from '../components/BackArrow'
 import { stopReadingAudio } from '../utils/readingAudio'
 import BatchInputModal from '../components/BatchInputModal'
 import PdfAnswerWorkspace from '../components/PdfAnswerWorkspace'
@@ -49,9 +50,9 @@ function EmptyLevel({ levelId }) {
           </code>
         </p>
         <Link to="/placement"
-          className="inline-block px-6 py-3 rounded-xl bg-purple-500 hover:bg-purple-600
+          className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-purple-500 hover:bg-purple-600
                      text-white font-black transition-colors">
-          ← 返回插班测试大厅
+          <BackArrow className="w-4 h-4" /> 返回插班测试大厅
         </Link>
       </div>
     </div>
@@ -97,24 +98,6 @@ function PrintContent({ levelData }) {
 }
 
 // ─── Question number button ───────────────────────────────────────────────────
-function QNumBtn({ q, idx, currentIdx, answered, onClick }) {
-  const isCurrent  = idx === currentIdx
-  const isAnswered = !!answered[q.id]
-  return (
-    <button
-      onClick={() => onClick(idx)}
-      className={`w-8 h-8 rounded-lg text-xs font-mono font-bold transition-all
-        ${isCurrent
-          ? 'bg-purple-500 text-white shadow-sm ring-2 ring-purple-300 ring-offset-1 scale-110'
-          : isAnswered
-            ? 'bg-green-100 text-green-700 border border-green-200'
-            : 'bg-white text-gray-500 border border-gray-200 hover:border-purple-300 hover:text-purple-600'
-        }`}
-    >
-      {q.id}
-    </button>
-  )
-}
 
 // ─── Main placement test page ──────────────────────────────────────────────────
 export default function PlacementPage() {
@@ -275,51 +258,11 @@ export default function PlacementPage() {
           testLabel="插班测试"
         />
 
-        {/* Question number scroll (tablet and below) */}
-        <div className="lg:hidden overflow-x-auto border-b border-[#e8e1d2] bg-[#fffdf6]">
-          <div className="flex gap-1.5 px-3 sm:px-4 py-2 w-max">
-            {allQuestions.map((q, idx) => (
-              <QNumBtn key={q.id} q={q} idx={idx} currentIdx={currentIdx}
-                       answered={answers} onClick={setCurrentIdx} />
-            ))}
-            <button
-              onClick={() => {
-                const i = allQuestions.findIndex(q => !answers[q.id])
-                if (i !== -1) setCurrentIdx(i)
-              }}
-              className="px-3 h-8 rounded-lg text-xs font-bold bg-orange-50 text-orange-600 border border-orange-200 hover:bg-orange-100 whitespace-nowrap flex-shrink-0 transition-colors"
-            >
-              未答
-            </button>
-          </div>
-        </div>
-
         {/* ── Main layout ── */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
           <div className="flex flex-col lg:flex-row gap-4 items-start">
 
-            {/* ── Col 1: Question number sidebar (desktop only) ── */}
-            <aside className="hidden lg:block flex-shrink-0 w-[72px] sticky top-[166px]">
-              <div className="grid grid-cols-2 gap-1.5 mb-2">
-                {allQuestions.map((q, idx) => (
-                  <QNumBtn key={q.id} q={q} idx={idx} currentIdx={currentIdx}
-                           answered={answers} onClick={setCurrentIdx} />
-                ))}
-              </div>
-              <button
-                onClick={() => {
-                  const i = allQuestions.findIndex(q => !answers[q.id])
-                  if (i !== -1) setCurrentIdx(i)
-                }}
-                className="w-full text-[11px] font-bold text-orange-600 bg-orange-50
-                           border border-orange-200 rounded-lg py-1.5 hover:bg-orange-100
-                           transition-colors"
-              >
-                未答
-              </button>
-            </aside>
-
-            {/* ── Col 2: Passage ── */}
+            {/* ── Col 1: Passage ── */}
             <div className="flex-1 min-w-0 w-full">
               <div className="lg:sticky lg:top-[166px]">
                 <PassageCard
@@ -352,11 +295,11 @@ export default function PlacementPage() {
                 <button
                   onClick={() => setCurrentIdx(p => Math.max(0, p - 1))}
                   disabled={currentIdx === 0}
-                  className="flex-1 min-h-[48px] rounded-2xl bg-white border-2 border-gray-200
+                  className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-1.5 rounded-2xl bg-white border-2 border-gray-200
                              hover:border-gray-300 text-gray-600 font-black
                              disabled:opacity-40 transition-all text-sm"
                 >
-                  ← 上一题
+                  <BackArrow className="w-4 h-4" /> 上一题
                 </button>
                 {currentIdx < total - 1 ? (
                   <button

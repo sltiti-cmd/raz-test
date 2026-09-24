@@ -2,8 +2,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { levelList } from '../data/levels/index'
 import { openPrintPdf } from '../utils/printPdf'
 
-const LEVEL_COPY = { A: '启蒙阅读', D: '基础阅读', G: '独立阅读', K: '进阶阅读', O: '深度理解', R: '高阶挑战' }
-
 function Sparkle({ className = '' }) {
   return <svg className={className} viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2c2.8 12.6 8.5 18.4 22 22-13.5 3.6-19.2 9.4-22 22C21.2 33.4 15.5 27.6 2 24 15.5 20.4 21.2 14.6 24 2Z" fill="currentColor" /></svg>
 }
@@ -50,7 +48,6 @@ export default function Home() {
           <div className="home-hero-copy">
             <span className="home-kicker"><i /> RAZ READING JOURNEY</span>
             <h1>找到孩子现在的<br /><em>阅读位置</em></h1>
-            <p>从适合的级别开始，一步一步读得更稳、更远。</p>
             <div className="home-actions"><a href="#reading" className="home-primary-action">开始阅读测试 <span>→</span></a><Link to="/listening" className="home-secondary-action">🎧 进入听力测试</Link></div>
             <div className="home-feature-line"><span>20 道阅读题</span><i /><span>自动判分</span><i /><span>支持 PDF 对照</span></div>
           </div>
@@ -67,7 +64,6 @@ export default function Home() {
             {levelList.map((level, index) => (
               <div className={`home-level-stop tone-${index + 1}`} key={level.id}>
                 <button type="button" className="home-level-button" onClick={() => navigate(`/test/${level.id.toLowerCase()}`)} aria-label={`进入 ${level.id} 级阅读测试`}><span>{level.id}</span></button>
-                <strong>{LEVEL_COPY[level.id]}</strong>
                 <small>{level.passages.length} 篇 · {level.passages.reduce((sum, passage) => sum + passage.questions.length, 0)} 题</small>
                 {level.printPdf && <button type="button" className="home-pdf-link" onClick={() => openPrintPdf(level)}>⇩ PDF 试卷</button>}
               </div>
@@ -75,9 +71,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-mode-ribbon">
-          <div className="home-mode-copy"><span className="home-kicker"><i /> TWO WAYS TO PRACTISE</span><h2>阅读与听力，配合完成</h2><p>阅读测试检查理解，听力测试检查听懂细节。两种结果都会保存到老师后台。</p></div>
-          <Link to="/listening" className="home-listen-launch"><span className="home-headphone">⌁</span><span><small>LISTENING CHECK</small><strong>去做听力测试</strong></span><b>→</b></Link>
+        <section className="home-mode-ribbon" aria-hidden="true">
+          <span className="home-kicker"><i /> TWO WAYS TO PRACTISE</span>
+          <p className="home-mode-art">Read <em>&amp;</em> Listen</p>
         </section>
 
         <div className="home-quiet-link"><Link to="/placement">需要重新确认起点？进入插班测试</Link></div>

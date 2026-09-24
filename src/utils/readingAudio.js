@@ -11,6 +11,11 @@ export function stopReadingAudio() {
 function play(path) {
   stopReadingAudio()
   const audio = new Audio(`${import.meta.env.BASE_URL}audio/reading/v1/${path}.mp3`)
+  // A 级面向启蒙阶段，朗读放慢便于跟读（保持音高不变）
+  if (path.startsWith('A/')) {
+    audio.preservesPitch = true
+    audio.playbackRate = 0.75
+  }
   currentAudio = audio
   audio.onended = () => {
     if (currentAudio === audio) currentAudio = null

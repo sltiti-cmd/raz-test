@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatTimer } from '../utils/testTiming'
+import BackArrow from './BackArrow'
 
 export default function TestHeader({
   backTo,
@@ -36,9 +37,9 @@ export default function TestHeader({
             <Link
               to={backTo}
               aria-label={backLabel}
-              className="text-gray-400 hover:text-gray-700 text-lg flex-shrink-0 min-w-[40px] min-h-[40px] -ml-2 flex items-center justify-center"
+              className="text-gray-400 hover:text-gray-700 text-xl flex-shrink-0 min-w-[40px] min-h-[40px] -ml-2 flex items-center justify-center"
             >
-              ←
+              <BackArrow className="w-[22px] h-[22px]" />
             </Link>
             <span className="hidden sm:grid w-10 h-10 place-items-center rounded-xl border border-[#eadc9b] bg-[#fff7c8] text-[#29465b] shadow-sm" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
