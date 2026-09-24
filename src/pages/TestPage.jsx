@@ -287,7 +287,8 @@ export default function TestPage() {
                 {currentIdx < total - 1 ? (
                   <button
                     onClick={() => setCurrentIdx(p => Math.min(total - 1, p + 1))}
-                    className="flex-1 min-h-[48px] btn-candy-teal text-sm"
+                    disabled={!answers[currentQuestion.id]}
+                    className="flex-1 min-h-[48px] btn-candy-teal text-sm disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     下一题 →
                   </button>

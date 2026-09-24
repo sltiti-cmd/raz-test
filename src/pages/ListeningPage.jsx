@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { listeningTests, listeningTestsById } from '../data/listening'
 import BackArrow from '../components/BackArrow'
+import ListeningAudio from '../components/ListeningAudio'
 
 const levelAccents = [
   { color: '#1f9e93', soft: '#def2ef', label: '01' },
@@ -83,20 +84,7 @@ function LevelChooser({ onStart }) {
               className="lt-level-card"
               style={{ '--lt-accent': accent.color, '--lt-accent-soft': accent.soft }}
             >
-              <div className="lt-level-card-top">
-                <span className="lt-level-number">{accent.label}</span>
-                <span className="lt-level-range">RAZ {test.levelRange}</span>
-              </div>
-              <button type="button" className="lt-level-icon" onClick={() => onStart(test.id)} aria-label={`进入 ${test.levelRange} 级听力测试`}><BrandMark /></button>
-              <h3><b>{test.levelRange}</b> 级听力</h3>
-              <p>{test.description}</p>
-              <div className="lt-level-meta">
-                <span>{test.questionCount} 题</span>
-                <span>{test.passScore} 分合格</span>
-              </div>
-              <button type="button" onClick={() => onStart(test.id)}>
-                进入 {test.levelRange} 级 <span>→</span>
-              </button>
+              <button type="button" className="lt-level-icon" onClick={() => onStart(test.id)} aria-label={`进入 ${test.levelRange} 级听力测试`}><span>{test.levelRange}</span></button>
             </article>
           )
         })}
@@ -178,7 +166,6 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
       ? steps.findIndex(question => question.section.id === target.section.id)
       : index
     setCurrentStep(normalizedIndex)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -188,62 +175,18 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
           <button type="button" onClick={onExit} className="lt-inline-back"><BackArrow className="w-4 h-4" /> 重新选级别</button>
           <div>
             <span className="lt-eyebrow lt-eyebrow-light">RAZ {test.levelRange} · LISTENING CHECK</span>
-            <h1>{test.levelRange} 级听力测试</h1>
           </div>
         </div>
         <div className="lt-progress-box">
-          <div><span>答题进度</span><strong>{answeredCount} / {steps.length}</strong></div>
+          <div><strong>{answeredCount} / {steps.length}</strong></div>
           <div className="lt-progress-track"><i style={{ width: `${(answeredCount / steps.length) * 100}%` }} /></div>
         </div>
       </section>
 
-      <nav className="lt-question-nav" aria-label="题目进度">
-        <div>
-          {steps.map((question, index) => {
-            const selected = isGrouped ? question.sectionIndex === current.sectionIndex : index === currentStep
-            const answered = Boolean(answers[question.id])
-            return (
-              <button
-                key={question.id}
-                type="button"
-                onClick={() => goToStep(index)}
-                aria-label={`第 ${index + 1} 题${answered ? '，已作答' : ''}`}
-                aria-current={selected ? 'step' : undefined}
-                className={`${selected ? 'current' : ''} ${answered ? 'answered' : ''}`}
-              >
-                {index + 1}
-                {answered && !selected && <span>✓</span>}
-              </button>
-            )
-          })}
-        </div>
-        <p><span>第 1 组 · 1–5 题</span><span>第 2 组 · 6–10 题</span></p>
-      </nav>
-
       <div className="lt-test-layout">
         <section className="lt-audio-card lt-audio-card-top">
-          <div className="lt-audio-copy">
-            <div className="lt-audio-heading">
-              <BrandMark />
-              <div><span className="lt-eyebrow">LISTEN CAREFULLY</span><h2>{current.section.title}</h2></div>
-            </div>
-            <p>{current.section.instruction}</p>
-          </div>
-          <div className="lt-audio-player">
-            <div className="lt-native-audio">
-              <audio
-                key={`${current.section.id}-${isGrouped ? 'group' : current.id}`}
-                controls
-                preload="metadata"
-                src={currentAudioSrc}
-                aria-label={`${current.section.title}听力音频`}
-              />
-              <small>已精确裁切 · 可以听 2 遍</small>
-            </div>
-            <p className="lt-audio-status">
-              {isGrouped ? `${current.section.questions.length} 题共用本段录音` : `本组第 ${current.sectionQuestionIndex + 1} 题`}
-            </p>
-          </div>
+          <span className="lt-audio2-label">LISTEN CAREFULLY · 建议听两遍</span>
+          <ListeningAudio key={currentAudioSrc} src={currentAudioSrc} />
         </section>
 
         <section className="lt-question-card">

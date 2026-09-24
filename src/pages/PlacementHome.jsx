@@ -26,7 +26,6 @@ export default function PlacementHome() {
         <section className="pl-hero">
           <span className="home-kicker"><i /> PLACEMENT CHECK</span>
           <h1>找到孩子的<em>插班起点</em></h1>
-          <p>选择插班级别，在线完成测试，或下载 PDF 打印后再录入答案。</p>
           <div className="pl-hero-tags">
             <span>✅ 自动判分</span>
             <span>📊 能力诊断</span>
@@ -47,7 +46,6 @@ export default function PlacementHome() {
                 >
                   <span>{level.id}</span>
                 </button>
-                <strong>{level.id} 级插班</strong>
                 <small>{level.passages.length} 篇 · {level.passages.reduce((sum, passage) => sum + passage.questions.length, 0)} 题</small>
                 {level.printPdf && (
                   <button type="button" className="home-pdf-link" onClick={() => openPrintPdf(level)}>⇩ PDF 试卷</button>

@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { levelList } from '../data/levels/index'
-import { openPrintPdf } from '../utils/printPdf'
 
 function Sparkle({ className = '' }) {
   return <svg className={className} viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2c2.8 12.6 8.5 18.4 22 22-13.5 3.6-19.2 9.4-22 22C21.2 33.4 15.5 27.6 2 24 15.5 20.4 21.2 14.6 24 2Z" fill="currentColor" /></svg>
@@ -39,7 +38,7 @@ export default function Home() {
           <span className="home-brand-spark"><Sparkle /></span>
           <span><strong>Stacey老师</strong><small>测评网站</small></span>
         </Link>
-        <nav className="home-topnav" aria-label="首页导航"><a href="#reading">阅读测试</a><Link to="/listening">听力测试</Link><a href="/admin/login">老师后台</a></nav>
+        <nav className="home-topnav" aria-label="首页导航"><a href="#reading">阅读测试</a><Link to="/listening">听力测试</Link><Link to="/placement">插班测试</Link></nav>
       </header>
 
       <main>
@@ -48,8 +47,6 @@ export default function Home() {
           <div className="home-hero-copy">
             <span className="home-kicker"><i /> RAZ READING JOURNEY</span>
             <h1>找到孩子现在的<br /><em>阅读位置</em></h1>
-            <div className="home-actions"><a href="#reading" className="home-primary-action">开始阅读测试 <span>→</span></a><Link to="/listening" className="home-secondary-action">🎧 进入听力测试</Link></div>
-            <div className="home-feature-line"><span>20 道阅读题</span><i /><span>自动判分</span><i /><span>支持 PDF 对照</span></div>
           </div>
           <div className="home-hero-art" aria-hidden="true"><span className="home-mini-spark one">✦</span><span className="home-mini-spark two">✧</span><StudyBuddy /></div>
         </section>
@@ -57,15 +54,11 @@ export default function Home() {
         <section id="reading" className="home-level-section">
           <div className="home-section-heading">
             <div><span className="home-kicker"><i /> CHOOSE A LEVEL</span><h2>选择阅读级别</h2></div>
-            <p>每题 5 分 · 满分 100 分 · 80 分及以上合格</p>
           </div>
           <div className="home-level-journey">
-            <div className="home-level-line" aria-hidden="true" />
             {levelList.map((level, index) => (
               <div className={`home-level-stop tone-${index + 1}`} key={level.id}>
                 <button type="button" className="home-level-button" onClick={() => navigate(`/test/${level.id.toLowerCase()}`)} aria-label={`进入 ${level.id} 级阅读测试`}><span>{level.id}</span></button>
-                <small>{level.passages.length} 篇 · {level.passages.reduce((sum, passage) => sum + passage.questions.length, 0)} 题</small>
-                {level.printPdf && <button type="button" className="home-pdf-link" onClick={() => openPrintPdf(level)}>⇩ PDF 试卷</button>}
               </div>
             ))}
           </div>
@@ -75,8 +68,6 @@ export default function Home() {
           <span className="home-kicker"><i /> TWO WAYS TO PRACTISE</span>
           <p className="home-mode-art">Read <em>&amp;</em> Listen</p>
         </section>
-
-        <div className="home-quiet-link"><Link to="/placement">需要重新确认起点？进入插班测试</Link></div>
       </main>
     </div>
   )

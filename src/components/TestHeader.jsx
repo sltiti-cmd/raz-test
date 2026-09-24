@@ -86,12 +86,13 @@ export default function TestHeader({
           </div>
         </div>
 
-        <nav className="mt-2.5 grid grid-cols-2 sm:grid-cols-4 gap-2" aria-label="文章切换">
+        <nav className="mt-2.5 grid grid-cols-4 gap-2 sm:gap-2" aria-label="文章切换">
           {levelData.passages.map((passage, index) => {
             const count = passage.questions.length
             const start = passageStartIndices[index] + 1
             const end = start + count - 1
             const isActive = currentPassage.id === passage.id
+            const cn = ['一', '二', '三', '四', '五', '六'][index] || index + 1
             return (
               <button
                 key={passage.id}
@@ -103,7 +104,8 @@ export default function TestHeader({
                     : 'border-[#e6e0d2] bg-white text-[#66737a] shadow-[0_4px_0_#dedbd2] hover:border-[#d7c982] hover:-translate-y-0.5'
                 }`}
               >
-                <span className="block text-[15px] lg:text-[17px] leading-tight font-black line-clamp-2">{passage.title}</span>
+                <span className="raz-tab-title block text-[15px] lg:text-[17px] leading-tight font-black line-clamp-2">{passage.title}</span>
+                <span className="raz-tab-short block font-black">第{cn}篇</span>
                 <span className="block mt-1 text-[11px] font-bold opacity-65">第 {start}–{end} 题</span>
               </button>
             )
