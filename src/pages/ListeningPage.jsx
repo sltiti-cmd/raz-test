@@ -4,10 +4,10 @@ import { listeningTests, listeningTestsById } from '../data/listening'
 
 const levelAccents = [
   { color: '#1f9e93', soft: '#def2ef', label: '01' },
-  { color: '#7c60c6', soft: '#ece5fa', label: '02' },
+  { color: '#ef927e', soft: '#fce7de', label: '02' },
   { color: '#ef7a5a', soft: '#fce7de', label: '03' },
-  { color: '#d6952c', soft: '#faefd7', label: '04' },
-  { color: '#3e86e0', soft: '#e5eefb', label: '05' },
+  { color: '#d4a83e', soft: '#fff2c8', label: '04' },
+  { color: '#67a9bd', soft: '#e1f2f6', label: '05' },
 ]
 
 function formatDuration(totalSeconds) {
