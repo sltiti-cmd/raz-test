@@ -40,9 +40,9 @@ export default function Home() {
       <header className="home-topbar">
         <Link to="/" className="home-brand" aria-label="Stacey老师英语能力测试首页">
           <span className="home-brand-spark"><Sparkle /></span>
-          <span><strong>Stacey</strong><small>老师专属加油站</small></span>
+          <span><strong>Stacey</strong><small>老师测评网站</small></span>
         </Link>
-        <nav className="home-topnav" aria-label="首页导航"><a href="#reading">阅读测试</a><Link to="/listening">听力测试</Link><Link to="/admin">老师后台</Link></nav>
+        <nav className="home-topnav" aria-label="首页导航"><a href="#reading">阅读测试</a><Link to="/listening">听力测试</Link><a href="/admin/login">老师后台</a></nav>
       </header>
 
       <main>

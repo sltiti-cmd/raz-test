@@ -500,7 +500,7 @@ export default function ListeningPage() {
       <header className="lt-topbar">
         <div>
           <Link to="/" className="lt-home-link"><span>←</span> 返回测试首页</Link>
-          <div className="lt-brand-title"><BrandMark /><strong>Stacey老师专属加油站</strong></div>
+          <div className="lt-brand-title"><BrandMark /><strong>Stacey老师测评网站</strong></div>
           <span className="lt-top-pill">听力测试</span>
         </div>
       </header>
