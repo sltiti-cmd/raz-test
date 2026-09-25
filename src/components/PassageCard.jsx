@@ -49,14 +49,10 @@ export default function PassageCard({ passage, passageIndex, levelId, tts, hideZ
     <div className="bg-[#fffefb] rounded-2xl border border-[#e8e1d2] shadow-card p-5 sm:p-6 h-full">
       {/* Tags row */}
       <div className="flex items-center gap-2 mb-4 flex-wrap">
-        <span className="text-[11px] font-black text-[#655b38] bg-[#f3ecd2]
-                         px-2.5 py-1 rounded-full tracking-wide">
+        <span className="passage-chip passage-chip-number">
           PASSAGE {passageIndex + 1}
         </span>
-        <span className={`text-[11px] font-black px-2.5 py-1 rounded-full
-          ${passage.type === 'fiction'
-            ? 'bg-[#eee9f0] text-[#685a70]'
-            : 'bg-[#edf3ee] text-[#4f6d58]'}`}>
+        <span className={`passage-chip ${passage.type === 'fiction' ? 'passage-chip-fiction' : 'passage-chip-nonfiction'}`}>
           {typeDisplay}
         </span>
         <div className="flex-1" />
@@ -73,8 +69,15 @@ export default function PassageCard({ passage, passageIndex, levelId, tts, hideZ
       </div>
 
       {/* Title */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="passage-title-row">
         <h3 className="font-serif text-2xl sm:text-[28px] leading-tight font-black text-[#2d4350]">{passage.title}</h3>
+        <div className="passage-title-decoration" aria-hidden="true">
+          <span className="pt-leaf pt-leaf-a" />
+          <span className="pt-leaf pt-leaf-b" />
+          <span className="pt-dot pt-dot-a" />
+          <span className="pt-dot pt-dot-b" />
+          <span className="pt-spark">✦</span>
+        </div>
         {showPassageTts && (
           <button
             onClick={() => playReadingTitle(passage.id)}
