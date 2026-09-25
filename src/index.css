@@ -813,123 +813,6 @@ body {
 
 .question-card-shell { position: relative; overflow: hidden; }
 
-.question-card-decoration {
-  position: absolute;
-  right: 14px;
-  bottom: 10px;
-  width: 86px;
-  height: 58px;
-  pointer-events: none;
-  opacity: .9;
-}
-
-.q-leaf {
-  position: absolute;
-  display: block;
-  border-radius: 100% 0 100% 0;
-  transform-origin: bottom center;
-}
-
-.q-leaf-a {
-  width: 20px;
-  height: 36px;
-  right: 30px;
-  bottom: 4px;
-  background: #bfe8d7;
-  transform: rotate(-18deg);
-}
-
-.q-leaf-b {
-  width: 18px;
-  height: 31px;
-  right: 13px;
-  bottom: 10px;
-  background: #a8dcc8;
-  transform: rotate(20deg);
-}
-
-.q-leaf-c {
-  width: 15px;
-  height: 25px;
-  right: 46px;
-  bottom: 15px;
-  background: #d7efe6;
-  transform: rotate(-40deg);
-}
-
-.question-card-decoration::before {
-  content: '';
-  position: absolute;
-  right: 31px;
-  bottom: 0;
-  width: 3px;
-  height: 31px;
-  border-radius: 999px;
-  background: #8fcfc0;
-  transform: rotate(-3deg);
-}
-
-.q-dot {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-}
-
-.q-dot-a {
-  right: 1px;
-  bottom: 7px;
-  width: 7px;
-  height: 7px;
-  background: #8fcfc0;
-}
-
-.q-dot-b {
-  right: 9px;
-  bottom: 28px;
-  width: 6px;
-  height: 6px;
-  background: #efc96b;
-}
-
-.q-dot-c {
-  right: -1px;
-  bottom: 22px;
-  width: 8px;
-  height: 8px;
-  background: #f3b2a1;
-}
-
-.q-spark {
-  position: absolute;
-  right: 57px;
-  bottom: 35px;
-  color: #efc24d;
-  font-size: 12px;
-  line-height: 1;
-}
-
-@media (max-width: 1023px) {
-  .question-card-decoration {
-    right: 11px;
-    bottom: 8px;
-    width: 72px;
-    height: 48px;
-    opacity: .78;
-    transform: scale(.9);
-    transform-origin: right bottom;
-  }
-}
-
-@media (max-width: 640px) {
-  .question-card-decoration {
-    right: 8px;
-    bottom: 7px;
-    opacity: .7;
-    transform: scale(.78);
-  }
-}
-
-
 /* ── Report readability pass · larger type + compact genre summary ─────── */
 .report-summary {
   grid-template-columns: 220px minmax(240px, .82fr) minmax(360px, 1.18fr);
@@ -1111,4 +994,271 @@ body {
   .report-wrong-list span,
   .report-wrong-list b { font-size: 11.5px; }
   .report-suggestion-body li { font-size: 13px; }
+}
+
+
+/* ── Reading test final palette · aligned with Home.jsx ────────────────── */
+.raz-test-page {
+  --test-ink: #333a5e;
+  --test-muted: #747b91;
+  --test-mint: #8fcfc0;
+  --test-mint-deep: #5daaa1;
+  --test-mint-dark: #3f948d;
+  --test-cream: #fff5d7;
+  --test-honey: #f3c558;
+  --test-coral: #ef927e;
+  --test-paper: #fffdf9;
+}
+
+/* Top utility pills and buttons: softly raised rather than dashboard-like. */
+.raz-status-pill {
+  min-height: 38px;
+  align-items: center;
+  padding: 0 13px;
+  border: 1px solid #e5e8e6;
+  border-radius: 13px;
+  color: #69758a;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfb 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 3px 0 #e9ece9;
+  font-size: 12px;
+  font-weight: 800;
+}
+.raz-status-pill strong { color: var(--test-mint-dark); font-weight: 950; }
+
+.raz-tool-btn {
+  border-radius: 14px !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease !important;
+}
+.raz-tool-btn-neutral {
+  border: 1px solid #e3e6e3;
+  color: #566277;
+  background: linear-gradient(180deg,#fff 0%,#fbfcfb 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 3px 0 #e7eae7;
+}
+.raz-tool-btn-neutral:hover { background: #f6faf8; border-color: #d2e5df; transform: translateY(-1px); }
+.raz-tool-btn-cream {
+  border: 1px solid #e8d9a7;
+  color: #6f6240;
+  background: linear-gradient(180deg,#fff9e9 0%,#f9efcf 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 3px 0 #eadcb1;
+}
+.raz-tool-btn-cream:hover { background: #fff4d6; transform: translateY(-1px); }
+
+.raz-batch-btn {
+  border: 1px solid #5aa99f;
+  background: linear-gradient(180deg,#79c9bc 0%,#5daaa1 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 4px 0 #47877e,
+    0 10px 18px -15px rgba(63,148,141,.58);
+}
+.raz-batch-btn:hover { background: linear-gradient(180deg,#83cec2,#63b1a7); transform: translateY(-1px); }
+.raz-batch-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #47877e; }
+
+/* Passage navigation cards: raised tabs with homepage mint active state. */
+.raz-test-page .raz-passage-tab {
+  border-radius: 20px;
+  border: 1px solid #e4e8e5;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+}
+.raz-test-page .raz-passage-tab.is-idle {
+  color: #5d687d;
+  background: linear-gradient(180deg,#ffffff 0%,#fbfcfb 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 5px 0 #e7ebe8,
+    0 12px 20px -18px rgba(52,66,94,.20);
+}
+.raz-test-page .raz-passage-tab.is-idle:hover {
+  transform: translateY(-2px);
+  border-color: #cfe4de;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 6px 0 #dfeae6,
+    0 14px 22px -18px rgba(63,148,141,.22);
+}
+.raz-test-page .raz-passage-tab.is-active {
+  color: #315d59;
+  border-color: #b9ddd5;
+  background: linear-gradient(180deg,#f3fbf8 0%,#eaf7f3 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 5px 0 #d2e9e3,
+    0 14px 22px -18px rgba(63,148,141,.30);
+  transform: translateY(-2px);
+}
+.raz-test-page .raz-passage-tab.is-active .raz-tab-title { color: #2e615c; }
+
+.raz-progress-track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #efeee8;
+  box-shadow: inset 0 1px 2px rgba(59,74,99,.08);
+}
+.raz-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg,#8fcfc0 0%,#6fbbae 72%,#f3c558 100%);
+  transition: width .5s ease;
+}
+
+/* Elevated content chips. */
+.passage-chip,
+.question-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .01em;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 2px 0 rgba(204,207,201,.55);
+}
+.passage-chip { padding: 6px 12px 5px; }
+.passage-chip-number {
+  color: #77682f;
+  border: 1px solid #eedcac;
+  background: linear-gradient(180deg,#fff9e8 0%,#fff1cb 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 3px 0 #efe3c1;
+}
+.passage-chip-fiction {
+  color: #6c617b;
+  border: 1px solid #dfd7e9;
+  background: linear-gradient(180deg,#f7f3fa 0%,#eee8f4 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 3px 0 #e9e2ef;
+}
+.passage-chip-nonfiction {
+  color: #4c766d;
+  border: 1px solid #cee4dc;
+  background: linear-gradient(180deg,#f0f8f5 0%,#e7f3ef 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 3px 0 #dcece7;
+}
+
+.question-meta-pill { padding: 6px 12px 5px; }
+.question-count-pill {
+  color: #67738a;
+  border: 1px solid #e2e6ec;
+  background: linear-gradient(180deg,#ffffff 0%,#f5f7f9 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 3px 0 #eaedf1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.question-skill-pill {
+  color: #4a8e86;
+  border: 1px solid #cde5de;
+  background: linear-gradient(180deg,#eef8f4 0%,#e4f3ee 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 3px 0 #d9ece6;
+}
+
+/* Botanical accent sits beside the passage title, never over answers. */
+.passage-title-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  margin-bottom: 16px;
+}
+.passage-title-row h3 { margin: 0; }
+.passage-title-decoration {
+  position: relative;
+  width: 68px;
+  height: 42px;
+  flex: 0 0 68px;
+  pointer-events: none;
+}
+.pt-leaf {
+  position: absolute;
+  display: block;
+  border-radius: 100% 0 100% 0;
+  transform-origin: bottom center;
+}
+.pt-leaf-a {
+  width: 18px;
+  height: 34px;
+  left: 15px;
+  bottom: 2px;
+  background: #a9dcc8;
+  transform: rotate(-20deg);
+}
+.pt-leaf-b {
+  width: 16px;
+  height: 29px;
+  left: 31px;
+  bottom: 8px;
+  background: #d8efe6;
+  transform: rotate(29deg);
+}
+.passage-title-decoration::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  bottom: 0;
+  width: 3px;
+  height: 29px;
+  border-radius: 999px;
+  background: #8fcfc0;
+  transform: rotate(8deg);
+}
+.pt-dot { position: absolute; display: block; border-radius: 50%; }
+.pt-dot-a { left: 49px; top: 20px; width: 7px; height: 7px; background: #ef927e; opacity: .72; }
+.pt-dot-b { left: 57px; top: 31px; width: 6px; height: 6px; background: #8fcfc0; }
+.pt-spark { position: absolute; left: 44px; top: 0; color: #f3c558; font-size: 16px; line-height: 1; }
+
+/* Options use soft mint rather than purple across every test type. */
+.raz-test-page .question-card-shell [role="button"] {
+  min-height: 68px;
+  border-radius: 17px;
+}
+.raz-test-page .question-card-shell .bg-gray-50 {
+  background: #fbfbfc;
+}
+.raz-test-page .question-card-shell .border-gray-100 {
+  border-color: #e7eaf0;
+}
+
+/* Placement's old purple CTA is intentionally restyled to the shared mint language. */
+.raz-test-page .btn-candy-purple,
+.raz-test-page .btn-candy-teal {
+  color: #fff;
+  background: linear-gradient(180deg,#8fcfc0 0%,#6fbbae 100%);
+  box-shadow:
+    0 4px 0 #55988f,
+    0 12px 22px -19px rgba(63,148,141,.55);
+}
+.raz-test-page .btn-candy-purple:hover,
+.raz-test-page .btn-candy-teal:hover { background: linear-gradient(180deg,#99d5c8,#78c2b5); }
+.raz-test-page .btn-candy-purple:active,
+.raz-test-page .btn-candy-teal:active { box-shadow: 0 1px 0 #55988f; }
+
+/* Keep the placement identity pill gently lavender, but not the interaction color. */
+.raz-topbar .bg-purple-50 {
+  background: linear-gradient(180deg,#f8f3ff 0%,#f0e9fa 100%) !important;
+  border-color: #daccef !important;
+  color: #7d69a9 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 2px 0 #e7def2;
+}
+
+@media (max-width: 760px) {
+  .passage-title-decoration { width: 52px; flex-basis: 52px; transform: scale(.84); transform-origin: left center; }
+  .passage-chip, .question-meta-pill { font-size: 10px; }
 }
