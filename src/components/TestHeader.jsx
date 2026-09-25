@@ -27,7 +27,7 @@ export default function TestHeader({
     : 'bg-[#29465b] hover:bg-[#203a4d] shadow-[0_3px_0_#173042]'
   const activeTabClasses = isPurple
     ? 'border-purple-300 bg-gradient-to-br from-purple-50 to-white text-purple-900 shadow-[0_5px_0_#c4b5fd] -translate-y-0.5'
-    : 'border-[#c8ba82] bg-gradient-to-br from-[#f3ecd2] to-[#fffdf8] text-[#29465b] shadow-[0_5px_0_#b9ab77] -translate-y-0.5'
+    : 'border-[#8fcfc0] bg-gradient-to-br from-[#edf8f5] to-[#fffdf9] text-[#315d59] shadow-[0_5px_0_#cce9e2] -translate-y-0.5'
 
   return (
     <header className="raz-topbar sticky top-0 z-20 border-b border-[#e8e1d2] bg-[#fffdf6]/95 backdrop-blur">
