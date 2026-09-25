@@ -22,12 +22,8 @@ export default function TestHeader({
   const levelClasses = isPurple
     ? 'bg-purple-50 text-purple-700 border-purple-200'
     : 'bg-[#eef5e9] text-[#4e6c56] border-[#d4e3d1]'
-  const batchClasses = isPurple
-    ? 'bg-purple-600 hover:bg-purple-700 shadow-[0_3px_0_#7e22ce]'
-    : 'bg-[#29465b] hover:bg-[#203a4d] shadow-[0_3px_0_#173042]'
-  const activeTabClasses = isPurple
-    ? 'border-purple-300 bg-gradient-to-br from-purple-50 to-white text-purple-900 shadow-[0_5px_0_#c4b5fd] -translate-y-0.5'
-    : 'border-[#8fcfc0] bg-gradient-to-br from-[#edf8f5] to-[#fffdf9] text-[#315d59] shadow-[0_5px_0_#cce9e2] -translate-y-0.5'
+  const batchClasses = 'raz-batch-btn'
+
 
   return (
     <header className="raz-topbar sticky top-0 z-20 border-b border-[#e8e1d2] bg-[#fffdf6]/95 backdrop-blur">
@@ -56,30 +52,30 @@ export default function TestHeader({
           </div>
 
           <div className="grid w-full grid-cols-3 items-center gap-2 sm:flex sm:w-auto sm:justify-end sm:flex-shrink-0">
-            <span className="hidden lg:inline-flex min-h-[36px] items-center rounded-lg border border-gray-200 bg-white px-3 text-xs font-bold text-gray-500">
+            <span className="raz-status-pill hidden lg:inline-flex">
               ◷ {formatTimer(durationSeconds)}
             </span>
-            <span className="hidden sm:inline-flex min-h-[36px] items-center rounded-lg border border-gray-200 bg-white px-3 text-xs font-mono text-gray-500">
-              已完成&nbsp;<strong className={isPurple ? 'text-purple-700' : 'text-[#4e6c56]'}>{answeredCount}/{total}</strong>
+            <span className="raz-status-pill hidden sm:inline-flex">
+              已完成&nbsp;<strong>{answeredCount}/{total}</strong>
             </span>
             <a
               href={pdfSrc}
               download
-              className="raz-tool-btn flex min-h-[42px] items-center justify-center rounded-xl border border-[#d8d4c9] bg-white px-2.5 text-xs sm:text-sm font-black text-[#52616a] shadow-[0_2px_0_#d4d0c5] transition-all hover:bg-[#f4f2ec] active:translate-y-[1px] active:shadow-none whitespace-nowrap"
+              className="raz-tool-btn raz-tool-btn-neutral flex min-h-[42px] items-center justify-center px-2.5 text-xs sm:text-sm font-black whitespace-nowrap"
             >
               <span aria-hidden="true">⇩</span>&nbsp; 下载PDF
             </a>
             <button
               type="button"
               onClick={onOpenPdf}
-              className="raz-tool-btn flex min-h-[42px] items-center justify-center rounded-xl border border-[#c9b979] bg-[#f5edcf] px-3 text-xs sm:text-sm font-black text-[#655b38] shadow-[0_2px_0_#c2b273] transition-all hover:bg-[#eee2b7] active:translate-y-[1px] active:shadow-none whitespace-nowrap"
+              className="raz-tool-btn raz-tool-btn-cream flex min-h-[42px] items-center justify-center px-3 text-xs sm:text-sm font-black whitespace-nowrap"
             >
               <span aria-hidden="true">▤</span>&nbsp; PDF对照答题
             </button>
             <button
               type="button"
               onClick={onBatchInput}
-              className={`raz-tool-btn flex min-h-[42px] items-center justify-center rounded-xl px-3 text-xs sm:text-sm font-black text-white transition-all active:translate-y-[2px] active:shadow-none whitespace-nowrap ${batchClasses}`}
+              className={`raz-tool-btn flex min-h-[42px] items-center justify-center px-3 text-xs sm:text-sm font-black text-white whitespace-nowrap ${batchClasses}`}
             >
               <span aria-hidden="true">✎</span>&nbsp; 批量输入答案
             </button>
@@ -98,11 +94,7 @@ export default function TestHeader({
                 key={passage.id}
                 type="button"
                 onClick={() => onSelectPassage(passageStartIndices[index])}
-                className={`raz-passage-tab min-h-[64px] rounded-xl border px-3 py-2 text-left transition-all active:translate-y-[2px] active:shadow-none ${
-                  isActive
-                    ? activeTabClasses
-                    : 'border-[#e6e0d2] bg-white text-[#66737a] shadow-[0_4px_0_#dedbd2] hover:border-[#d7c982] hover:-translate-y-0.5'
-                }`}
+                className={`raz-passage-tab min-h-[64px] px-3 py-2 text-left ${isActive ? 'is-active' : 'is-idle'}`}
               >
                 <span className="raz-tab-title block text-[15px] lg:text-[17px] leading-tight font-black line-clamp-2">{passage.title}</span>
                 <span className="raz-tab-short block font-black">第{cn}篇</span>
@@ -112,9 +104,9 @@ export default function TestHeader({
           })}
         </nav>
 
-        <div className="mt-2 h-1.5 bg-[#efede6] rounded-full overflow-hidden">
+        <div className="raz-progress-track mt-2">
           <div
-            className={`h-full rounded-full transition-all duration-500 ${isPurple ? 'bg-gradient-to-r from-purple-500 to-purple-300' : 'bg-gradient-to-r from-[#6f9678] to-[#d6c36f]'}`}
+            className="raz-progress-fill"
             style={{ width: `${(answeredCount / total) * 100}%` }}
           />
         </div>
