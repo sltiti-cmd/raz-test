@@ -8,17 +8,19 @@ import { useToast } from '../hooks/useToast'
 import BackArrow from '../components/BackArrow'
 
 export default function ResultPage() {
-  const { state }  = useLocation()
-  const navigate   = useNavigate()
-  const reportRef  = useRef(null)
+  const { state } = useLocation()
+  const navigate = useNavigate()
+  const reportRef = useRef(null)
   const { toast, showToast } = useToast()
 
   if (!state) {
     return (
-      <div className="min-h-screen bg-cream-100 flex items-center justify-center">
+      <div className="min-h-screen bg-[#fffdf9] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-400 mb-4">没有找到测试结果</p>
-          <Link to="/" className="inline-flex items-center gap-1.5 text-teal-600 font-bold hover:underline"><BackArrow className="w-4 h-4" /> 返回大厅</Link>
+          <p className="text-[#747b91] mb-4">没有找到测试结果</p>
+          <Link to="/" className="inline-flex items-center gap-1.5 text-[#3f948d] font-bold hover:underline">
+            <BackArrow className="w-4 h-4" /> 返回大厅
+          </Link>
         </div>
       </div>
     )
@@ -26,14 +28,15 @@ export default function ResultPage() {
 
   const { result, studentInfo, levelId, testType, testPath } = state
   const retestPath = testPath || `/test/${levelId.toLowerCase()}`
-  const { score, correctCount, total, wrongQuestions, durationText } = result
-  const canReadLevel = score >= 80
 
   const handleDownload = async () => {
     if (!reportRef.current) return
     try {
       const canvas = await html2canvas(reportRef.current, {
-        scale: 2, useCORS: true, backgroundColor: '#fdf8f0', logging: false,
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#fffdf9',
+        logging: false,
       })
       const link = document.createElement('a')
       link.download = `RAZ${levelId}级报告_${studentInfo.name}_${studentInfo.date}.png`
@@ -61,118 +64,51 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream-100 py-5 px-4">
+    <div className="report-page-shell">
       <Toast toast={toast} />
 
-      {/* ── Top action bar ── */}
-      <div className="max-w-2xl mx-auto mb-4">
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <Link to="/" className="inline-flex items-center gap-1.5 text-gray-400 hover:text-gray-700 font-bold text-sm">
+      <div className="report-page-inner">
+        <div className="report-actions-top">
+          <Link to="/" className="report-back-link">
             <BackArrow className="w-4 h-4" /> 返回大厅
           </Link>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => navigate(retestPath)}
-              className="px-3 py-1.5 rounded-xl bg-white border border-gray-200
-                         text-gray-600 text-xs sm:text-sm font-bold hover:bg-gray-50 transition-colors"
-            >
-              🔄 重新测试
+          <div className="report-action-group">
+            <button onClick={() => navigate(retestPath)} className="report-action-btn">
+              ↻ 重新测试
             </button>
-            <button
-              onClick={handleCopyText}
-              className="px-3 py-1.5 rounded-xl bg-white border border-teal-200
-                         text-teal-700 text-xs sm:text-sm font-bold hover:bg-teal-50 transition-colors"
-            >
-              📋 复制文字
+            <button onClick={handleCopyText} className="report-action-btn">
+              ▤ 复制文字
             </button>
-            <button
-              onClick={handleDownload}
-              className="px-3 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-600
-                         text-white text-xs sm:text-sm font-black transition-colors shadow-sm"
-            >
-              ⬇ 下载图片
+            <button onClick={handleDownload} className="report-action-btn primary">
+              ↓ 下载报告
             </button>
           </div>
         </div>
-      </div>
 
-      {/* ── Score banner ── */}
-      <div className="max-w-2xl mx-auto mb-4">
-        <div className={`rounded-2xl p-4 sm:p-5 flex items-center gap-4 sm:gap-5 border-2
-          ${canReadLevel ? 'bg-teal-50/60 border-teal-200' : 'bg-orange-50/60 border-orange-200'}`}>
-          <div className="text-center flex-shrink-0">
-            <div className={`text-5xl sm:text-6xl font-black font-mono leading-none
-              ${canReadLevel ? 'text-teal-600' : 'text-orange-500'}`}>
-              {score}
-            </div>
-            <div className="text-xs text-gray-400 font-semibold mt-0.5">/ 100 分</div>
-          </div>
-          <div className="min-w-0">
-            <div className="font-extrabold text-gray-800 text-lg sm:text-xl truncate">
-              {studentInfo.name}
-            </div>
-            <div className="text-xs sm:text-sm text-gray-500 mt-1 font-semibold">
-              答对 {correctCount}/{total} 题
-              {wrongQuestions.length > 0
-                ? <span className="ml-1">· 错题：Q{wrongQuestions.map(q => q.id).join('、Q')}</span>
-                : <span className="ml-1 text-green-500">· 全部答对！</span>}
-            </div>
-            {durationText && (
-              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-semibold">
-                用时 ➭ {durationText}
-              </div>
-            )}
-            <div className={`inline-block mt-2 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-black
-              ${canReadLevel ? 'bg-teal-500 text-white' : 'bg-orange-500 text-white'}`}>
-              {canReadLevel ? `✅ 可以读${levelId}级别` : '📖 建议降级巩固'}
-            </div>
-          </div>
+        <ResultReport
+          ref={reportRef}
+          studentInfo={studentInfo}
+          gradingResult={result}
+          levelId={levelId}
+          testType={testType}
+        />
+
+        <div className="report-bottom-actions">
+          <button onClick={handleDownload} className="report-bottom-btn primary">
+            ↓ 下载报告
+          </button>
+          <button onClick={handleCopyText} className="report-bottom-btn">
+            ▤ 复制文字
+          </button>
+          <button onClick={() => navigate(retestPath)} className="report-bottom-btn">
+            ↻ 重新测试
+          </button>
+          <Link to="/" className="report-bottom-btn">
+            ⌂ 返回大厅
+          </Link>
         </div>
       </div>
 
-      {/* ── Report card ── */}
-      <div className="max-w-2xl mx-auto">
-        <p className="text-center text-xs text-gray-400 mb-3">
-          ↓ 诊断报告（截图或「下载图片」发给家长）
-        </p>
-        {/* Scale report to fit mobile screen */}
-        <div className="overflow-x-auto pb-2">
-          <div className="flex justify-center">
-            <ResultReport
-              ref={reportRef}
-              studentInfo={studentInfo}
-              gradingResult={result}
-              levelId={levelId}
-              testType={testType}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* ── Bottom action buttons ── */}
-      <div className="max-w-2xl mx-auto mt-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-3 justify-center">
-        <button onClick={handleDownload}
-          className="btn-candy-teal min-h-[48px] px-4 text-sm sm:text-base sm:px-6">
-          ⬇ 下载报告
-        </button>
-        <button onClick={handleCopyText}
-          className="py-3 px-4 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold
-                     hover:bg-gray-50 transition-colors text-sm sm:text-base sm:px-6">
-          📋 复制文字
-        </button>
-        <button onClick={() => navigate(retestPath)}
-          className="py-3 px-4 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold
-                     hover:bg-gray-50 transition-colors text-sm sm:text-base sm:px-6">
-          🔄 重新测试
-        </button>
-        <Link to="/"
-          className="py-3 px-4 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold
-                     hover:bg-gray-50 transition-colors text-center text-sm sm:text-base sm:px-6">
-          🏠 返回大厅
-        </Link>
-      </div>
-
-      {/* Bottom spacer for feedback button */}
       <div className="h-16" />
     </div>
   )
