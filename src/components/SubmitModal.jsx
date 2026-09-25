@@ -1,6 +1,5 @@
 import { useState } from 'react'
-
-const NAME_STORAGE_KEY = 'raz-student-name'
+import { getSavedStudentName, saveStudentName } from '../utils/studentName'
 
 const ACCENTS = {
   teal: {
@@ -16,9 +15,7 @@ const ACCENTS = {
 // 提交弹窗：合并「未答确认」和「微信名输入」为一步。
 // 手机上顶部对齐，避免输入法键盘遮挡输入框。
 export default function SubmitModal({ total, unanswered, accent = 'teal', onGoTo, onClose, onSubmit }) {
-  const [name, setName] = useState(() => {
-    try { return localStorage.getItem(NAME_STORAGE_KEY) || '' } catch { return '' }
-  })
+  const [name, setName] = useState(() => getSavedStudentName())
   const [nameErr, setNameErr] = useState('')
   const colors = ACCENTS[accent] || ACCENTS.teal
   const hasMissing = unanswered.length > 0
@@ -26,7 +23,7 @@ export default function SubmitModal({ total, unanswered, accent = 'teal', onGoTo
   const submit = () => {
     const trimmed = name.trim()
     if (!trimmed) { setNameErr('请填写微信名'); return }
-    try { localStorage.setItem(NAME_STORAGE_KEY, trimmed) } catch { /* ignore */ }
+    saveStudentName(trimmed)
     onSubmit(trimmed)
   }
 

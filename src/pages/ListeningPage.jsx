@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { listeningTests, listeningTestsById } from '../data/listening'
+import { getSavedStudentName, saveStudentName } from '../utils/studentName'
 import BackArrow from '../components/BackArrow'
 import ListeningAudio from '../components/ListeningAudio'
 
@@ -362,7 +363,7 @@ export default function ListeningPage() {
 
   const startTest = id => {
     setTestId(id)
-    setStudentName('')
+    setStudentName(getSavedStudentName())
     setAnswers({})
     setCurrentStep(0)
     setStartedAt(Date.now())
@@ -390,6 +391,7 @@ export default function ListeningPage() {
   const completeSubmission = async name => {
     if (!test || submitting) return
     setSubmitting(true)
+    saveStudentName(name)
     const questions = test.sections.flatMap(section => section.questions)
     const wrongQuestions = questions.flatMap((question, index) => (
       answers[question.id] === question.answer
