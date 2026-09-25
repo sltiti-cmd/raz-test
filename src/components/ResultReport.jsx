@@ -72,6 +72,7 @@ const ResultReport = forwardRef(function ResultReport(
           <strong>{score}</strong>
           <span>/ {maxScore} 分</span>
         </div>
+
         <div className="report-summary-copy">
           <h2>{studentInfo.name}</h2>
           <p><span>▤</span> 答对 <strong>{correctCount}</strong> / {total} 题</p>
@@ -80,6 +81,28 @@ const ResultReport = forwardRef(function ResultReport(
             {canReadLevel ? `✓ 可以继续读 ${levelId} 级别` : '📖 建议降级巩固'}
           </div>
           <blockquote>“阅读是点亮思考的星光。”</blockquote>
+        </div>
+
+        <div className="report-summary-genre">
+          <div className="report-summary-genre-title">
+            <SectionIcon tone="mint">▥</SectionIcon>
+            <div>
+              <h3>文体表现</h3>
+              <p>{genreNote}</p>
+            </div>
+          </div>
+          <div className="report-summary-genre-grid">
+            <div className="report-summary-genre-card fiction">
+              <span>虚构类错题</span>
+              <strong>{fictionWrong}</strong>
+              <small>/ {fictionTotal || '—'} 题</small>
+            </div>
+            <div className="report-summary-genre-card nonfiction">
+              <span>非虚构类错题</span>
+              <strong>{nonfictionWrong}</strong>
+              <small>/ {nonfictionTotal || '—'} 题</small>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -127,28 +150,6 @@ const ResultReport = forwardRef(function ResultReport(
         <p className="report-radar-note">
           图表仅反映本次测评中对应题型的答题表现，不等同于标准化能力评分。
         </p>
-      </section>
-
-      <section className="report-section">
-        <div className="report-section-heading compact">
-          <SectionIcon tone="mint">▥</SectionIcon>
-          <div>
-            <h2>文体表现</h2>
-            <p>{genreNote}</p>
-          </div>
-        </div>
-        <div className="report-genre-grid">
-          <div className="report-genre-card fiction">
-            <span>虚构类错题</span>
-            <strong>{fictionWrong}</strong>
-            <small>/ {fictionTotal || '—'} 题</small>
-          </div>
-          <div className="report-genre-card nonfiction">
-            <span>非虚构类错题</span>
-            <strong>{nonfictionWrong}</strong>
-            <small>/ {nonfictionTotal || '—'} 题</small>
-          </div>
-        </div>
       </section>
 
       <section className="report-section">
