@@ -1,6 +1,6 @@
 import { playReadingOption, playReadingQuestion } from '../utils/readingAudio'
 
-export default function QuestionCard({ question, selectedAnswer, onAnswer, levelId, tts, hideZh, hideTts, total, accent = 'teal' }) {
+export default function QuestionCard({ question, selectedAnswer, onAnswer, levelId, tts, hideZh, hideTts, total }) {
   const showQuestionTts = !hideTts && ['A', 'B', 'C', 'D', 'E', 'F'].includes(levelId) && tts?.question !== false
   const showOptionTts = !hideTts && levelId === 'A' && tts?.options !== false
   const c = { selBg: 'bg-[#edf8f5]', selBorder: 'border-[#8fcfc0]', keyBg: 'bg-[#5daaa1]',
