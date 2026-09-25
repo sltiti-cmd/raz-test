@@ -825,3 +825,187 @@ body {
 @media (max-width: 1023px) {
   .question-study-buddy { display: none; }
 }
+
+
+/* ── Report readability pass · larger type + compact genre summary ─────── */
+.report-summary {
+  grid-template-columns: 220px minmax(240px, .82fr) minmax(360px, 1.18fr);
+  gap: 0;
+  min-height: 194px;
+}
+.report-score-orb { width: 164px; height: 164px; }
+.report-score-orb small { font-size: 16px; }
+.report-score-orb strong { font-size: 68px; }
+.report-score-orb span { font-size: 15px; }
+
+.report-summary-copy {
+  min-width: 0;
+  padding: 4px 28px 4px 24px;
+  border-left: 1px solid #eee8dc;
+}
+.report-summary-copy h2 { margin-bottom: 11px; font-size: 30px; }
+.report-summary-copy > p { margin: 7px 0; font-size: 17px; }
+.report-level-note { padding: 8px 14px; font-size: 14px; }
+.report-summary-copy blockquote { margin-top: 11px; padding: 8px 13px; font-size: 14px; }
+
+.report-summary-genre {
+  min-width: 0;
+  padding: 5px 0 5px 28px;
+  border-left: 1px solid #eee8dc;
+}
+.report-summary-genre-title { display: flex; align-items: flex-start; gap: 11px; }
+.report-summary-genre-title .report-section-icon { width: 38px; height: 38px; font-size: 18px; }
+.report-summary-genre-title h3 {
+  margin: 1px 0 3px;
+  color: #263b59;
+  font-size: 21px;
+  font-weight: 950;
+}
+.report-summary-genre-title p {
+  max-width: 430px;
+  margin: 0;
+  color: #747f94;
+  font-size: 13.5px;
+  font-weight: 680;
+  line-height: 1.55;
+}
+.report-summary-genre-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.report-summary-genre-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "label value"
+    "label total";
+  align-items: center;
+  min-height: 76px;
+  padding: 12px 15px;
+  border-radius: 17px;
+}
+.report-summary-genre-card.fiction { background: linear-gradient(110deg,#effaf7,#f8fcfb); }
+.report-summary-genre-card.nonfiction { background: linear-gradient(110deg,#fff9e9,#fffdf7); }
+.report-summary-genre-card span {
+  grid-area: label;
+  color: #69768d;
+  font-size: 14px;
+  font-weight: 800;
+}
+.report-summary-genre-card strong {
+  grid-area: value;
+  color: #e96855;
+  font-size: 33px;
+  line-height: .9;
+  font-weight: 950;
+  text-align: right;
+}
+.report-summary-genre-card small {
+  grid-area: total;
+  margin-top: 3px;
+  color: #7e889b;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-align: right;
+}
+
+/* The downloaded report should remain easy to read at a glance. */
+.report-section { padding: 25px 29px; }
+.report-section-heading h2 { font-size: 24px; }
+.report-section-heading p { font-size: 14px; }
+.report-section-icon { width: 48px; height: 48px; font-size: 22px; }
+
+.report-radar-label { font-size: 15px; }
+.report-radar-value { font-size: 13px; }
+.report-radar-aside h3 { font-size: 18px; }
+.report-dimension-row { padding: 11px 13px; }
+.report-dimension-row span { font-size: 14px; }
+.report-dimension-row strong { font-size: 14px; }
+.report-skill-chips > span { min-width: 126px; padding: 10px 12px; }
+.report-skill-chips b { font-size: 14px; }
+.report-skill-chips small { font-size: 11.5px; }
+.report-radar-note { margin-top: 12px; font-size: 12px; }
+
+.report-wrong-list { gap: 10px; }
+.report-wrong-list span { min-width: 78px; padding: 9px 13px; font-size: 14px; }
+.report-wrong-list b { font-size: 14px; }
+
+.report-suggestion-body li { font-size: 15px; }
+.report-suggestion-body li > span { width: 28px; height: 28px; font-size: 13px; }
+.report-growth-note p { font-size: 15px; }
+
+@media (max-width: 1050px) {
+  .report-summary {
+    grid-template-columns: 190px minmax(230px, .8fr) minmax(320px, 1.2fr);
+  }
+  .report-score-orb { width: 150px; height: 150px; }
+  .report-score-orb strong { font-size: 62px; }
+  .report-summary-copy { padding-left: 18px; padding-right: 20px; }
+  .report-summary-genre { padding-left: 20px; }
+  .report-summary-genre-title p { font-size: 12.5px; }
+  .report-summary-genre-card { padding: 10px 12px; }
+  .report-summary-genre-card span { font-size: 12.5px; }
+}
+
+@media (max-width: 900px) {
+  .report-summary {
+    grid-template-columns: 185px 1fr;
+    align-items: center;
+  }
+  .report-summary-genre {
+    grid-column: 2;
+    padding: 16px 0 0 20px;
+    margin-top: 13px;
+    border-left: 1px solid #eee8dc;
+    border-top: 1px solid #f1ece2;
+  }
+  .report-summary-genre-title p { max-width: none; }
+}
+
+@media (max-width: 640px) {
+  .report-summary {
+    grid-template-columns: 126px 1fr;
+    padding: 16px;
+  }
+  .report-score-orb { width: 116px; height: 116px; }
+  .report-score-orb small { font-size: 12px; }
+  .report-score-orb strong { font-size: 50px; }
+  .report-score-orb span { font-size: 11px; }
+
+  .report-summary-copy { padding-left: 14px; padding-right: 0; }
+  .report-summary-copy h2 { font-size: 23px; }
+  .report-summary-copy > p { font-size: 13px; }
+  .report-level-note { font-size: 11px; }
+  .report-summary-copy blockquote { font-size: 10.5px; }
+
+  .report-summary-genre {
+    grid-column: 1 / -1;
+    padding: 14px 0 0;
+    margin-top: 10px;
+    border-left: 0;
+  }
+  .report-summary-genre-title h3 { font-size: 18px; }
+  .report-summary-genre-title p { font-size: 11.5px; }
+  .report-summary-genre-grid { gap: 8px; margin-top: 10px; }
+  .report-summary-genre-card { min-height: 68px; padding: 10px 12px; }
+  .report-summary-genre-card span { font-size: 11.5px; }
+  .report-summary-genre-card strong { font-size: 29px; }
+  .report-summary-genre-card small { font-size: 10px; }
+
+  .report-section { padding: 19px 17px; }
+  .report-section-heading h2 { font-size: 19px; }
+  .report-section-heading p { font-size: 12px; }
+  .report-radar-label { font-size: 12.5px; }
+  .report-radar-value { font-size: 11px; }
+  .report-radar-aside h3 { font-size: 15px; }
+  .report-dimension-row span,
+  .report-dimension-row strong { font-size: 12px; }
+  .report-skill-chips b { font-size: 12px; }
+  .report-skill-chips small { font-size: 10.5px; }
+  .report-radar-note { font-size: 10px; }
+  .report-wrong-list span,
+  .report-wrong-list b { font-size: 11.5px; }
+  .report-suggestion-body li { font-size: 13px; }
+}
