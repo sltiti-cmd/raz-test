@@ -107,7 +107,7 @@ export default function TestHeader({
         <div className="raz-progress-track mt-2">
           <div
             className="raz-progress-fill"
-            style={{ width: `${(answeredCount / total) * 100}%` }}
+            style={{ width: `${total > 0 ? (answeredCount / total) * 100 : 0}%` }}
           />
         </div>
       </div>

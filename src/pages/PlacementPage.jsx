@@ -288,7 +288,6 @@ export default function PlacementPage() {
                 hideZh={isHighLevel}
                 hideTts={isHighLevel}
                 total={total}
-                accent="purple"
               />
 
               <div className="flex gap-3 mt-3">

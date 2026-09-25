@@ -480,8 +480,7 @@ body {
 /* Reading workspace: flatten the stacked-card appearance and keep utility tools visible. */
 .raz-test-page { color: #333a5e; background: radial-gradient(circle at 22px 22px, rgba(115,181,169,.08) 1.4px, transparent 1.8px) 0 0/34px 34px, linear-gradient(130deg, #fffdf9, #f4faf7 56%, #fff8e7); }
 .raz-test-page .raz-topbar { border-color: rgba(105,137,131,.18); background: rgba(255,253,249,.95); box-shadow: 0 14px 36px -31px #415e59; }
-.raz-test-page .raz-passage-tab { border-color: rgba(107,151,143,.2); border-radius: 18px 26px 17px 25px; background: rgba(255,255,255,.78); box-shadow: 0 5px 0 #dce9e5; }
-.raz-test-page .raz-passage-tab:nth-child(even) { border-radius: 25px 18px 25px 17px; }
+.raz-test-page .raz-passage-tab { border-color: rgba(107,151,143,.2); background: rgba(255,255,255,.78); box-shadow: 0 5px 0 #dce9e5; }
 .raz-test-page main, .raz-test-page .max-w-7xl { position: relative; }
 .raz-test-page .shadow-card { box-shadow: 0 16px 36px -34px rgba(45,70,66,.7); }
 .raz-test-page .bg-\[\#fffefb\], .raz-test-page .bg-white.rounded-2xl.shadow-card { border: 1px solid rgba(117,153,145,.2); border-radius: 28px; background: rgba(255,255,255,.82); }

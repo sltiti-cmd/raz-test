@@ -270,7 +270,6 @@ export default function TestPage() {
                 hideZh={isHighLevel}
                 hideTts={isHighLevel}
                 total={total}
-                accent="teal"
               />
 
               {/* Navigation */}
