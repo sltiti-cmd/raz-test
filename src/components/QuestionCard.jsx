@@ -1,4 +1,5 @@
 import { playReadingOption, playReadingQuestion } from '../utils/readingAudio'
+import StudyBuddy from './StudyBuddy'
 
 export default function QuestionCard({ question, selectedAnswer, onAnswer, levelId, tts, hideZh, hideTts, total, accent = 'teal' }) {
   const showQuestionTts = !hideTts && ['A', 'B', 'C', 'D', 'E', 'F'].includes(levelId) && tts?.question !== false
@@ -7,11 +8,11 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
     ? { selBg: 'bg-purple-50', selBorder: 'border-purple-400', keyBg: 'bg-purple-500',
         hoverBorder: 'hover:border-purple-200', hoverKey: 'group-hover:border-purple-300 group-hover:text-purple-500',
         text: 'text-purple-800', tts: 'hover:text-purple-500 hover:bg-purple-50', check: 'text-purple-500' }
-    : { selBg: 'bg-[#edf3ee]', selBorder: 'border-[#7e9784]', keyBg: 'bg-[#5f7a67]',
-        hoverBorder: 'hover:border-[#b6c6b9]', hoverKey: 'group-hover:border-[#9caf9f] group-hover:text-[#5f7a67]',
-        text: 'text-[#385044]', tts: 'hover:text-[#5f7a67] hover:bg-[#edf3ee]', check: 'text-[#5f7a67]' }
+    : { selBg: 'bg-[#edf8f5]', selBorder: 'border-[#8fcfc0]', keyBg: 'bg-[#5daaa1]',
+        hoverBorder: 'hover:border-[#b9ddd5]', hoverKey: 'group-hover:border-[#9fd1c6] group-hover:text-[#3f948d]',
+        text: 'text-[#365f5a]', tts: 'hover:text-[#3f948d] hover:bg-[#edf8f5]', check: 'text-[#4b9f97]' }
   return (
-    <div className="bg-white rounded-2xl shadow-card p-5 sm:p-6">
+    <div className="question-card-shell bg-white rounded-2xl shadow-card p-5 sm:p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <span className="font-mono text-xs font-black text-gray-500 bg-gray-100
@@ -112,6 +113,11 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
             </div>
           )
         })}
+      </div>
+
+      <div className="question-study-buddy" aria-hidden="true">
+        <span>You can do it!</span>
+        <StudyBuddy className="question-study-buddy-art" decorative />
       </div>
     </div>
   )
