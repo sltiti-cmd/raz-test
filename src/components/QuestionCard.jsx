@@ -3,23 +3,17 @@ import { playReadingOption, playReadingQuestion } from '../utils/readingAudio'
 export default function QuestionCard({ question, selectedAnswer, onAnswer, levelId, tts, hideZh, hideTts, total, accent = 'teal' }) {
   const showQuestionTts = !hideTts && ['A', 'B', 'C', 'D', 'E', 'F'].includes(levelId) && tts?.question !== false
   const showOptionTts = !hideTts && levelId === 'A' && tts?.options !== false
-  const c = accent === 'purple'
-    ? { selBg: 'bg-purple-50', selBorder: 'border-purple-400', keyBg: 'bg-purple-500',
-        hoverBorder: 'hover:border-purple-200', hoverKey: 'group-hover:border-purple-300 group-hover:text-purple-500',
-        text: 'text-purple-800', tts: 'hover:text-purple-500 hover:bg-purple-50', check: 'text-purple-500' }
-    : { selBg: 'bg-[#edf8f5]', selBorder: 'border-[#8fcfc0]', keyBg: 'bg-[#5daaa1]',
-        hoverBorder: 'hover:border-[#b9ddd5]', hoverKey: 'group-hover:border-[#9fd1c6] group-hover:text-[#3f948d]',
-        text: 'text-[#365f5a]', tts: 'hover:text-[#3f948d] hover:bg-[#edf8f5]', check: 'text-[#4b9f97]' }
+  const c = { selBg: 'bg-[#edf8f5]', selBorder: 'border-[#8fcfc0]', keyBg: 'bg-[#5daaa1]',
+    hoverBorder: 'hover:border-[#b9ddd5]', hoverKey: 'group-hover:border-[#9fd1c6] group-hover:text-[#3f948d]',
+    text: 'text-[#365f5a]', tts: 'hover:text-[#3f948d] hover:bg-[#edf8f5]', check: 'text-[#4b9f97]' }
   return (
     <div className="question-card-shell bg-white rounded-2xl shadow-card p-5 sm:p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <span className="font-mono text-xs font-black text-gray-500 bg-gray-100
-                         px-2.5 py-1 rounded-full">
+        <span className="question-meta-pill question-count-pill">
           Q{question.id}{total ? ` / ${total}` : ''}
         </span>
-        <span className="text-xs font-bold bg-[#f0eee6] text-[#6e786f]
-                         px-2.5 py-1 rounded-full">
+        <span className="question-meta-pill question-skill-pill">
           {question.skill}
         </span>
       </div>
@@ -114,15 +108,6 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
         })}
       </div>
 
-      <div className="question-card-decoration" aria-hidden="true">
-        <span className="q-leaf q-leaf-a" />
-        <span className="q-leaf q-leaf-b" />
-        <span className="q-leaf q-leaf-c" />
-        <span className="q-dot q-dot-a" />
-        <span className="q-dot q-dot-b" />
-        <span className="q-dot q-dot-c" />
-        <span className="q-spark">✦</span>
-      </div>
     </div>
   )
 }
