@@ -1,5 +1,4 @@
 import { playReadingOption, playReadingQuestion } from '../utils/readingAudio'
-import StudyBuddy from './StudyBuddy'
 
 export default function QuestionCard({ question, selectedAnswer, onAnswer, levelId, tts, hideZh, hideTts, total, accent = 'teal' }) {
   const showQuestionTts = !hideTts && ['A', 'B', 'C', 'D', 'E', 'F'].includes(levelId) && tts?.question !== false
@@ -115,9 +114,14 @@ export default function QuestionCard({ question, selectedAnswer, onAnswer, level
         })}
       </div>
 
-      <div className="question-study-buddy" aria-hidden="true">
-        <span>You can do it!</span>
-        <StudyBuddy className="question-study-buddy-art" decorative />
+      <div className="question-card-decoration" aria-hidden="true">
+        <span className="q-leaf q-leaf-a" />
+        <span className="q-leaf q-leaf-b" />
+        <span className="q-leaf q-leaf-c" />
+        <span className="q-dot q-dot-a" />
+        <span className="q-dot q-dot-b" />
+        <span className="q-dot q-dot-c" />
+        <span className="q-spark">✦</span>
       </div>
     </div>
   )
