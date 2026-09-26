@@ -6,6 +6,8 @@ import { generateReportText } from '../utils/report'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 import BackArrow from '../components/BackArrow'
+import SalesNextStep from '../components/SalesNextStep'
+import { isFromSales } from '../utils/salesFlow'
 
 export default function ResultPage() {
   const { state } = useLocation()
@@ -92,6 +94,8 @@ export default function ResultPage() {
           levelId={levelId}
           testType={testType}
         />
+
+        {isFromSales() && <SalesNextStep score={result.score} levelId={levelId} />}
 
         <div className="report-bottom-actions">
           <button onClick={handleDownload} className="report-bottom-btn primary">

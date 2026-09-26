@@ -714,6 +714,13 @@ body {
 .report-growth-note p { margin: 0; font-family: 'YouYuan','幼圆',sans-serif; font-size: 13px; line-height: 1.7; }
 .report-footer { margin-top: 16px; padding: 13px 0 4px; border-top: 1px solid #eee8dc; text-align: center; color: #ccd1da; font-size: 10.5px; }
 
+.sales-next { border-color: rgba(233,132,114,.45); background: #fffaf6; }
+.sales-next-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-top: 6px; padding: 15px 20px; border: none; border-radius: 18px; color: #fff; background: linear-gradient(135deg, #ef8f5a, #e46f45); font-size: 16px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 20px -10px rgba(228,111,69,.7); }
+.sales-next-btn span { font-size: 20px; }
+.sales-next-points { margin: 4px 0 12px; padding-left: 20px; color: #5f6b82; font-size: 13.5px; font-weight: 650; line-height: 1.9; list-style: disc; }
+.sales-next-contact { display: flex; align-items: center; gap: 16px; padding: 12px; border-radius: 18px; background: #fff; }
+.sales-next-contact img { width: 110px; height: 110px; border-radius: 12px; flex: 0 0 auto; }
+.sales-next-contact p { margin: 0; color: #4d5a72; font-size: 13.5px; font-weight: 750; line-height: 1.7; }
 .report-bottom-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; margin: 18px auto 0; }
 .report-bottom-btn { min-height: 48px; padding: 0 22px; font-size: 14px; }
 
