@@ -12,6 +12,7 @@ from flask import (Flask, jsonify, redirect, render_template, request,
 from flask_cors import CORS
 
 import students
+import xlsx_writer
 
 app = Flask(__name__, static_url_path="/admin/static")
 app.secret_key = os.environ.get("SECRET_KEY", "raz-stacey-secret-key-2024")
@@ -336,6 +337,25 @@ def students_export():
     buf = io.BytesIO(("﻿" + output.getvalue()).encode("utf-8"))
     fname = f"学员总览_{datetime.now().strftime('%Y%m%d')}.csv"
     return send_file(buf, mimetype="text/csv", as_attachment=True, download_name=fname)
+
+
+@app.route("/admin/surveys/export")
+@login_required
+def surveys_export():
+    """问卷表（Excel），列与「帮你定位原版英语阅读问题.xlsx」一致，后面追加测试成绩和报告结论。"""
+    people = students.build_students(_all_test_rows())
+    data = xlsx_writer.build_xlsx(
+        f"{datetime.now().year}年{datetime.now().month}月",
+        students.EXPORT_HEADER,
+        students.survey_export_rows(people),
+        students.EXPORT_WIDTHS,
+    )
+    fname = f"帮你定位原版英语阅读问题_{datetime.now().strftime('%Y%m%d')}.xlsx"
+    return send_file(
+        io.BytesIO(data),
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        as_attachment=True, download_name=fname,
+    )
 
 
 @app.route("/admin/students/<path:key>")
