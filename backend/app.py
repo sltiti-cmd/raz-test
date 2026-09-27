@@ -62,15 +62,22 @@ def init_db():
     existing_columns = {
         row["name"] for row in conn.execute("PRAGMA table_info(submissions)").fetchall()
     }
-    if "duration_seconds" not in existing_columns:
-        conn.execute("ALTER TABLE submissions ADD COLUMN duration_seconds INTEGER")
-    if "duration_text" not in existing_columns:
-        conn.execute("ALTER TABLE submissions ADD COLUMN duration_text TEXT")
-    if "test_type" not in existing_columns:
-        conn.execute("ALTER TABLE submissions ADD COLUMN test_type TEXT DEFAULT 'upgrade'")
-    if "survey_id" not in existing_columns:
+    new_columns = {
+        "duration_seconds": "INTEGER",
+        "duration_text": "TEXT",
+        "test_type": "TEXT DEFAULT 'upgrade'",
         # 从问卷链接进来的测试会带上问卷编号（sales 库 submissions.id）
-        conn.execute("ALTER TABLE submissions ADD COLUMN survey_id INTEGER")
+        "survey_id": "INTEGER",
+    }
+    for name, col_type in new_columns.items():
+        if name in existing_columns:
+            continue
+        try:
+            conn.execute(f"ALTER TABLE submissions ADD COLUMN {name} {col_type}")
+        except sqlite3.OperationalError as e:
+            # gunicorn 多个 worker 同时启动时，别的 worker 可能已经加上了
+            if "duplicate column" not in str(e):
+                raise
     conn.commit()
     conn.close()
 
