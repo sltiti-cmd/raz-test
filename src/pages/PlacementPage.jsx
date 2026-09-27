@@ -26,6 +26,7 @@ import SubmitModal from '../components/SubmitModal'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 import { formatDurationText } from '../utils/testTiming'
+import { getSurveyId } from '../utils/salesFlow'
 
 const LEVELS = { b: placementB, c: placementC, e: placementE, f: placementF, h: placementH, i: placementI, j: placementJ, l: placementL, m: placementM, n: placementN, p: placementP, q: placementQ, s: placementS, t: placementT }
 
@@ -192,6 +193,7 @@ export default function PlacementPage() {
       durationSeconds: finalDurationSeconds,
       durationText: finalDurationText,
       notes: '',
+      surveyId: getSurveyId(),
     }
 
     const existing = JSON.parse(localStorage.getItem('raz-submissions') || '[]')

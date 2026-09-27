@@ -2,6 +2,7 @@ import csv
 import io
 import json
 import os
+import re
 import sqlite3
 from datetime import datetime
 from functools import wraps
@@ -10,7 +11,9 @@ from flask import (Flask, jsonify, redirect, render_template, request,
                    send_file, session, url_for)
 from flask_cors import CORS
 
-app = Flask(__name__)
+import students
+
+app = Flask(__name__, static_url_path="/admin/static")
 app.secret_key = os.environ.get("SECRET_KEY", "raz-stacey-secret-key-2024")
 
 # Allow React dev server on any localhost port
@@ -65,6 +68,9 @@ def init_db():
         conn.execute("ALTER TABLE submissions ADD COLUMN duration_text TEXT")
     if "test_type" not in existing_columns:
         conn.execute("ALTER TABLE submissions ADD COLUMN test_type TEXT DEFAULT 'upgrade'")
+    if "survey_id" not in existing_columns:
+        # 从问卷链接进来的测试会带上问卷编号（sales 库 submissions.id）
+        conn.execute("ALTER TABLE submissions ADD COLUMN survey_id INTEGER")
     conn.commit()
     conn.close()
 
@@ -85,20 +91,38 @@ def login_required(f):
 @app.route("/api/submit", methods=["POST"])
 def api_submit():
     data = request.get_json(silent=True) or {}
+    student_name = data.get("studentName")
+    level_id = data.get("levelId")
+    score = data.get("score")
+    correct_count = data.get("correctCount")
+
+    if not isinstance(student_name, str) or not student_name.strip():
+        return jsonify({"ok": False, "error": "studentName is required"}), 400
+    if not isinstance(level_id, str) or not level_id.strip():
+        return jsonify({"ok": False, "error": "levelId is required"}), 400
+    if not isinstance(score, (int, float)) or isinstance(score, bool):
+        return jsonify({"ok": False, "error": "score must be a number"}), 400
+    if not isinstance(correct_count, int) or isinstance(correct_count, bool):
+        return jsonify({"ok": False, "error": "correctCount must be an integer"}), 400
+
+    survey_id = data.get("surveyId")
+    if not isinstance(survey_id, int) or isinstance(survey_id, bool) or survey_id <= 0:
+        survey_id = None
+
     conn = get_db()
     conn.execute("""
         INSERT INTO submissions
           (submitted_at, student_name, level_id, test_type, score, correct_count,
            wrong_questions, passed, weak_skills, fiction_wrong, nonfiction_wrong,
-           duration_seconds, duration_text, notes)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+           duration_seconds, duration_text, notes, survey_id)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     """, (
         data.get("submittedAt"),
-        data.get("studentName"),
-        data.get("levelId"),
+        student_name.strip(),
+        level_id.strip(),
         data.get("testType", "upgrade"),
-        data.get("score"),
-        data.get("correctCount"),
+        score,
+        correct_count,
         json.dumps(data.get("wrongQuestions", []), ensure_ascii=False),
         1 if data.get("passed") else 0,
         json.dumps(data.get("weakSkills", []), ensure_ascii=False),
@@ -107,6 +131,7 @@ def api_submit():
         data.get("durationSeconds"),
         data.get("durationText"),
         data.get("notes", ""),
+        survey_id,
     ))
     conn.commit()
     conn.close()
@@ -123,7 +148,7 @@ def login():
             error = "服务器未配置后台密码，请联系管理员"
         elif request.form.get("password") == ADMIN_PASSWORD:
             session["logged_in"] = True
-            return redirect(url_for("admin"))
+            return redirect(url_for("students_list"))
         else:
             error = "密码错误，请重试"
     return render_template("login.html", error=error)
@@ -151,7 +176,7 @@ def admin():
     if order not in ("asc", "desc"):
         order = "desc"
 
-    sql = "SELECT * FROM submissions WHERE 1=1"
+    sql = "SELECT * FROM submissions WHERE typeof(score) IN ('integer', 'real')"
     params = []
     if level:
         sql += " AND level_id = ?"
@@ -164,20 +189,25 @@ def admin():
     conn = get_db()
     rows = [dict(r) for r in conn.execute(sql, params).fetchall()]
     levels = [r[0] for r in conn.execute(
-        "SELECT DISTINCT level_id FROM submissions ORDER BY level_id"
+        "SELECT DISTINCT level_id FROM submissions "
+        "WHERE typeof(score) IN ('integer', 'real') AND level_id IS NOT NULL "
+        "ORDER BY level_id"
     ).fetchall()]
 
     # Stats
-    all_rows = [dict(r) for r in conn.execute("SELECT score, passed FROM submissions").fetchall()]
+    all_rows = [dict(r) for r in conn.execute(
+        "SELECT score, passed FROM submissions WHERE typeof(score) IN ('integer', 'real')"
+    ).fetchall()]
     conn.close()
 
     for r in rows:
         r["wrong_questions"] = json.loads(r["wrong_questions"] or "[]")
         r["weak_skills"]     = json.loads(r["weak_skills"] or "[]")
 
-    total      = len(all_rows)
-    avg_score  = round(sum(r["score"] for r in all_rows) / total, 1) if total else 0
-    pass_count = sum(1 for r in all_rows if r["passed"])
+    valid_rows = [r for r in all_rows if isinstance(r["score"], (int, float))]
+    total      = len(valid_rows)
+    avg_score  = round(sum(r["score"] for r in valid_rows) / total, 1) if total else 0
+    pass_count = sum(1 for r in valid_rows if r["passed"])
     pass_rate  = round(pass_count / total * 100, 1) if total else 0
 
     return render_template("admin.html",
@@ -195,7 +225,7 @@ def export_csv():
     level  = request.args.get("level", "")
     search = request.args.get("search", "")
 
-    sql = "SELECT * FROM submissions WHERE 1=1"
+    sql = "SELECT * FROM submissions WHERE typeof(score) IN ('integer', 'real')"
     params = []
     if level:
         sql += " AND level_id = ?"
@@ -229,6 +259,105 @@ def export_csv():
 
     buf = io.BytesIO(("﻿" + output.getvalue()).encode("utf-8"))
     fname = f"RAZ测试记录_{datetime.now().strftime('%Y%m%d')}.csv"
+    return send_file(buf, mimetype="text/csv", as_attachment=True, download_name=fname)
+
+
+# ── 学员总览：问卷 + 阅读/听力成绩 ─────────────────────────────────────────────
+
+def _all_test_rows():
+    conn = get_db()
+    rows = [dict(r) for r in conn.execute(
+        "SELECT * FROM submissions WHERE typeof(score) IN ('integer', 'real') "
+        "ORDER BY created_at, id"
+    ).fetchall()]
+    conn.close()
+    return rows
+
+
+def _filtered_students(view, q):
+    people = students.build_students(_all_test_rows())
+    if view == "survey":
+        people = [p for p in people if p["surveys"]]
+    elif view == "tests":
+        people = [p for p in people if not p["surveys"]]
+    if q:
+        nq = students.norm_name(q)
+        people = [p for p in people
+                  if nq in students.norm_name(p["name"]) or (q.strip() and q.strip() in (p["phone"] or ""))]
+    return people
+
+
+@app.route("/admin/students")
+@login_required
+def students_list():
+    view = request.args.get("view", "survey")
+    if view not in ("survey", "all", "tests"):
+        view = "survey"
+    q = request.args.get("q", "").strip()
+    all_people = students.build_students(_all_test_rows())
+    surveyed = [p for p in all_people if p["surveys"]]
+    stats = {
+        "surveyed": len(surveyed),
+        "tested": sum(1 for p in surveyed if p["tests"]),
+        "untested": sum(1 for p in surveyed if not p["tests"]),
+        "test_only": sum(1 for p in all_people if not p["surveys"]),
+    }
+    return render_template("students.html",
+        people=_filtered_students(view, q), view=view, q=q, stats=stats,
+        sales_db_ok=students.open_sales_db() is not None,
+    )
+
+
+@app.route("/admin/students/export")
+@login_required
+def students_export():
+    view = request.args.get("view", "survey")
+    q = request.args.get("q", "").strip()
+    output = io.StringIO()
+    w = csv.writer(output)
+    w.writerow(["微信名", "手机号", "年级", "问卷时间", "最近阅读", "阅读分数", "阅读次数",
+                "最近听力", "听力分数", "听力次数", "最近活动"])
+    for p in _filtered_students(view, q):
+        r, l = p["reading_latest"], p["listening_latest"]
+        w.writerow([
+            p["name"], p["phone"], p["grade"],
+            (p["latest_survey"] or {}).get("created_at", ""),
+            f"{r['level']}级{r['label']}" if r else "", r["score"] if r else "", p["reading_count"],
+            f"{l['level']}" if l else "", l["score"] if l else "", p["listening_count"],
+            p["last_active"],
+        ])
+    buf = io.BytesIO(("﻿" + output.getvalue()).encode("utf-8"))
+    fname = f"学员总览_{datetime.now().strftime('%Y%m%d')}.csv"
+    return send_file(buf, mimetype="text/csv", as_attachment=True, download_name=fname)
+
+
+@app.route("/admin/students/<path:key>")
+@login_required
+def student_detail(key):
+    person = next((p for p in students.build_students(_all_test_rows()) if p["key"] == key), None)
+    if person is None:
+        return redirect(url_for("students_list"))
+    surveys = [
+        {**s, "answers": students.survey_answers(s)} for s in reversed(person["surveys"])
+    ]
+    tests = [students.test_detail(t) for t in reversed(person["tests"])]
+    return render_template("student_detail.html", person=person, surveys=surveys, tests=tests)
+
+
+@app.route("/admin/survey/<int:sid>/download")
+@login_required
+def survey_download(sid):
+    s = students.load_survey(sid)
+    if s is None:
+        return redirect(url_for("students_list"))
+    output = io.StringIO()
+    w = csv.writer(output)
+    w.writerow(["问卷时间", s.get("created_at") or ""])
+    for label, value in students.survey_answers(s):
+        w.writerow([label, value])
+    buf = io.BytesIO(("﻿" + output.getvalue()).encode("utf-8"))
+    safe_name = re.sub(r'[\\/:*?"<>|\s]+', "_", s.get("name") or "问卷")
+    fname = f"问卷_{safe_name}_{(s.get('created_at') or '')[:10]}.csv"
     return send_file(buf, mimetype="text/csv", as_attachment=True, download_name=fname)
 
 

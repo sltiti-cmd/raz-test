@@ -3,6 +3,7 @@
 import { saveStudentName } from './studentName'
 
 const SOURCE_STORAGE_KEY = 'raz-src'
+const SURVEY_ID_STORAGE_KEY = 'raz-survey-id'
 
 const RAZ_ORDER = ['AA', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']
 const MAIN_TEST_LEVELS = ['A', 'D', 'G', 'K', 'O', 'R']
@@ -10,7 +11,13 @@ const MAIN_TEST_LEVELS = ['A', 'D', 'G', 'K', 'O', 'R']
 export function captureSalesParams() {
   try {
     const params = new URLSearchParams(window.location.search)
-    if (params.get('src') === 'sales') localStorage.setItem(SOURCE_STORAGE_KEY, 'sales')
+    if (params.get('src') === 'sales') {
+      localStorage.setItem(SOURCE_STORAGE_KEY, 'sales')
+      // 问卷编号：新链接带了就更新；没带（旧链接）就清掉，避免挂到别人的问卷上
+      const sid = params.get('sid')
+      if (sid && /^\d+$/.test(sid)) localStorage.setItem(SURVEY_ID_STORAGE_KEY, sid)
+      else localStorage.removeItem(SURVEY_ID_STORAGE_KEY)
+    }
     if (params.get('name')) saveStudentName(params.get('name'))
   } catch {
     /* ignore */
@@ -22,6 +29,16 @@ export function isFromSales() {
     return localStorage.getItem(SOURCE_STORAGE_KEY) === 'sales'
   } catch {
     return false
+  }
+}
+
+// 提交成绩时带上，后台据此把成绩挂到对应问卷
+export function getSurveyId() {
+  try {
+    const sid = localStorage.getItem(SURVEY_ID_STORAGE_KEY)
+    return sid ? Number(sid) : null
+  } catch {
+    return null
   }
 }
 

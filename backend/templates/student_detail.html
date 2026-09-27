@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffdf9">
+  <title>{{ person.name }} · 学员详情</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+  <div class="page-orb one" aria-hidden="true"></div>
+  <div class="page-orb two" aria-hidden="true"></div>
+
+{% set active_tab = 'students' %}
+{% include '_topbar.html' %}
+
+  <main class="admin-main">
+    <a class="back-link" href="/admin/students">← 返回学员总览</a>
+
+    <section class="admin-intro person-hero" aria-labelledby="page-title">
+      <span class="eyebrow"><i></i> Student detail</span>
+      <h1 id="page-title">{{ person.name or '（未填名字）' }}</h1>
+      <p>
+        {% if person.phone %}📱 {{ person.phone }}　{% endif %}
+        {% if person.grade %}🎒 {{ person.grade }}　{% endif %}
+        阅读 {{ person.reading_count }} 次 · 听力 {{ person.listening_count }} 次
+      </p>
+    </section>
+
+    <section class="table-wrap detail-block" aria-labelledby="tests-heading">
+      <div class="table-header">
+        <div class="table-title"><strong id="tests-heading">测试成绩</strong><span>共 {{ tests|length }} 次，最新在上</span></div>
+      </div>
+      {% if tests %}
+      <div class="table-scroller" tabindex="0" aria-label="测试成绩表格，可横向滚动">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th><th>类型</th><th>级别</th><th>分数</th><th>答对</th><th>用时</th>
+              <th>判断</th><th>错题（正确答案）</th><th>薄弱能力</th><th>虚构错</th><th>非虚构错</th><th>提交名字</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in tests %}
+            <tr>
+              <td class="time-cell">{{ (t.created_at or '')[:16] }}</td>
+              <td><span class="badge {{ 'badge-butter' if t.test_type == 'listening' else 'badge-default' }}">{{ t.type_label }}</span></td>
+              <td><span class="badge badge-teal">{{ t.level_id }}{{ '' if t.test_type == 'listening' else '级' }}</span></td>
+              <td><span class="score {{ 'score-high' if t.score >= 80 else 'score-low' }}">{{ t.score }}</span></td>
+              <td class="answer-cell">{{ t.correct_count }} / {{ t.total }}</td>
+              <td class="duration-cell">{{ t.duration_text or '—' }}</td>
+              <td>{% if t.passed %}<span class="badge badge-green">通过</span>{% else %}<span class="badge badge-red">未通过</span>{% endif %}</td>
+              <td class="wrong-detail">{% if t.wrong_items %}{{ t.wrong_items | join('、') }}{% else %}<span class="all-correct">全对</span>{% endif %}</td>
+              <td class="skills">{{ t.weak_skills_list | join(' / ') or '—' }}</td>
+              <td class="number-cell">{{ t.fiction_wrong if t.test_type != 'listening' else '—' }}</td>
+              <td class="number-cell">{{ t.nonfiction_wrong if t.test_type != 'listening' else '—' }}</td>
+              <td class="time-cell">{{ t.student_name }}{% if t.survey_id %} <span class="badge badge-teal" title="从问卷链接进入，已精确关联">问卷链接</span>{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty"><div class="empty-mark" aria-hidden="true">✦</div><div>问卷填完了，还没有做测试</div></div>
+      {% endif %}
+    </section>
+
+    {% for s in surveys %}
+    <section class="table-wrap detail-block" aria-labelledby="survey-{{ s.id }}">
+      <div class="table-header">
+        <div class="table-title">
+          <strong id="survey-{{ s.id }}">{{ '问卷' if loop.first else '更早的问卷' }}</strong>
+          <span>{{ s.created_at }} · 编号 {{ s.id }}</span>
+        </div>
+        <a class="btn btn-outline btn-sm" href="{{ url_for('survey_download', sid=s.id) }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          下载问卷
+        </a>
+      </div>
+      <dl class="survey-answers">
+        {% for label, value in s.answers %}
+        <div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>
+        {% endfor %}
+      </dl>
+    </section>
+    {% endfor %}
+  </main>
+</body>
+</html>

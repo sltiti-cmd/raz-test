@@ -20,6 +20,7 @@ import SubmitModal from '../components/SubmitModal'
 import Toast from '../components/Toast'
 import { useToast } from '../hooks/useToast'
 import { formatDurationText } from '../utils/testTiming'
+import { getSurveyId } from '../utils/salesFlow'
 
 const LEVELS = { a: levelA, c: levelC, d: levelD, e: levelE, g: levelG, k: levelK, o: levelO, r: levelR }
 
@@ -177,6 +178,7 @@ export default function TestPage() {
       durationSeconds: finalDurationSeconds,
       durationText: finalDurationText,
       notes: '',
+      surveyId: getSurveyId(),
     }
 
     const existing = JSON.parse(localStorage.getItem('raz-submissions') || '[]')

@@ -3,304 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>后台统计 · RAZ入门测试</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0; background: #f3f4f6;
-      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      color: #1f2937; font-size: 14px;
-    }
-
-    /* ── Nav ── */
-    nav {
-      background: #fff; border-bottom: 1px solid #e5e7eb;
-      padding: 0 20px; height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 10;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo .dot {
-      width: 32px; height: 32px; background: #14b8a6; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 900; color: #fff;
-    }
-    .nav-logo span { font-weight: 800; font-size: 15px; }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .nav-right a {
-      font-size: 13px; color: #6b7280; text-decoration: none; padding: 6px 12px;
-      border-radius: 8px; transition: background .15s;
-    }
-    .nav-right a:hover { background: #f3f4f6; color: #374151; }
-
-    /* ── Layout ── */
-    .container { max-width: 1300px; margin: 0 auto; padding: 24px 20px; }
-
-    /* ── Stats ── */
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-    .stat-card {
-      background: #fff; border-radius: 14px; padding: 18px 22px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
-    .stat-label { font-size: 12px; color: #9ca3af; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
-    .stat-value { font-size: 32px; font-weight: 900; margin-top: 4px; }
-    .stat-card.blue .stat-value  { color: #3b82f6; }
-    .stat-card.teal .stat-value  { color: #14b8a6; }
-    .stat-card.green .stat-value { color: #22c55e; }
-
-    /* ── Filter bar ── */
-    .filter-bar {
-      background: #fff; border-radius: 14px; padding: 16px 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-      margin-bottom: 20px;
-      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
-    }
-    .filter-bar select, .filter-bar input[type=text] {
-      padding: 8px 12px; border: 1.5px solid #e5e7eb; border-radius: 8px;
-      font-size: 13px; outline: none; transition: border-color .2s;
-      background: #fff;
-    }
-    .filter-bar select:focus, .filter-bar input:focus { border-color: #14b8a6; }
-    .filter-bar input[type=text] { min-width: 180px; }
-    .btn {
-      padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
-      cursor: pointer; border: none; transition: background .15s;
-      text-decoration: none; display: inline-block;
-    }
-    .btn-primary { background: #14b8a6; color: #fff; }
-    .btn-primary:hover { background: #0d9488; }
-    .btn-outline { background: #fff; color: #374151; border: 1.5px solid #d1d5db; }
-    .btn-outline:hover { background: #f9fafb; }
-    .btn-danger { background: #fff; color: #ef4444; border: 1.5px solid #fca5a5; }
-    .btn-danger:hover { background: #fef2f2; }
-    .btn-sm { padding: 4px 10px; font-size: 12px; }
-    .ml-auto { margin-left: auto; }
-
-    /* ── Table ── */
-    .table-wrap {
-      background: #fff; border-radius: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-      overflow: hidden;
-    }
-    .table-header {
-      padding: 14px 20px; border-bottom: 1px solid #f3f4f6;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .table-header .count { font-size: 13px; color: #6b7280; }
-    table { width: 100%; border-collapse: collapse; }
-    th {
-      padding: 11px 14px; text-align: left;
-      font-size: 11px; font-weight: 700; color: #9ca3af;
-      text-transform: uppercase; letter-spacing: .4px;
-      background: #f9fafb; border-bottom: 1px solid #f3f4f6;
-      white-space: nowrap;
-    }
-    th a { color: inherit; text-decoration: none; }
-    th a:hover { color: #374151; }
-    td {
-      padding: 12px 14px; border-bottom: 1px solid #f9fafb;
-      vertical-align: middle; white-space: nowrap;
-    }
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #fafafa; }
-
-    /* ── Badges ── */
-    .badge {
-      display: inline-block; padding: 3px 9px; border-radius: 20px;
-      font-size: 11px; font-weight: 700;
-    }
-    .badge-teal   { background: #ccfbf1; color: #0f766e; }
-    .badge-green  { background: #dcfce7; color: #15803d; }
-    .badge-red    { background: #fee2e2; color: #dc2626; }
-    .badge-yellow { background: #fef3c7; color: #92400e; }
-    .score-high { color: #15803d; font-weight: 800; font-size: 15px; }
-    .score-low  { color: #dc2626; font-weight: 800; font-size: 15px; }
-    .skills     { color: #6b7280; font-size: 12px; }
-    .wrong-list { color: #d97706; font-size: 12px; }
-
-    /* ── Empty state ── */
-    .empty { padding: 60px; text-align: center; color: #9ca3af; }
-    .empty .icon { font-size: 40px; margin-bottom: 12px; }
-
-    /* ── Modal ── */
-    .modal-bg {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.45); z-index: 100;
-      align-items: center; justify-content: center;
-    }
-    .modal-bg.open { display: flex; }
-    .modal {
-      background: #fff; border-radius: 16px; padding: 28px; max-width: 380px; width: 90%;
-      box-shadow: 0 8px 40px rgba(0,0,0,.15);
-    }
-    .modal h3 { margin: 0 0 8px; font-size: 17px; }
-    .modal p  { margin: 0 0 20px; color: #6b7280; font-size: 13px; line-height: 1.6; }
-    .modal-btns { display: flex; gap: 10px; }
-    .modal-btns button { flex: 1; padding: 11px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; }
-    .modal-cancel  { background: #f3f4f6; color: #374151; }
-    .modal-confirm { background: #ef4444; color: #fff; }
-
-    @media (max-width: 640px) {
-      .stats { grid-template-columns: 1fr 1fr; }
-      th, td { padding: 10px 10px; font-size: 12px; }
-    }
-  </style>
+  <meta name="theme-color" content="#fffdf9">
+  <title>后台管理 · Stacey老师测评网站</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
 </head>
 <body>
+  <div class="page-orb one" aria-hidden="true"></div>
+  <div class="page-orb two" aria-hidden="true"></div>
+  <div class="page-dots one" aria-hidden="true"></div>
 
-<nav>
-  <div class="nav-logo">
-    <div class="dot">R</div>
-    <span>RAZ后台统计</span>
-  </div>
-  <div class="nav-right">
-    <a href="/admin/logout">退出登录</a>
-  </div>
-</nav>
+{% set active_tab = 'records' %}
+{% include '_topbar.html' %}
 
-<div class="container">
+  <main class="admin-main">
+    <section class="admin-intro" aria-labelledby="page-title">
+      <span class="eyebrow"><i></i> Test data overview</span>
+      <h1 id="page-title">测试数据概览</h1>
+      <p>查看孩子们的测试记录，了解他们的阅读成长情况。</p>
+      <img class="intro-buddy" src="{{ url_for('static', filename='admin-buddy.svg') }}" alt="" aria-hidden="true">
+    </section>
 
-  <!-- Stats -->
-  <div class="stats">
-    <div class="stat-card blue">
-      <div class="stat-label">总提交数</div>
-      <div class="stat-value">{{ total }}</div>
-    </div>
-    <div class="stat-card teal">
-      <div class="stat-label">平均分</div>
-      <div class="stat-value">{{ avg_score }}</div>
-    </div>
-    <div class="stat-card green">
-      <div class="stat-label">通过率</div>
-      <div class="stat-value">{{ pass_rate }}%</div>
-    </div>
-  </div>
+    <section class="stats" aria-label="数据摘要">
+      <article class="stat-card sky">
+        <span class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v5h5M10 13h6M10 17h6"/></svg>
+        </span>
+        <div class="stat-copy"><div class="stat-label">总提交数</div><div class="stat-value">{{ total }}</div></div>
+      </article>
+      <article class="stat-card mint">
+        <span class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        </span>
+        <div class="stat-copy"><div class="stat-label">平均分</div><div class="stat-value">{{ avg_score }}</div></div>
+      </article>
+      <article class="stat-card butter">
+        <span class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v9h9"/></svg>
+        </span>
+        <div class="stat-copy"><div class="stat-label">通过率</div><div class="stat-value">{{ pass_rate }}%</div></div>
+      </article>
+    </section>
 
-  <!-- Filter bar -->
-  <form method="get" action="/admin">
-    <div class="filter-bar">
-      <select name="level">
+    <form method="get" action="/admin" class="filter-bar" aria-label="筛选测试记录">
+      <select name="level" aria-label="筛选级别">
         <option value="">全部级别</option>
         {% for lv in levels %}
         <option value="{{ lv }}" {% if lv == current_level %}selected{% endif %}>{{ lv }}级别</option>
         {% endfor %}
       </select>
 
-      <input type="text" name="search" value="{{ search }}" placeholder="搜索小朋友姓名…">
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="text" name="search" value="{{ search }}" placeholder="搜索小朋友姓名…" aria-label="搜索小朋友姓名">
+      </div>
 
       <button type="submit" class="btn btn-primary">查询</button>
       {% if search or current_level %}
-      <a href="/admin" class="btn btn-outline">清除</a>
+      <a href="/admin" class="btn btn-outline">清除筛选</a>
       {% endif %}
 
-      <div class="ml-auto" style="display:flex;gap:8px;">
+      <div class="filter-actions">
         <a href="/admin/export?level={{ current_level }}&search={{ search }}" class="btn btn-outline">
-          ⬇ 导出 CSV
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          导出 CSV
         </a>
-        <button type="button" class="btn btn-danger" onclick="document.getElementById('clearModal').classList.add('open')">
-          🗑 清空数据
+        <button type="button" class="btn btn-danger" id="openClearModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></svg>
+          清空数据
         </button>
       </div>
-    </div>
-  </form>
+    </form>
 
-  <!-- Table -->
-  <div class="table-wrap">
-    <div class="table-header">
-      <span class="count">共 <strong>{{ rows|length }}</strong> 条记录</span>
-    </div>
+    <section class="table-wrap" aria-labelledby="records-heading">
+      <div class="table-header">
+        <div class="table-title"><strong id="records-heading">测试记录</strong><span>共 {{ rows|length }} 条</span></div>
+      </div>
 
-    {% if rows %}
-    <div style="overflow-x:auto;">
-      <table>
-        <thead>
-          <tr>
-            <th><a href="?level={{ current_level }}&search={{ search }}&sort=submitted_at&order={{ 'asc' if sort=='submitted_at' and order=='desc' else 'desc' }}">提交时间</a></th>
-            <th><a href="?level={{ current_level }}&search={{ search }}&sort=student_name&order={{ 'asc' if sort=='student_name' and order=='desc' else 'desc' }}">小朋友姓名</a></th>
-            <th>类型</th>
-            <th>级别</th>
-            <th><a href="?level={{ current_level }}&search={{ search }}&sort=score&order={{ 'asc' if sort=='score' and order=='desc' else 'desc' }}">分数</a></th>
-            <th><a href="?level={{ current_level }}&search={{ search }}&sort=correct_count&order={{ 'asc' if sort=='correct_count' and order=='desc' else 'desc' }}">答对</a></th>
-            <th>用时</th>
-            <th>错题</th>
-            <th>判断</th>
-            <th>薄弱能力</th>
-            <th>虚构</th>
-            <th>非虚构</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for r in rows %}
-          <tr>
-            <td style="color:#6b7280;font-size:12px;">{{ r.submitted_at }}</td>
-            <td><strong>{{ r.student_name }}</strong></td>
-            <td>
-              {% if r.test_type == 'listening' %}
-              <span class="badge badge-teal">听力</span>
-              {% elif r.test_type == 'placement' %}
-              <span class="badge">插班</span>
-              {% else %}
-              <span class="badge">阅读</span>
-              {% endif %}
-            </td>
-            <td><span class="badge badge-teal">{{ r.level_id }}级</span></td>
-            <td>
-              <span class="{{ 'score-high' if r.score >= 80 else 'score-low' }}">{{ r.score }}</span>
-            </td>
-            <td style="color:#374151;">{{ r.correct_count }} / {{ r.correct_count + r.wrong_questions|length }}</td>
-            <td style="color:#6b7280;font-size:12px;">{{ r.duration_text or '-' }}</td>
-            <td class="wrong-list">
-              {% if r.wrong_questions %}
-                {% for q in r.wrong_questions %}Q{{ q.id }}{% if not loop.last %}、{% endif %}{% endfor %}
-              {% else %}
-                <span style="color:#22c55e;">全对</span>
-              {% endif %}
-            </td>
-            <td>
-              {% if r.passed %}
-              <span class="badge badge-green">通过</span>
-              {% else %}
-              <span class="badge badge-red">未通过</span>
-              {% endif %}
-            </td>
-            <td class="skills">{{ r.weak_skills | join(' / ') or '—' }}</td>
-            <td style="text-align:center;">{{ r.fiction_wrong }}</td>
-            <td style="text-align:center;">{{ r.nonfiction_wrong }}</td>
-            <td>
-              <form method="post" action="/admin/delete/{{ r.id }}"
-                    onsubmit="return confirm('确认删除这条记录？')">
-                <button type="submit" class="btn btn-danger btn-sm">删除</button>
-              </form>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% else %}
-    <div class="empty">
-      <div class="icon">📋</div>
-      <div>暂无记录</div>
-    </div>
-    {% endif %}
-  </div>
+      {% if rows %}
+      <div class="table-scroller" tabindex="0" aria-label="测试记录表格，可横向滚动">
+        <table>
+          <thead>
+            <tr>
+              <th><a href="?level={{ current_level }}&search={{ search }}&sort=submitted_at&order={{ 'asc' if sort=='submitted_at' and order=='desc' else 'desc' }}">提交时间 <span aria-hidden="true">↕</span></a></th>
+              <th><a href="?level={{ current_level }}&search={{ search }}&sort=student_name&order={{ 'asc' if sort=='student_name' and order=='desc' else 'desc' }}">小朋友姓名 <span aria-hidden="true">↕</span></a></th>
+              <th>类型</th>
+              <th>级别</th>
+              <th><a href="?level={{ current_level }}&search={{ search }}&sort=score&order={{ 'asc' if sort=='score' and order=='desc' else 'desc' }}">分数 <span aria-hidden="true">↕</span></a></th>
+              <th><a href="?level={{ current_level }}&search={{ search }}&sort=correct_count&order={{ 'asc' if sort=='correct_count' and order=='desc' else 'desc' }}">答对 <span aria-hidden="true">↕</span></a></th>
+              <th>用时</th>
+              <th>错题</th>
+              <th>判断</th>
+              <th>薄弱能力</th>
+              <th>虚构</th>
+              <th>非虚构</th>
+              <th><span class="sr-only">操作</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in rows %}
+            <tr>
+              <td class="time-cell">{{ r.submitted_at }}</td>
+              <td class="student-cell">{{ r.student_name }}</td>
+              <td>
+                {% if r.test_type == 'listening' %}
+                <span class="badge badge-teal">听力</span>
+                {% elif r.test_type == 'placement' %}
+                <span class="badge badge-default">插班</span>
+                {% else %}
+                <span class="badge badge-default">阅读</span>
+                {% endif %}
+              </td>
+              <td><span class="badge badge-teal">{{ r.level_id }}级</span></td>
+              <td><span class="score {{ 'score-high' if r.score >= 80 else 'score-low' }}">{{ r.score }}</span></td>
+              <td class="answer-cell">{{ r.correct_count }} / {{ r.correct_count + r.wrong_questions|length }}</td>
+              <td class="duration-cell">{{ r.duration_text or '-' }}</td>
+              <td class="wrong-list" title="{% for q in r.wrong_questions %}Q{{ q.id }}{% if not loop.last %}、{% endif %}{% endfor %}">
+                {% if r.wrong_questions %}
+                  {% for q in r.wrong_questions %}Q{{ q.id }}{% if not loop.last %}、{% endif %}{% endfor %}
+                {% else %}
+                  <span class="all-correct">全对</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if r.passed %}<span class="badge badge-green">通过</span>{% else %}<span class="badge badge-red">未通过</span>{% endif %}
+              </td>
+              <td class="skills" title="{{ r.weak_skills | join(' / ') }}">{{ r.weak_skills | join(' / ') or '—' }}</td>
+              <td class="number-cell">{{ r.fiction_wrong }}</td>
+              <td class="number-cell">{{ r.nonfiction_wrong }}</td>
+              <td>
+                <form method="post" action="/admin/delete/{{ r.id }}" onsubmit="return confirm('确认删除这条记录？')">
+                  <button type="submit" class="btn btn-danger btn-sm">删除</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty"><div class="empty-mark" aria-hidden="true">✦</div><div>暂无符合条件的记录</div></div>
+      {% endif %}
+    </section>
+  </main>
 
-</div>
-
-<!-- Clear modal -->
-<div class="modal-bg" id="clearModal">
-  <div class="modal">
-    <h3>⚠️ 确认清空所有数据？</h3>
-    <p>此操作将永久删除数据库中所有 {{ total }} 条测试记录，无法恢复。</p>
-    <div class="modal-btns">
-      <button class="modal-cancel" onclick="document.getElementById('clearModal').classList.remove('open')">取消</button>
-      <form method="post" action="/admin/clear" style="flex:1;">
-        <button type="submit" class="modal-confirm" style="width:100%;">确认清空</button>
-      </form>
+  <div class="modal-bg" id="clearModal" role="dialog" aria-modal="true" aria-labelledby="clear-title">
+    <div class="modal">
+      <div class="modal-mark" aria-hidden="true">!</div>
+      <h3 id="clear-title">确认清空所有数据？</h3>
+      <p>此操作将永久删除数据库中的 {{ total }} 条测试记录，且无法恢复。建议先导出 CSV 备份。</p>
+      <div class="modal-btns">
+        <button class="btn btn-outline" type="button" id="closeClearModal">取消</button>
+        <form method="post" action="/admin/clear"><button type="submit" class="btn btn-danger">确认清空</button></form>
+      </div>
     </div>
   </div>
-</div>
 
+  <script>
+    const clearModal = document.getElementById('clearModal');
+    const openClearModal = document.getElementById('openClearModal');
+    const closeClearModal = document.getElementById('closeClearModal');
+    const openModal = () => { clearModal.classList.add('open'); closeClearModal.focus(); };
+    const closeModal = () => { clearModal.classList.remove('open'); openClearModal.focus(); };
+    openClearModal.addEventListener('click', openModal);
+    closeClearModal.addEventListener('click', closeModal);
+    clearModal.addEventListener('click', (event) => { if (event.target === clearModal) closeModal(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && clearModal.classList.contains('open')) closeModal(); });
+  </script>
 </body>
 </html>

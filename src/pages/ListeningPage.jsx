@@ -4,6 +4,7 @@ import { listeningTests, listeningTestsById } from '../data/listening'
 import { getSavedStudentName, saveStudentName } from '../utils/studentName'
 import BackArrow from '../components/BackArrow'
 import ListeningAudio from '../components/ListeningAudio'
+import { getSurveyId } from '../utils/salesFlow'
 
 const levelAccents = [
   { color: '#1f9e93', soft: '#def2ef', label: '01' },
@@ -417,6 +418,7 @@ export default function ListeningPage() {
       durationSeconds,
       durationText: formatDuration(durationSeconds),
       notes: '听力测试',
+      surveyId: getSurveyId(),
     }
 
     saveLocalSubmission(record)

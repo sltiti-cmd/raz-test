@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffdf9">
+  <title>学员总览 · Stacey老师测评网站</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+  <div class="page-orb one" aria-hidden="true"></div>
+  <div class="page-orb two" aria-hidden="true"></div>
+
+{% set active_tab = 'students' %}
+{% include '_topbar.html' %}
+
+  <main class="admin-main">
+    <section class="admin-intro" aria-labelledby="page-title">
+      <span class="eyebrow"><i></i> Students</span>
+      <h1 id="page-title">学员总览</h1>
+      <p>一行一个家长：问卷信息 + 阅读、听力成绩。同一手机号算一个人，测试成绩按问卷链接或微信名自动对上。</p>
+    </section>
+
+    {% if not sales_db_ok %}
+    <p class="notice">⚠️ 没有读到问卷数据库，下面只显示测试记录。</p>
+    {% endif %}
+
+    <section class="stats" aria-label="数据摘要">
+      <article class="stat-card sky">
+        <div class="stat-copy"><div class="stat-label">填过问卷</div><div class="stat-value">{{ stats.surveyed }}</div></div>
+      </article>
+      <article class="stat-card mint">
+        <div class="stat-copy"><div class="stat-label">问卷后已做测试</div><div class="stat-value">{{ stats.tested }}</div></div>
+      </article>
+      <article class="stat-card butter">
+        <div class="stat-copy"><div class="stat-label">问卷后还没测</div><div class="stat-value">{{ stats.untested }}</div></div>
+      </article>
+    </section>
+
+    <form method="get" action="/admin/students" class="filter-bar" aria-label="筛选学员">
+      <div class="view-switch" role="group" aria-label="显示范围">
+        <a href="?view=survey&q={{ q|urlencode }}" class="{{ 'active' if view == 'survey' }}">填过问卷</a>
+        <a href="?view=all&q={{ q|urlencode }}" class="{{ 'active' if view == 'all' }}">全部</a>
+        <a href="?view=tests&q={{ q|urlencode }}" class="{{ 'active' if view == 'tests' }}">只做了测试 · {{ stats.test_only }}</a>
+      </div>
+      <input type="hidden" name="view" value="{{ view }}">
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="text" name="q" value="{{ q }}" placeholder="搜索微信名或手机号…" aria-label="搜索微信名或手机号">
+      </div>
+      <button type="submit" class="btn btn-primary">查询</button>
+      {% if q %}<a href="?view={{ view }}" class="btn btn-outline">清除</a>{% endif %}
+      <div class="filter-actions">
+        <a href="/admin/students/export?view={{ view }}&q={{ q|urlencode }}" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          导出表格
+        </a>
+      </div>
+    </form>
+
+    <section class="table-wrap" aria-labelledby="people-heading">
+      <div class="table-header">
+        <div class="table-title"><strong id="people-heading">学员</strong><span>共 {{ people|length }} 人 · 点姓名看详情</span></div>
+      </div>
+
+      {% if people %}
+      <div class="table-scroller" tabindex="0" aria-label="学员表格，可横向滚动">
+        <table class="people-table">
+          <thead>
+            <tr>
+              <th>微信名</th>
+              <th>手机号</th>
+              <th>年级</th>
+              <th>问卷</th>
+              <th>阅读（最近）</th>
+              <th>听力（最近）</th>
+              <th>最近活动</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in people %}
+            <tr>
+              <td class="student-cell">
+                <a class="person-link" href="{{ url_for('student_detail', key=p.key) }}">{{ p.name or '（未填名字）' }}</a>
+              </td>
+              <td class="time-cell">{{ p.phone or '—' }}</td>
+              <td>{{ p.grade or '—' }}</td>
+              <td>
+                {% if p.latest_survey %}
+                <a class="survey-dl" href="{{ url_for('survey_download', sid=p.latest_survey.id) }}" title="下载问卷">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                  {{ (p.latest_survey.created_at or '')[5:10] }}
+                </a>
+                {% if p.surveys|length > 1 %}<small class="muted-note">填过 {{ p.surveys|length }} 次</small>{% endif %}
+                {% else %}<span class="badge badge-default">未填</span>{% endif %}
+              </td>
+              <td>
+                {% if p.reading_latest %}
+                <span class="score {{ 'score-high' if p.reading_latest.score >= 80 else 'score-low' }}">{{ p.reading_latest.score }}</span>
+                <span class="badge badge-teal">{{ p.reading_latest.level }}级{{ p.reading_latest.label }}</span>
+                {% if p.reading_count > 1 %}<small class="muted-note">共 {{ p.reading_count }} 次</small>{% endif %}
+                {% else %}<span class="dash">—</span>{% endif %}
+              </td>
+              <td>
+                {% if p.listening_latest %}
+                <span class="score {{ 'score-high' if p.listening_latest.score >= 80 else 'score-low' }}">{{ p.listening_latest.score }}</span>
+                <span class="badge badge-butter">{{ p.listening_latest.level }}</span>
+                {% if p.listening_count > 1 %}<small class="muted-note">共 {{ p.listening_count }} 次</small>{% endif %}
+                {% else %}<span class="dash">—</span>{% endif %}
+              </td>
+              <td class="time-cell">{{ (p.last_active or '')[:16] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty"><div class="empty-mark" aria-hidden="true">✦</div><div>暂无符合条件的学员</div></div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

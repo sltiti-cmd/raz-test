@@ -1,0 +1,17 @@
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/" aria-label="返回 Stacey老师测评网站首页">
+        <span class="brand-spark" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 2c2.8 12.6 8.5 18.4 22 22-13.5 3.6-19.2 9.4-22 22C21.2 33.4 15.5 27.6 2 24 15.5 20.4 21.2 14.6 24 2Z" fill="currentColor"/></svg>
+        </span>
+        <span class="brand-copy"><strong>Stacey老师</strong><small>测评网站</small></span>
+      </a>
+      <nav class="admin-tabs" aria-label="后台页面">
+        <a href="/admin/students" class="{{ 'active' if active_tab == 'students' }}" {% if active_tab == 'students' %}aria-current="page"{% endif %}>学员总览</a>
+        <a href="/admin" class="{{ 'active' if active_tab == 'records' }}" {% if active_tab == 'records' %}aria-current="page"{% endif %}>测试记录</a>
+      </nav>
+      <div class="top-actions">
+        <a class="top-link" href="/admin/logout">退出登录</a>
+      </div>
+    </div>
+  </header>
