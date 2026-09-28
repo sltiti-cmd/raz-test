@@ -8,6 +8,8 @@ import { useToast } from '../hooks/useToast'
 import BackArrow from '../components/BackArrow'
 import SalesNextStep from '../components/SalesNextStep'
 import { isFromSales } from '../utils/salesFlow'
+import BenchmarkBrand from '../components/BenchmarkBrand'
+import '../benchmark.css'
 
 export default function ResultPage() {
   const { state } = useLocation()
@@ -37,7 +39,7 @@ export default function ResultPage() {
       const canvas = await html2canvas(reportRef.current, {
         scale: 2,
         useCORS: true,
-        backgroundColor: '#fffdf9',
+        backgroundColor: '#fffefa',
         logging: false,
       })
       const link = document.createElement('a')
@@ -66,26 +68,29 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="report-page-shell">
+    <div className="benchmark-page benchmark-result">
       <Toast toast={toast} />
 
-      <div className="report-page-inner">
-        <div className="report-actions-top">
-          <Link to="/" className="report-back-link">
-            <BackArrow className="w-4 h-4" /> 返回大厅
-          </Link>
-          <div className="report-action-group">
-            <button onClick={() => navigate(retestPath)} className="report-action-btn">
-              ↻ 重新测试
-            </button>
-            <button onClick={handleCopyText} className="report-action-btn">
-              ▤ 复制文字
-            </button>
-            <button onClick={handleDownload} className="report-action-btn primary">
-              ↓ 下载报告
-            </button>
+      <div className="br-page-inner">
+        <header className="br-toolbar">
+          <BenchmarkBrand />
+          <div className="br-toolbar-actions">
+            <Link to="/" className="report-back-link">
+              <BackArrow className="w-4 h-4" /> 返回大厅
+            </Link>
+            <div className="report-action-group">
+              <button onClick={() => navigate(retestPath)} className="report-action-btn">
+                ↻ 重新测试
+              </button>
+              <button onClick={handleCopyText} className="report-action-btn">
+                ▤ 复制文字
+              </button>
+              <button onClick={handleDownload} className="report-action-btn primary">
+                ↓ 下载报告
+              </button>
+            </div>
           </div>
-        </div>
+        </header>
 
         <ResultReport
           ref={reportRef}
@@ -93,9 +98,9 @@ export default function ResultPage() {
           gradingResult={result}
           levelId={levelId}
           testType={testType}
-        />
-
-        {isFromSales() && <SalesNextStep score={result.score} levelId={levelId} />}
+        >
+          {isFromSales() && <SalesNextStep score={result.score} levelId={levelId} />}
+        </ResultReport>
 
         <div className="report-bottom-actions">
           <button onClick={handleDownload} className="report-bottom-btn primary">
@@ -113,7 +118,6 @@ export default function ResultPage() {
         </div>
       </div>
 
-      <div className="h-16" />
     </div>
   )
 }

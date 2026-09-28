@@ -5,13 +5,14 @@ import { getSavedStudentName, saveStudentName } from '../utils/studentName'
 import BackArrow from '../components/BackArrow'
 import ListeningAudio from '../components/ListeningAudio'
 import { getSurveyId } from '../utils/salesFlow'
+import '../listening-redesign.css'
 
 const levelAccents = [
-  { color: '#1f9e93', soft: '#def2ef', label: '01' },
-  { color: '#ef927e', soft: '#fce7de', label: '02' },
-  { color: '#ef7a5a', soft: '#fce7de', label: '03' },
-  { color: '#d4a83e', soft: '#fff2c8', label: '04' },
-  { color: '#67a9bd', soft: '#e1f2f6', label: '05' },
+  { color: '#93cbbb', soft: '#e5f3ef' },
+  { color: '#e5aa91', soft: '#faebe4' },
+  { color: '#dfc46c', soft: '#fbf3d1' },
+  { color: '#86b7ce', soft: '#e7f3f8' },
+  { color: '#cf9f98', soft: '#f7e9e5' },
 ]
 
 function formatDuration(totalSeconds) {
@@ -53,29 +54,22 @@ function BrandMark() {
 function LevelChooser({ onStart }) {
   return (
     <div className="lt-page-width">
-      <section className="lt-hero">
-        <div className="lt-hero-glow" aria-hidden="true" />
-        <div className="lt-hero-copy">
-          <span className="lt-eyebrow lt-eyebrow-light">LISTENING CHECK · 10 QUESTIONS</span>
-          <h1>听力测试</h1>
-          <div className="lt-hero-tags">
-            <span>建议在安静环境听</span>
-            <span>可以听 2 遍</span>
-            <span>70 分合格</span>
-          </div>
-        </div>
-        <div className="lt-hero-orbit" aria-hidden="true">
-          <span>10</span>
-          <small>QUESTIONS</small>
-        </div>
-      </section>
-
-      <div className="lt-section-heading">
+      <section className="lt-choose-banner" aria-labelledby="lt-choose-title">
         <div>
-          <span className="lt-eyebrow">CHOOSE A LEVEL</span>
-          <h2>选择测试级别</h2>
+          <span className="lt-eyebrow">LISTENING CHECK</span>
+          <h1 id="lt-choose-title">听力测试</h1>
+          <p>听一听，找到合适的起点。</p>
         </div>
-      </div>
+        <span className="lt-choose-art" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M24 64V56a36 36 0 0 1 72 0v8" />
+            <path d="M24 64h8a9 9 0 0 1 9 9v18a9 9 0 0 1-9 9h-3a9 9 0 0 1-9-9V68a4 4 0 0 1 4-4ZM96 64h-8a9 9 0 0 0-9 9v18a9 9 0 0 0 9 9h3a9 9 0 0 0 9-9V68a4 4 0 0 0-4-4Z" />
+          </svg>
+        </span>
+      </section>
+      <header className="lt-chooser-heading">
+        <h2>选择听力测试级别</h2>
+      </header>
 
       <div className="lt-level-grid">
         {listeningTests.map((test, index) => {
@@ -91,14 +85,6 @@ function LevelChooser({ onStart }) {
           )
         })}
       </div>
-
-      <section className="lt-note-card">
-        <span className="lt-note-icon">i</span>
-        <div>
-          <strong>作答小提示</strong>
-          <p>完成 10 题后填写姓名并查看成绩。</p>
-        </div>
-      </section>
     </div>
   )
 }
@@ -176,7 +162,7 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
         <div className="lt-test-identity">
           <button type="button" onClick={onExit} className="lt-inline-back"><BackArrow className="w-4 h-4" /> 重新选级别</button>
           <div>
-            <span className="lt-eyebrow lt-eyebrow-light">RAZ {test.levelRange} · LISTENING CHECK</span>
+            <span className="lt-eyebrow lt-eyebrow-light">RAZ {test.levelRange} · 听力测试</span>
           </div>
         </div>
         <div className="lt-progress-box">
@@ -187,18 +173,18 @@ function TestWorkspace({ test, answers, setAnswers, currentStep, setCurrentStep,
 
       <div className="lt-test-layout">
         <section className="lt-audio-card lt-audio-card-top">
-          <span className="lt-audio2-label">LISTEN CAREFULLY · 建议听两遍</span>
           <ListeningAudio key={currentAudioSrc} src={currentAudioSrc} />
         </section>
 
         <section className="lt-question-card">
-          <header>
-            <div>
-              <span className="lt-eyebrow">{isGrouped ? `${visibleQuestions.length} QUESTIONS · ONE AUDIO` : `QUESTION ${currentStep + 1} OF ${steps.length}`}</span>
-              <h2>{isGrouped ? '边听录音，边完成本页题目' : current.label}</h2>
-            </div>
-            <span className="lt-score-chip">{answeredCount}/{steps.length}</span>
-          </header>
+          {!isGrouped && (
+            <header>
+              <div>
+                <span className="lt-eyebrow">第 {currentStep + 1} / {steps.length} 题</span>
+                <h2>{current.label}</h2>
+              </div>
+            </header>
+          )}
 
           {isGrouped ? (
             <div className="lt-group-content">
@@ -441,7 +427,7 @@ export default function ListeningPage() {
   }
 
   return (
-    <div className="lt-shell">
+    <div className={`lt-shell lt-phase-${phase}`}>
       <div className="lt-aurora" aria-hidden="true"><i /><i /><i /><i /></div>
       <header className="lt-topbar">
         <div>

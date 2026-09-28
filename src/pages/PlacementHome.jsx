@@ -1,10 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { placementList } from '../data/placement/index'
 import { openPrintPdf } from '../utils/printPdf'
-
-function Sparkle() {
-  return <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2c2.8 12.6 8.5 18.4 22 22-13.5 3.6-19.2 9.4-22 22C21.2 33.4 15.5 27.6 2 24 15.5 20.4 21.2 14.6 24 2Z" fill="currentColor" /></svg>
-}
+import BenchmarkBrand from '../components/BenchmarkBrand'
+import '../benchmark.css'
 
 export default function PlacementHome() {
   const navigate = useNavigate()
@@ -12,10 +10,7 @@ export default function PlacementHome() {
   return (
     <div className="home-soft">
       <header className="home-topbar">
-        <Link to="/" className="home-brand" aria-label="返回 Stacey老师测评网站首页">
-          <span className="home-brand-spark"><Sparkle /></span>
-          <span><strong>Stacey老师</strong><small>测评网站</small></span>
-        </Link>
+        <BenchmarkBrand />
         <nav className="home-topnav" aria-label="插班测试导航">
           <Link to="/">阅读测试</Link>
           <Link to="/listening">听力测试</Link>

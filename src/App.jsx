@@ -5,6 +5,8 @@ import PlacementHome from './pages/PlacementHome'
 import PlacementPage from './pages/PlacementPage'
 import ResultPage from './pages/ResultPage'
 import ListeningPage from './pages/ListeningPage'
+import CampHome from './pages/CampHome'
+import CampPage from './pages/CampPage'
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
         <Route path="/placement/:levelId" element={<PlacementPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/listening" element={<ListeningPage />} />
+        <Route path="/camp" element={<CampHome />} />
+        <Route path="/camp/:campId" element={<CampPage />} />
       </Routes>
     </BrowserRouter>
   )

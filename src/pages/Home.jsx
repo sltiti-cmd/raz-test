@@ -1,52 +1,43 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { levelList } from '../data/levels/index'
-import StudyBuddy from '../components/StudyBuddy'
+import BenchmarkBrand from '../components/BenchmarkBrand'
+import '../benchmark.css'
 
-function Sparkle({ className = '' }) {
-  return <svg className={className} viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2c2.8 12.6 8.5 18.4 22 22-13.5 3.6-19.2 9.4-22 22C21.2 33.4 15.5 27.6 2 24 15.5 20.4 21.2 14.6 24 2Z" fill="currentColor" /></svg>
-}
+const levelLabels = { A: '自拼认读', D: '流利朗读', G: '自主阅读', K: '初章阅读', O: '中高章阅读', R: '学术预备' }
 
 export default function Home() {
-  const navigate = useNavigate()
-
   return (
-    <div className="home-soft">
-      <header className="home-topbar">
-        <Link to="/" className="home-brand" aria-label="Stacey老师测评网站首页">
-          <span className="home-brand-spark"><Sparkle /></span>
-          <span><strong>Stacey老师</strong><small>测评网站</small></span>
-        </Link>
-        <nav className="home-topnav" aria-label="首页导航"><a href="#reading">阅读测试</a><Link to="/listening">听力测试</Link><Link to="/placement">插班测试</Link></nav>
+    <div className="benchmark-page benchmark-home">
+      <header className="bm-topbar">
+        <BenchmarkBrand />
+        <nav className="bm-nav" aria-label="首页导航">
+          <a href="#reading" aria-current="page">阅读测试</a>
+          <Link to="/listening">听力测试</Link>
+          <Link to="/placement">插班测试</Link>
+          <Link to="/camp">陪跑营</Link>
+        </nav>
       </header>
-
       <main>
-        <section className="home-hero">
-          <div className="home-hero-dots" aria-hidden="true" />
-          <div className="home-hero-copy">
-            <span className="home-kicker"><i /> RAZ READING JOURNEY</span>
-            <h1>找到孩子现在的<br /><em>阅读位置</em></h1>
+        <section className="bm-hero" aria-labelledby="bm-title">
+          <div className="bm-hero-copy">
+            <p className="bm-eyebrow">RAZ READING JOURNEY</p>
+            <h1 id="bm-title">找到孩子现在的<br /><em>阅读位置</em></h1>
           </div>
-          <div className="home-hero-art" aria-hidden="true"><span className="home-mini-spark one">✦</span><span className="home-mini-spark two">✧</span><StudyBuddy className="home-buddy" decorative /></div>
+          <img className="bm-hero-art" src="/images/benchmark/reading-journey.webp" width="1100" height="825" alt="" fetchPriority="high" />
         </section>
-
-        <section id="reading" className="home-level-section">
-          <div className="home-section-heading">
-            <div><span className="home-kicker"><i /> CHOOSE A LEVEL</span><h2>选择RAZ阅读级别</h2></div>
-          </div>
-          <div className="home-level-journey">
-            {levelList.map((level, index) => (
-              <div className={`home-level-stop tone-${index + 1}`} key={level.id}>
-                <button type="button" className="home-level-button" onClick={() => navigate(`/test/${level.id.toLowerCase()}`)} aria-label={`进入 ${level.id} 级阅读测试`}><span>{level.id}</span></button>
-              </div>
+        <section id="reading" className="bm-levels" aria-labelledby="bm-level-title">
+          <h2 id="bm-level-title">选择 RAZ 阅读级别</h2>
+          <div className="bm-level-grid">
+            {levelList.map(level => (
+              <Link key={level.id} to={`/test/${level.id.toLowerCase()}`} className={`bm-level bm-level-${level.id.toLowerCase()}`} aria-label={`进入 ${level.id} 级阅读测试 · ${levelLabels[level.id]}`}>
+                <span className="bm-level-orb"><span>{level.id}</span></span>
+                <span className="bm-level-label">{levelLabels[level.id]} <span aria-hidden="true">→</span></span>
+              </Link>
             ))}
           </div>
         </section>
-
-        <section className="home-mode-ribbon" aria-hidden="true">
-          <span className="home-kicker"><i /> TWO WAYS TO PRACTISE</span>
-          <p className="home-mode-art">Read <em>&amp;</em> Listen</p>
-        </section>
       </main>
+      <footer className="bm-footer"><BenchmarkBrand /><span>阅读 · 听力 · 成长</span></footer>
     </div>
   )
 }

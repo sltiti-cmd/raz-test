@@ -1,210 +1,107 @@
 import { forwardRef } from 'react'
-import StudyBuddy from './StudyBuddy'
 import SkillRadar from './SkillRadar'
 
-function SectionIcon({ tone = 'mint', children }) {
-  return <span className={`report-section-icon tone-${tone}`}>{children}</span>
-}
-
 const ResultReport = forwardRef(function ResultReport(
-  { studentInfo, gradingResult, levelId, testType },
-  ref,
+  { studentInfo, gradingResult, levelId, testType, children }, ref,
 ) {
-  const reportTitle = testType === 'placement' ? '插班诊断报告' : '阅读诊断报告'
-  const {
-    score,
-    maxScore = 100,
-    correctCount,
-    total,
-    wrongQuestions = [],
-    skillStats = {},
-    readingDimensions = [],
-    fictionWrong = 0,
-    nonfictionWrong = 0,
-    fictionTotal = 0,
-    nonfictionTotal = 0,
-    durationText,
-    passed,
-  } = gradingResult
-
+  const { score, maxScore = 100, correctCount, total, wrongQuestions = [],
+    readingDimensions = [], fictionWrong = 0, nonfictionWrong = 0,
+    fictionTotal = 0, nonfictionTotal = 0, durationText, passed } = gradingResult
   const canReadLevel = typeof passed === 'boolean' ? passed : score >= 80
-
-  const weakSkills = Object.values(skillStats)
-    .filter(stat => stat.wrong > 0)
-    .sort((a, b) => {
-      if (a.accuracy !== b.accuracy) return a.accuracy - b.accuracy
-      if (a.wrong !== b.wrong) return b.wrong - a.wrong
-      return b.total - a.total
-    })
-    .slice(0, 8)
-
+  const scoreRatio = maxScore > 0 ? Math.max(0, Math.min(1, score / maxScore)) : 0
+  const dimensions = readingDimensions.filter(dimension => dimension.total > 0)
   const genreNote = fictionWrong === 0 && nonfictionWrong === 0
-    ? '本次虚构与非虚构文章均全部答对。'
+    ? '本次已测文体的题目均全部答对。'
     : fictionWrong > nonfictionWrong
-      ? `虚构类本次答错 ${fictionWrong} 题，可重点复盘情节、人物与顺序信息。`
+      ? '虚构类可重点复盘情节、人物与顺序信息。'
       : nonfictionWrong > fictionWrong
-        ? `非虚构类本次答错 ${nonfictionWrong} 题，可重点复盘事实信息与概念关系。`
-        : `两类文章本次各答错 ${fictionWrong} 题，可结合错题逐篇复盘。`
-
-  const suggestions = canReadLevel
-    ? ['可以继续阅读当前级别', '复盘本次错题对应的题型与定位依据', '保持稳定阅读量，再用下一次测评观察变化']
-    : ['建议先降级巩固', '补足基础词汇和句子理解', '完成巩固后再挑战当前级别']
+        ? '非虚构类可重点复盘事实信息与概念关系。'
+        : '两类文章可结合错题逐篇复盘。'
+  const suggestions = canReadLevel ? [
+    [`继续阅读 ${levelId} 级`, '巩固当前级别的阅读体验'],
+    ['结合原文复盘错题', '找到选项对应的文字依据'],
+    ['保持稳定阅读', '用下一次测评观察变化'],
+  ] : [
+    ['先降级巩固', '找到更适合当前能力的阅读起点'],
+    ['补足词汇与句子理解', '结合原文复盘本次错题'],
+    ['巩固后再挑战', '用下一次测评观察变化'],
+  ]
 
   return (
-    <article ref={ref} className="report-card">
-      <section className="report-hero">
-        <div className="report-hero-copy">
-          <span className="report-eyebrow"><i /> READING REPORT</span>
-          <h1>{reportTitle}</h1>
-          <p>{studentInfo.name} <b>·</b> {levelId}级 <b>·</b> {studentInfo.date}</p>
+    <article ref={ref} className="br-report">
+      <header className="br-heading">
+        <div>
+          <p className="bm-eyebrow">{testType === 'placement' ? 'PLACEMENT REPORT' : 'READING REPORT'}</p>
+          <h1>{testType === 'placement' ? '插班诊断报告' : '阅读诊断报告'}</h1>
+          <p className="br-student">{studentInfo.name} <span>·</span> {levelId} 级 <span>·</span> {studentInfo.date}</p>
         </div>
-        <div className="report-hero-art" aria-hidden="true">
-          <span className="report-spark report-spark-one">✦</span>
-          <span className="report-spark report-spark-two">✧</span>
-          <StudyBuddy className="report-hero-buddy" decorative />
-          <p>每一次阅读<br />都是向更大的世界<br />靠近一步 ♡</p>
+        <div className="br-heading-dots" aria-hidden="true"><i /><i /><i /></div>
+      </header>
+      <section className="br-summary" aria-label="本次测评结果">
+        <div className={`br-score ${canReadLevel ? '' : 'br-score-review'}`}>
+          <svg viewBox="0 0 180 180" aria-hidden="true">
+            <circle cx="90" cy="90" r="78" fill="none" stroke="#e9f3e5" strokeWidth="13" />
+            <circle cx="90" cy="90" r="78" fill="none" stroke="currentColor" strokeWidth="13" strokeLinecap="round" pathLength="100" strokeDasharray={`${scoreRatio * 100} 100`} transform="rotate(-90 90 90)" />
+          </svg>
+          <div><strong>{score}</strong><span>/ {maxScore} 分</span></div>
+          <p>本次得分</p>
         </div>
-      </section>
-
-      <section className="report-summary report-section">
-        <div className="report-score-orb">
-          <small>本次得分</small>
-          <strong>{score}</strong>
-          <span>/ {maxScore} 分</span>
-        </div>
-
-        <div className="report-summary-copy">
-          <h2>{studentInfo.name}</h2>
-          <p><span>▤</span> 答对 <strong>{correctCount}</strong> / {total} 题</p>
-          {durationText && <p><span>◷</span> 用时 <strong>{durationText}</strong></p>}
-          <div className={`report-level-note ${canReadLevel ? 'is-pass' : 'is-review'}`}>
-            {canReadLevel ? `✓ 可以继续读 ${levelId} 级别` : '📖 建议降级巩固'}
-          </div>
-          <blockquote>“阅读是点亮思考的星光。”</blockquote>
-        </div>
-
-        <div className="report-summary-genre">
-          <div className="report-summary-genre-title">
-            <SectionIcon tone="mint">▥</SectionIcon>
-            <div>
-              <h3>文体表现</h3>
-              <p>{genreNote}</p>
-            </div>
-          </div>
-          <div className="report-summary-genre-grid">
-            <div className="report-summary-genre-card fiction">
-              <span>虚构类错题</span>
-              <strong>{fictionWrong}</strong>
-              <small>/ {fictionTotal || '—'} 题</small>
-            </div>
-            <div className="report-summary-genre-card nonfiction">
-              <span>非虚构类错题</span>
-              <strong>{nonfictionWrong}</strong>
-              <small>/ {nonfictionTotal || '—'} 题</small>
-            </div>
-          </div>
+        <div className="br-summary-copy">
+          <h2>{canReadLevel ? `可以继续读 ${levelId} 级别` : '建议先降级巩固'}</h2>
+          <div className="br-summary-meta"><p>答对 <strong>{correctCount} / {total}</strong> 题</p>{durationText && <p>用时 <strong>{durationText}</strong></p>}</div>
+          <p className="br-summary-note">先读懂，再稳稳向前。</p>
         </div>
       </section>
 
-      <section className="report-section report-radar-section">
-        <div className="report-section-heading">
-          <SectionIcon tone="mint">▥</SectionIcon>
-          <div>
-            <h2>阅读表现雷达图</h2>
-            <p>基于本次测评各类题目的真实答题表现</p>
-          </div>
-        </div>
-
-        <div className="report-radar-grid">
-          <div className="report-radar-main">
-            <SkillRadar groups={readingDimensions} />
-          </div>
-
-          <aside className="report-radar-aside">
-            <h3><i /> 本次维度</h3>
-            <div className="report-dimension-list">
-              {readingDimensions.map((dimension) => (
-                <div className="report-dimension-row" key={dimension.key}>
-                  <span>{dimension.label}</span>
-                  <strong>答对 {dimension.correct}/{dimension.total}</strong>
+      <section className="br-section" aria-labelledby="br-dimensions-title">
+        <h2 id="br-dimensions-title">这次阅读，表现在哪里？</h2>
+        <div className="br-dimensions">
+          <SkillRadar groups={dimensions} />
+          <div className="br-bars">
+            {dimensions.map((dimension, index) => {
+              const accuracy = Math.round(dimension.correct / dimension.total * 100)
+              return <div className={`br-dimension br-tone-${index % 6}`} key={dimension.key}>
+                <div className="br-dimension-label"><span className="br-dimension-dot" aria-hidden="true" /><h3>{dimension.label}</h3></div>
+                <div className="br-bar-row">
+                  <div className="br-bar" role="meter" aria-label={dimension.label} aria-valuemin={0} aria-valuemax={100} aria-valuenow={accuracy} aria-valuetext={`答对 ${dimension.correct}/${dimension.total}，${accuracy}%`}><span style={{ width: `${accuracy}%` }} /></div>
+                  <span className="br-bar-value">{dimension.correct} / {dimension.total} · {accuracy}%</span>
                 </div>
-              ))}
-            </div>
-
-            <h3 className="report-weak-title"><i /> 需要加强的题型</h3>
-            {weakSkills.length > 0 ? (
-              <div className="report-skill-chips">
-                {weakSkills.map((skill) => (
-                  <span key={skill.label}>
-                    <b>{skill.label}</b>
-                    <small>答对 {skill.correct}/{skill.total}</small>
-                  </span>
-                ))}
               </div>
-            ) : (
-              <p className="report-all-good">本次暂无明显薄弱项 ✨</p>
-            )}
-          </aside>
+            })}
+            {dimensions.length === 0 && <p className="br-muted">本次暂无阅读维度数据。</p>}
+          </div>
         </div>
-
-        <p className="report-radar-note">
-          图表仅反映本次测评中对应题型的答题表现，不等同于标准化能力评分。
-        </p>
+        <p className="br-disclaimer">ⓘ 仅反映本次题型表现，不等同于标准化能力评分。</p>
       </section>
 
-      <section className="report-section">
-        <div className="report-section-heading compact">
-          <SectionIcon tone="coral">▤</SectionIcon>
-          <div>
-            <h2>错题情况</h2>
-            <p>
-              {wrongQuestions.length === 0
-                ? '本次全部答对，继续保持。'
-                : `共 ${wrongQuestions.length} 题答错，建议结合原文逐题复盘。`}
-            </p>
-          </div>
+      <section className="br-section" aria-labelledby="br-genre-title">
+        <h2 id="br-genre-title">不同文体的表现</h2>
+        <div className="br-genres">
+          {[['虚构类', fictionTotal, fictionWrong], ['非虚构类', nonfictionTotal, nonfictionWrong]].map(([label, count, wrong], index) => (
+            <div className="br-genre" key={label}>
+              <span className={`br-genre-icon br-genre-icon-${index}`} aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M9 8h6M9 12h6M9 16h4" /></svg></span>
+              <div><h3>{label}</h3><p>{count ? `答对 ${count - wrong} / ${count} 题 · 错 ${wrong} 题` : '本次未涉及'}</p></div>
+            </div>
+          ))}
         </div>
-
-        {wrongQuestions.length === 0 ? (
-          <div className="report-perfect">全部答对 ✦</div>
-        ) : (
-          <div className="report-wrong-list">
-            {wrongQuestions.map(question => (
-              <span key={question.id}>
-                Q{question.id}
-                <b>{question.correctAnswer}</b>
-              </span>
-            ))}
-          </div>
-        )}
+        <p className="br-genre-note">{genreNote}</p>
       </section>
 
-      <section className="report-section report-suggestions">
-        <div className="report-section-heading compact">
-          <SectionIcon tone="coral">➤</SectionIcon>
-          <div>
-            <h2>提升建议</h2>
-          </div>
-        </div>
-        <div className="report-suggestion-body">
-          <ol>
-            {suggestions.map((suggestion, index) => (
-              <li key={suggestion}>
-                <span>{index + 1}</span>
-                <p>{suggestion}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="report-growth-note" aria-hidden="true">
-            <span>♧</span>
-            <p>一点一滴的积累<br />会带来看得见的进步！</p>
-          </div>
-        </div>
+      <section className="br-section" aria-labelledby="br-wrong-title">
+        <h2 id="br-wrong-title">{wrongQuestions.length ? `这 ${wrongQuestions.length} 道题，值得再看一遍` : '本次全部答对，继续保持'}</h2>
+        {wrongQuestions.length > 0 ? <div className="br-table-wrap"><table className="br-wrong-table">
+          <caption className="sr-only">错题及答案对照</caption>
+          <thead><tr><th scope="col">题号</th><th scope="col">关注题型</th><th scope="col">你的答案</th><th scope="col">正确答案</th></tr></thead>
+          <tbody>{wrongQuestions.map(question => <tr key={question.id}><td><span>Q{question.id}</span></td><td>{question.skill}</td><td>{question.userAnswer}</td><td>{question.correctAnswer}</td></tr>)}</tbody>
+        </table></div> : <p className="br-muted">每一次认真阅读，都是向前的一步。</p>}
       </section>
 
-      <footer className="report-footer">
-        Stacey老师测评网站 · 仅供参考
-      </footer>
+      <section className="br-section br-suggestions" aria-labelledby="br-next-title">
+        <h2 id="br-next-title">接下来，可以这样读</h2>
+        <ol>{suggestions.map(([title, text], index) => <li key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
+      </section>
+      {children}
+      <footer className="br-footer">Stacey老师测评网站 · 仅供参考</footer>
     </article>
   )
 })
