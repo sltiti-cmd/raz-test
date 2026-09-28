@@ -31,7 +31,7 @@ export default function Home() {
 
         <section id="reading" className="home-level-section">
           <div className="home-section-heading">
-            <div><span className="home-kicker"><i /> CHOOSE A LEVEL</span><h2>选择阅读级别</h2></div>
+            <div><span className="home-kicker"><i /> CHOOSE A LEVEL</span><h2>选择RAZ阅读级别</h2></div>
           </div>
           <div className="home-level-journey">
             {levelList.map((level, index) => (

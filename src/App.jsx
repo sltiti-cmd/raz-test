@@ -4,7 +4,6 @@ import TestPage from './pages/TestPage'
 import PlacementHome from './pages/PlacementHome'
 import PlacementPage from './pages/PlacementPage'
 import ResultPage from './pages/ResultPage'
-import FeedbackWidget from './components/FeedbackWidget'
 import ListeningPage from './pages/ListeningPage'
 
 export default function App() {
@@ -18,7 +17,6 @@ export default function App() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/listening" element={<ListeningPage />} />
       </Routes>
-      <FeedbackWidget />
     </BrowserRouter>
   )
 }
