@@ -58,7 +58,6 @@ function LevelChooser({ onStart }) {
         <div>
           <span className="lt-eyebrow">LISTENING CHECK</span>
           <h1 id="lt-choose-title">听力测试</h1>
-          <p>听一听，找到合适的起点。</p>
         </div>
         <span className="lt-choose-art" aria-hidden="true">
           <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">

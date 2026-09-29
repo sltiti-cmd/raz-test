@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { placementList } from '../data/placement/index'
-import { openPrintPdf } from '../utils/printPdf'
 import BenchmarkBrand from '../components/BenchmarkBrand'
 import '../benchmark.css'
 
@@ -41,10 +40,6 @@ export default function PlacementHome() {
                 >
                   <span>{level.id}</span>
                 </button>
-                <small>{level.passages.length} 篇 · {level.passages.reduce((sum, passage) => sum + passage.questions.length, 0)} 题</small>
-                {level.printPdf && (
-                  <button type="button" className="home-pdf-link" onClick={() => openPrintPdf(level)}>⇩ PDF 试卷</button>
-                )}
               </div>
             ))}
           </div>

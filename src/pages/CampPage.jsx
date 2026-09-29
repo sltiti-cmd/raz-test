@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { camps, findCamp } from '../data/camps'
+import { campSampleDocs } from '../data/campSampleDocs'
 import { campThemes, campThemeStyle } from '../data/campThemes'
 import { CampIcon, LearningIcon } from '../components/CampIcons'
 import '../camp-home.css'
@@ -9,6 +10,12 @@ import '../camp-detail.css'
 // Remove decorative emoji only; retain the original course wording and numbers.
 const plain = (text) => String(text).replace(/^[^\p{L}\p{N}]+/u, '').trim()
 const taskItems = (text) => text.split('　').filter(Boolean).map(plain)
+const approximateBooks = (value, campId) => {
+  const count = Number.parseInt(String(value).replace(/[^\d]/g, ''), 10)
+  if (!Number.isFinite(count)) return value
+  const step = campId === 'aa' ? 10 : 50
+  return `${Math.floor(count / step) * step}+ 本`
+}
 
 function Topbar() {
   return <header className="cc-top"><Link to="/camp" className="cc-brand"><span aria-hidden="true" />小麦陪跑营</Link><nav aria-label="主导航"><Link to="/camp">全部营</Link><Link to="/">级别测试 ↗</Link></nav></header>
@@ -29,10 +36,16 @@ function CampPath({ camp }) {
 
 function Objectives({ camp }) {
   const stats = camp.stats
-  const metrics = stats && camp.tier === 1 ? [['主题式阅读', stats.themes], ['阅读本数', stats.books], ['阅读量', stats.words], ['口语 / 输出', stats.oral]] : []
-  return <section className="cd-section" aria-labelledby="objectives-title">
-    <h2 id="objectives-title">这一阶段，重点练什么</h2>
-    {camp.focus && <ol className="cd-focus">{camp.focus.map((focus, i) => <li key={focus}><span className="cd-number">{String(i + 1).padStart(2, '0')}</span><h3>{focus}</h3></li>)}</ol>}
+  const metrics = stats && camp.tier === 1 ? [['主题式阅读', stats.themes], ['阅读本数', approximateBooks(stats.books, camp.id)], ['阅读量', stats.words], ['口语 / 输出', stats.oral]] : []
+  return <section className="cd-section cd-overview" aria-labelledby="objectives-title">
+    <h2 id="objectives-title">这一阶段，练什么、适合谁</h2>
+    <div className="cd-overview-columns">
+      <div>
+        <h3>重点练什么</h3>
+        {camp.focus && <ol className="cd-focus">{camp.focus.map((focus, i) => <li key={focus}><span className="cd-number">{String(i + 1).padStart(2, '0')}</span><span>{focus}</span></li>)}</ol>}
+      </div>
+      {camp.suitable && <div><h3>{camp.suitableHeading}</h3><ul className="cd-suitable">{camp.suitable.map((item) => <li key={item}><span aria-hidden="true">✓</span>{item}</li>)}</ul></div>}
+    </div>
     {camp.abilities && <ul className="cd-abilities">{camp.abilities.map((item) => <li key={item}>{plain(item)}</li>)}</ul>}
     {metrics.length > 0 && <dl className="cd-metrics">{metrics.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}
     {stats && <p className="cd-stat-note">{stats.listening !== '—' && <>听力量 {stats.listening}<span aria-hidden="true"> · </span></>}{stats.vocab}</p>}
@@ -46,7 +59,7 @@ function DailyPlan({ camp }) {
   const rhythm = camp.rhythm
   return <section className="cd-section cd-daily-section" aria-labelledby="daily-title">
     <h2 id="daily-title">{camp.tier === 2 ? '每周怎么学？' : '每天怎么学？'}</h2>
-    {rhythm && <p className="cd-cycle">{rhythm.note}</p>}
+    {rhythm && <p className="cd-cycle">{rhythm.note.includes('不休息') ? <>{rhythm.note.split('不休息')[0]}<mark>不休息</mark>{rhythm.note.split('不休息')[1]}</> : rhythm.note}</p>}
     <div className="cd-plan">
       <ol className="cd-days">{camp.days.map((day, index) => <li key={day.t} className={day.rest ? 'is-rest' : undefined}>
         <span className="cd-day-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
@@ -72,7 +85,7 @@ function LearningContent({ camp }) {
         <div><h3>{camp.content.intensiveTitle}</h3><ul className={camp.content.intensive.length > 8 ? 'cd-topics' : undefined}>{camp.content.intensive.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div>
         <div><h3>{camp.id === 'aa' ? '启蒙搭配' : '泛读做拓展'}</h3><ul>{camp.content.extensive.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div>
       </div>
-      <div className="cd-learning-note"><LearningIcon type="speech" /><div><h3>{camp.id === 'aa' ? '听说互动，从愿意开口开始' : camp.tier === 2 ? '演讲与写作，有输出，也有反馈' : '口语输出，不止读出声音'}</h3>{camp.content.mix.map((mix) => <p key={mix}>{mix}</p>)}{camp.id !== 'aa' && camp.tier === 1 && <p>复述与主题口语表达，专八老师一对一点评。</p>}</div></div>
+      <div className="cd-learning-note"><LearningIcon type="speech" /><div><h3>{camp.id === 'aa' ? '听说互动，从愿意开口开始' : camp.tier === 2 ? '演讲与写作，有输出，也有反馈' : '口语输出，不止读出声音'}</h3>{camp.content.mix.map((mix) => <p key={mix}>{mix}</p>)}{camp.id !== 'aa' && camp.tier === 1 && <p>复述与主题口语表达，由具备专八水平的阅读老师一对一点评。</p>}</div></div>
       {camp.content.oneEquals && <div className="cd-includes"><h3>1 个{camp.name}，包含这些学习内容</h3><ul>{camp.content.oneEquals.map((item) => <li key={item}>{item}</li>)}</ul></div>}
     </>}
     {camp.output && <div className="cd-output">{camp.output.map((item) => <div key={item.t}><span className="cd-output-value">{item.n}<small>{item.u}</small></span><div><h3>{item.t}</h3><p>{item.s}</p></div></div>)}</div>}
@@ -93,6 +106,7 @@ export default function CampPage() {
   const index = camps.indexOf(camp)
   const prev = camps[index - 1]
   const next = camps[index + 1]
+  const sampleDocs = campSampleDocs[camp.id] || []
 
   return <main className="camp-circle-page camp-detail-page" style={campThemeStyle(camp.id)} data-camp={camp.id} data-theme={campThemes[camp.id].name}>
     <Topbar />
@@ -106,10 +120,9 @@ export default function CampPage() {
     <p className="cd-intro">{camp.introLead && <><strong>{camp.introLead}</strong><span className="cd-intro-separator" aria-hidden="true"> · </span></>}{camp.intro}</p>
     <CampPath camp={camp} />
     <Objectives camp={camp} />
-    {camp.suitable && <section className="cd-section"><h2>{camp.suitableHeading}</h2><ul className="cd-suitable">{camp.suitable.map((item) => <li key={item}><span aria-hidden="true">✓</span>{item}</li>)}</ul></section>}
     <DailyPlan camp={camp} />
     <LearningContent camp={camp} />
-    {camp.samples && <section className="cd-section"><h2>{camp.id === 'aa' ? '看看孩子会接触的内容' : '看看孩子会读的书'}</h2><div className="cd-samples">{camp.samples.map((sample) => <figure key={sample.src}><a href={sample.src} target="_blank" rel="noreferrer" aria-label={`放大查看：${sample.cap}`}><img src={sample.src} alt={sample.cap} loading="lazy" /><span aria-hidden="true">放大查看 ↗</span></a><figcaption>{sample.cap}</figcaption></figure>)}</div></section>}
+    {sampleDocs.length > 0 && <section className="cd-section cd-sample-section"><div className="cd-sample-heading"><h2>翻开一本看看</h2><p>展示真实阅读内页，点击可打开完整 PDF</p></div><div className="cd-samples">{sampleDocs.map((sample) => <figure key={sample.level}><a href={sample.pdf} target="_blank" rel="noopener noreferrer" aria-label={`打开 RAZ ${sample.level} ${sample.title} 完整 PDF`}><img src={sample.preview} alt={`RAZ ${sample.level}《${sample.title}》阅读内页`} loading="lazy" /><span>打开完整 PDF ↗</span></a><figcaption><strong>RAZ {sample.level}</strong><span>{sample.title}</span></figcaption></figure>)}</div></section>}
     {camp.service && <section className="cd-section"><h2>孩子有人带，家长有人答</h2><div className="cd-service">{camp.service.map((service, i) => <div key={service.title}><span className="cd-small-icon"><LearningIcon type={i === 0 ? 'phone' : 'people'} /></span><div><h3>{service.title === 'APP 打卡' ? 'APP 每日任务' : '微信双师陪伴'}</h3>{service.text && <p>{service.text}</p>}{service.lines?.map((line) => <p key={line}>{plain(line)}</p>)}</div></div>)}</div>{camp.content?.mail && <p className="cd-mail"><span aria-hidden="true">↳</span>{camp.content.mail}</p>}</section>}
     {camp.comingSoon && <section className="cd-section cd-pending"><h2>{camp.name}正在筹备中</h2><p>具体任务与服务安排待上线后公布。想提前了解，可扫码咨询顾问老师。</p></section>}
     <section className="cd-contact">

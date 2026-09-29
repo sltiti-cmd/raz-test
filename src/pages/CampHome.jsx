@@ -6,6 +6,7 @@ import { campThemeStyle } from '../data/campThemes'
 import '../camp-home.css'
 
 const tones = ['cream', 'peach', 'sage', 'blue', 'blue', 'peach', 'sage', 'cream']
+const stageLabels = { d: '绘本朗读', g: '桥梁过渡' }
 const support = [
   { topic: '方法', solo: '陪读靠摸索，遇到问题难判断', camp: '老师答疑，指导阅读方法' },
   { topic: '内容', solo: '书目与任务零散', camp: '主题精泛读，连接输入与输出' },
@@ -31,14 +32,13 @@ export default function CampHome() {
     <main className="camp-circle-page">
       <header className="cc-top">
         <a href="#camp-title" className="cc-brand"><span aria-hidden="true" />小麦陪跑营</a>
-        <nav aria-label="主导航"><a href="#camps">各营介绍</a><Link to="/">级别测试 ↗</Link></nav>
       </header>
 
       <section className="cc-banner" aria-labelledby="camp-title">
         <div className="cc-banner-copy">
           <p className="cc-eyebrow">XIAOMAI · READING JOURNEY</p>
           <h1 id="camp-title">小麦陪跑营介绍</h1>
-          <ul className="cc-features"><li>测评定级</li><li>主题精泛读</li><li>每日任务</li><li>双师陪伴</li></ul>
+          <ul className="cc-features"><li>口语复述与沉浸式 Project 项目表达</li><li>主题精泛读</li><li>每日任务</li><li>双师陪伴</li></ul>
           <p className="cc-banner-note">30 多人精品小营，听说读写一站式规划</p>
         </div>
         <img className="cc-banner-art" src="/images/camps/camp-book-v1.webp" width="300" height="200" alt="" />
@@ -46,17 +46,17 @@ export default function CampHome() {
 
       <section className="cc-section cc-directory" id="camps">
         <div className="cc-directory-heading">
-          <div><h2>找到孩子现在这一站</h2><p className="cc-intro">从听说启蒙到学术阅读，点击圆圈了解各营。</p></div>
+          <div><h2>两个月一级别，稳稳进阶</h2></div>
           <div className="cc-legend"><span><i />1 阶 · 自主阅读</span><span><i />2 阶 · 学术阅读</span></div>
         </div>
         <div className="cc-camps">
           {camps.map((camp, index) => (
-            <Link to={`/camp/${camp.id}`} className={`cc-camp cc-tone-${tones[index]}${camp.tier === 2 ? ' cc-stage-two' : ''}`} key={camp.id} style={campThemeStyle(camp.id)} aria-label={`${camp.name}，RAZ ${camp.range}，${camp.keyword}${camp.comingSoon ? '，待上线' : ''}`}>
+            <Link to={`/camp/${camp.id}`} className={`cc-camp cc-tone-${tones[index]}${camp.tier === 2 ? ' cc-stage-two' : ''}`} key={camp.id} style={campThemeStyle(camp.id)} aria-label={`${camp.name}，RAZ ${camp.range}，${stageLabels[camp.id] || camp.keyword}${camp.comingSoon ? '，待上线' : ''}`}>
               <span className="cc-orb"><CampIcon index={index} /><strong>{camp.name}</strong></span>
               {camp.isNew && <span className="cc-status">新上线</span>}
               {camp.comingSoon && <span className="cc-status cc-soon">待上线</span>}
               <span className="cc-range">RAZ {camp.range.replaceAll('-', '–')}</span>
-              <span className="cc-goal">{camp.keyword}<span aria-hidden="true"> ↗</span></span>
+              <span className="cc-goal">{stageLabels[camp.id] || camp.keyword}{!camp.comingSoon && <> <span aria-hidden="true">·</span> {camp.duration}</>}</span>
             </Link>
           ))}
         </div>

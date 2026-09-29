@@ -40,11 +40,12 @@
 .cd-stop.is-current .cd-stop-orb { outline-color: var(--rim); }
 .cd-stop-range { color: var(--cc-muted); font-size: 12px; padding-top: 7px; }
 .cd-current { position: absolute; bottom: 0; font-size: 10px; background: var(--orb); color: var(--icon); padding: 1px 11px; border-radius: 14px; font-weight: 700; }
-.cd-focus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-.cd-focus li { display: flex; align-items: center; gap: 14px; }
-.cd-number { width: 47px; height: 47px; display: grid; place-items: center; flex-shrink: 0; background: var(--camp-soft); color: var(--camp-ink); border-radius: 50%; font-size: 17px; font-weight: 750; }
-.cd-focus li:nth-child(2) .cd-number { background: #fbefd0; color: #87631a; }
-.cd-focus li:nth-child(3) .cd-number { background: #d6eee8; color: #326f62; }
+.cd-overview-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding-bottom: 19px; border-bottom: 1px solid var(--cc-rule); }
+.cd-overview-columns > div + div { border-left: 1px solid var(--cc-rule); padding-left: 30px; }
+.cd-overview-columns h3 { margin-bottom: 10px; color: var(--camp-ink); font-size: 17px; }
+.cd-focus { display: grid; gap: 10px; }
+.cd-focus li { display: flex; align-items: baseline; gap: 12px; font-size: 15px; font-weight: 680; }
+.cd-number { flex-shrink: 0; color: var(--camp-ink); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .06em; }
 .camp-detail-page .cd-abilities { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 25px; margin-top: 18px; color: var(--cc-muted); font-size: 13px; }
 .cd-abilities li::before { content: '·'; margin-right: 8px; color: var(--camp-ink); font-weight: 800; }
 .camp-detail-page .cd-metrics { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 22px; border-top: 1px solid var(--cc-rule); padding-top: 20px; }
@@ -60,11 +61,12 @@
 .cd-goals dd span { color: var(--cc-muted); font-size: 11px; }
 .camp-detail-page .cd-stage-goal { font-size: 13px; margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--cc-rule); color: var(--cc-muted); }
 .cd-stage-goal > span { font-weight: 700; color: var(--camp-ink); margin-right: 12px; }
-.cd-suitable { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 25px; font-size: 14px; color: var(--cc-muted); }
+.cd-suitable { display: grid; gap: 9px; font-size: 13px; color: var(--cc-muted); }
 .cd-suitable li { display: flex; gap: 11px; align-items: baseline; }
 .cd-suitable li > span { display: inline-grid; place-items: center; width: 21px; height: 21px; flex-shrink: 0; background: var(--camp-soft); color: var(--camp-ink); border-radius: 50%; font-size: 12px; font-weight: 750; }
 .cd-daily-section > h2 { margin-bottom: 7px; }
 .cd-cycle { color: var(--camp-ink); font-size: 14px; font-weight: 650; }
+.cd-cycle mark { color: #9a383d; background: #fce3dd; padding: 1px 5px 2px; border-radius: 3px; font-weight: 800; }
 .cd-plan { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 30px; margin-top: 22px; }
 .cd-days > li { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 17px; position: relative; padding-bottom: 20px; }
 .cd-days > li:not(:last-child)::before { content: ''; position: absolute; left: 24px; top: 54px; bottom: 5px; border-left: 2px dotted #c4d2cf; }
@@ -119,13 +121,16 @@
 .cd-output-value { color: var(--camp-ink); font-size: 36px; font-weight: 800; white-space: nowrap; }
 .cd-output-value small { font-size: 13px; margin-left: 4px; }
 .cd-output p { font-size: 12px; color: var(--cc-muted); }
-.cd-samples { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; }
-.cd-samples:has(figure:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.cd-samples figure { display: flex; align-items: center; justify-content: center; gap: 18px; min-width: 0; }
-.cd-samples a { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; max-width: 55%; }
-.cd-samples img { display: block; width: auto; max-width: 100%; max-height: 200px; object-fit: contain; }
-.cd-samples a > span { font-size: 10px; color: var(--cc-muted); padding-top: 5px; }
-.cd-samples figcaption { font-size: 13px; font-weight: 650; }
+.cd-sample-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; margin-bottom: 17px; }
+.cd-sample-heading p { font-size: 13px; color: var(--cc-muted); }
+.cd-samples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.cd-samples figure { min-width: 0; }
+.cd-samples a { display: block; color: inherit; }
+.cd-samples img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #f7f8f5; border: 1px solid var(--cc-rule); }
+.cd-samples a > span { display: block; margin-top: 8px; font-size: 12px; color: var(--camp-ink); font-weight: 750; }
+.cd-samples figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-top: 7px; font-size: 13px; color: var(--cc-muted); }
+.cd-samples figcaption strong { font-weight: 800; color: var(--cc-ink); }
+.cd-samples figcaption span { overflow-wrap: anywhere; }
 .cd-service { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 .cd-service > div { display: flex; gap: 16px; }
 .cd-service > div + div { border-left: 1px solid var(--cc-rule); padding-left: 25px; }
@@ -152,6 +157,7 @@
   .cd-stop-orb { width: 70px; height: 70px; }
   .cd-stop-orb strong { font-size: 12px; }
   .cd-stop:not(:last-child)::after { left: calc(50% + 37px); right: calc(-50% + 25px); top: 35px; }
+  .cd-samples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cd-plan { gap: 22px; }
   .cd-rhythm { padding-left: 18px; }
   .cd-topics { columns: 1; }
@@ -170,10 +176,8 @@
   .cd-stop-orb { width: 77px; height: 77px; }
   .cd-stop:nth-child(4n)::after { display: none; }
   .cd-stop:not(:last-child)::after { left: calc(50% + 45px); right: calc(-50% + 33px); top: 39px; }
-  .cd-focus { gap: 15px; }
-  .cd-focus li { gap: 8px; }
-  .cd-focus h3 { font-size: 15px; }
-  .cd-number { width: 36px; height: 36px; font-size: 14px; }
+  .cd-overview-columns { gap: 20px; }
+  .cd-overview-columns > div + div { padding-left: 20px; }
   .cd-plan { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 16px; }
   .cd-days > li { grid-template-columns: 41px minmax(0, 1fr); gap: 12px; }
   .cd-days > li:not(:last-child)::before { left: 20px; top: 45px; }
@@ -182,8 +186,7 @@
   .cd-rhythm .cd-small-icon { width: 32px; height: 32px; }
   .cd-rhythm .cd-small-icon svg { width: 20px; height: 20px; }
   .cd-rhythm h3 { font-size: 15px; }
-  .cd-samples figure { flex-direction: column; gap: 10px; }
-  .cd-samples a { max-width: 100%; }
+  .cd-samples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
   .cd-re-feature { gap: 9px; margin-top: 16px !important; padding-bottom: 9px; }
@@ -211,9 +214,9 @@
   .cd-stop-range { font-size: 10px; }
   .cd-stop:not(:last-child)::after { top: 33px; left: calc(50% + 35px); right: calc(-50% + 30px); }
   .cd-current { font-size: 9px; padding: 1px 8px; }
-  .cd-focus { gap: 10px; }
-  .cd-focus li { align-items: flex-start; flex-direction: column; gap: 7px; }
-  .cd-focus h3 { font-size: 13px; }
+  .cd-overview-columns { grid-template-columns: 1fr; gap: 19px; }
+  .cd-overview-columns > div + div { border-left: 0; border-top: 1px solid var(--cc-rule); padding: 17px 0 0; }
+  .cd-focus li { font-size: 13px; gap: 9px; }
   .camp-detail-page .cd-abilities { grid-template-columns: 1fr; font-size: 12px; gap: 6px; }
   .cd-metrics dd { font-size: 22px; }
   .cd-metrics dt { font-size: 10px; }
@@ -248,10 +251,11 @@
   .cd-includes ul { font-size: 12px; gap: 7px 17px; }
   .cd-output { grid-template-columns: 1fr; gap: 16px; }
   .cd-output-value { font-size: 30px; }
-  .cd-samples { gap: 20px; }
-  .cd-samples:has(figure:nth-child(3)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cd-samples img { max-height: 160px; }
-  .cd-samples figcaption { font-size: 11px; text-align: center; }
+  .cd-sample-heading { display: block; }
+  .cd-sample-heading p { font-size: 11px; margin-top: 4px; }
+  .cd-samples { display: flex; overflow-x: auto; gap: 14px; margin: 0 -20px; padding: 2px 20px 15px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
+  .cd-samples figure { flex: 0 0 min(78vw, 320px); scroll-snap-align: start; }
+  .cd-samples figcaption { font-size: 12px; }
   .cd-service { grid-template-columns: 1fr; gap: 20px; }
   .cd-service > div + div { border-left: 0; padding-left: 0; }
   .cd-service p { font-size: 12px; }

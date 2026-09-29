@@ -24,20 +24,18 @@ body:has(.benchmark-page) { background: #fffefa; }
 .bm-hero-art { width: 110%; max-width: none; height: auto; margin-left: -6%; }
 .bm-levels { padding-top: 8px; scroll-margin-top: 24px; }
 .benchmark-home h2 { font-size: clamp(25px, 3.5vw, 36px); letter-spacing: -.6px; font-weight: 800; margin: 0; }
-.bm-level-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 42px 30px; margin: 33px 0 65px; }
-.bm-level { --orb-fill: #e6f3f0; --orb-edge: #9ccdc1; --orb-ink: #303a5b; --orb-radius: 45% 54% 47% 52% / 49% 45% 54% 51%; --orb-size: clamp(128px,18vw,185px); display: flex; align-items: center; flex-direction: column; position: relative; text-align: center; }
+.bm-level-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 36px 30px; margin: 30px 0 60px; }
+.bm-level { --orb-fill: #e6f3f0; --orb-edge: #9ccdc1; --orb-ink: #303a5b; --orb-radius: 45% 54% 47% 52% / 49% 45% 54% 51%; --orb-size: clamp(116px,15vw,155px); display: flex; align-items: center; flex-direction: column; position: relative; text-align: center; }
 .bm-level-d { --orb-fill: #faece7; --orb-edge: #e9b29e; --orb-radius: 47% 52% 45% 54% / 51% 46% 53% 47%; }
 .bm-level-g { --orb-fill: #fff5d5; --orb-edge: #dfc563; --orb-radius: 51% 46% 53% 47% / 46% 54% 48% 52%; }
 .bm-level-k { --orb-fill: #e6f2f9; --orb-edge: #8cbcd3; --orb-radius: 46% 53% 48% 52% / 52% 47% 54% 45%; }
 .bm-level-o { --orb-fill: #f9ebe8; --orb-edge: #d3a49c; --orb-radius: 52% 46% 54% 47% / 47% 53% 46% 54%; }
 .bm-level-r { --orb-fill: #e5f2ee; --orb-edge: #83b2a5; --orb-radius: 47% 54% 45% 53% / 52% 46% 54% 47%; }
 .bm-level-orb { display: grid; place-items: center; position: relative; width: var(--orb-size); height: var(--orb-size); border-radius: var(--orb-radius); border: 11px solid #fffefa; outline: 2px solid var(--orb-edge); background: var(--orb-fill); color: var(--orb-ink); transition: transform .2s ease; }
-.bm-level-orb > span { font-size: clamp(52px,7vw,76px); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1; }
+.bm-level-orb > span { font-size: clamp(48px,6vw,66px); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1; }
 .bm-level:hover .bm-level-orb { transform: translateY(-4px) rotate(-2deg); }
 .bm-level:active .bm-level-orb { transform: scale(.97); }
-.bm-level:not(:nth-child(3n))::after { content: ''; position: absolute; top: calc(var(--orb-size)/2); left: calc(50% + var(--orb-size)/2 + 22px); width: calc(100% - var(--orb-size) - 14px); border-top: 3px dotted #b0cbdc; }
 .bm-level-label { font-size: 19px; font-weight: 750; margin-top: 14px; }
-.bm-level-label > span { margin-left: 7px; font-weight: 400; }
 .bm-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 25px 0 38px; border-top: 1px solid var(--bm-line); }
 .bm-footer .bm-brand strong { font-size: 17px; }
 .bm-footer .bm-brand-caption, .bm-footer > span { font-size: 12px; color: var(--bm-muted); }
@@ -167,16 +165,13 @@ body:has(.benchmark-page) { background: #fffefa; }
   .bm-eyebrow { font-size: 10px; letter-spacing: 2px; margin-bottom: 12px; }
   .bm-hero h1 { font-size: 35px; line-height: 1.4; margin-bottom: 14px; letter-spacing: -.8px; }
   .bm-hero .bm-intro { font-size: 14px; max-width: 290px; }
-  .bm-hero-art { width: 88%; max-width: 340px; margin: 3px 0 -5px auto; }
+  .bm-hero-art { width: 70%; max-width: 250px; margin: 0 4px -5px auto; }
   .benchmark-home h2 { font-size: 25px; }
-  .bm-level-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 31px 24px; margin: 27px 0 39px; }
-  .bm-level { --orb-size: clamp(108px,32vw,160px); }
+  .bm-level-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 24px; margin: 25px 0 39px; }
+  .bm-level { --orb-size: clamp(94px,27vw,118px); }
   .bm-level-orb { border-width: 5px; }
-  .bm-level-orb > span { font-size: 51px; }
+  .bm-level-orb > span { font-size: 43px; }
   .bm-level-label { font-size: 16px; margin-top: 12px; }
-  .bm-level-label > span { margin-left: 4px; }
-  .bm-level:not(:nth-child(3n))::after { display: none; }
-  .bm-level:nth-child(odd)::after { display: block; content: ''; position: absolute; top: calc(var(--orb-size)/2); left: calc(50% + var(--orb-size)/2 + 10px); width: calc(100% - var(--orb-size) + 4px); border-top: 2px dotted #b0cbdc; }
   .bm-footer { flex-wrap: wrap; gap: 13px; padding: 23px 0; }
   .bm-footer .bm-brand { gap: 8px; }
   .bm-footer .bm-brand strong { font-size: 15px; }

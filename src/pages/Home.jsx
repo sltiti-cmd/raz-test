@@ -3,7 +3,7 @@ import { levelList } from '../data/levels/index'
 import BenchmarkBrand from '../components/BenchmarkBrand'
 import '../benchmark.css'
 
-const levelLabels = { A: '自拼认读', D: '流利朗读', G: '自主阅读', K: '初章阅读', O: '中高章阅读', R: '学术预备' }
+const levelLabels = { A: '自拼认读', D: '绘本朗读', G: '桥梁过渡', K: '初章阅读', O: '中高章阅读', R: '学术预备' }
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
             {levelList.map(level => (
               <Link key={level.id} to={`/test/${level.id.toLowerCase()}`} className={`bm-level bm-level-${level.id.toLowerCase()}`} aria-label={`进入 ${level.id} 级阅读测试 · ${levelLabels[level.id]}`}>
                 <span className="bm-level-orb"><span>{level.id}</span></span>
-                <span className="bm-level-label">{levelLabels[level.id]} <span aria-hidden="true">→</span></span>
+                <span className="bm-level-label">{levelLabels[level.id]}</span>
               </Link>
             ))}
           </div>
