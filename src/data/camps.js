@@ -23,7 +23,7 @@ export const camps = [
       { src: img('aa-3.png'), cap: 'Wow English TV' },
     ],
     suitableHeading: '适合从听说启蒙开始的孩子',
-    suitable: ['零基础或微基础，主要通过儿歌、动画接触英语', '还不能稳定认词，先积累听力词汇和语感', '从每日听读与模仿开始建立习惯'],
+    suitable: ['零基础或微基础，主要通过儿歌、动画接触英语', '暂未稳定认词，适合从听读模仿建立习惯'],
     goals: [
       { k: '阶段目标', v: 'AA', d: '兴趣与语感打底' },
       { k: '阶段用时', v: '5个月', d: '7 天一个周期' },
@@ -71,7 +71,7 @@ export const camps = [
       { src: img('ac-2.png'), cap: 'C 级别 · 每本 55 词' },
     ],
     suitableHeading: '适合开始指读认词的孩子',
-    suitable: ['能听懂熟悉话题的短句，开始指读 RAZ A–C', '对常见词有印象，准备建立字母与发音连接', '当前级别测试文章 quiz 正确率 ≥ 80%'],
+    suitable: ['能听懂熟悉话题短句，开始指读 RAZ A–C', '想建立字母与发音连接；当前级别测试 quiz 正确率 ≥ 80%'],
     goals: [
       { k: '阶段目标', v: 'A1', d: '剑少1' },
       { k: '阶段用时', v: '6个月', d: '每级别 2 个月' },
@@ -114,7 +114,7 @@ export const camps = [
       { src: img('df-2.png'), cap: 'F 级别 · 每本 138 词' },
     ],
     suitableHeading: '适合从简单句走向段落阅读的孩子',
-    suitable: ['能读 RAZ A–C 的简单句，准备挑战 D–F 段落', '朗读还不够连贯，想练到更流利', '当前级别测试文章 quiz 正确率 ≥ 80%'],
+    suitable: ['能读 RAZ A–C 简单句，准备进入 D–F 段落阅读', '想提升朗读流利度；当前级别测试 quiz 正确率 ≥ 80%'],
     goals: [
       { k: '阶段目标', v: 'A1', d: '剑少2' },
       { k: '阶段用时', v: '6个月', d: '每级别 2 个月' },
@@ -157,7 +157,7 @@ export const camps = [
       { src: img('gj-2.png'), cap: 'J 级别 · 每本 337 词' },
     ],
     suitableHeading: '适合从朗读转向自主默读的孩子',
-    suitable: ['能较流利地读 RAZ D–F，准备进入 G–J', '开始读桥梁书，能跟上较完整的故事情节', '当前级别测试文章 quiz 正确率 ≥ 80%'],
+    suitable: ['能较流利地读 RAZ D–F，开始读桥梁书', '准备过渡自主默读；当前级别测试 quiz 正确率 ≥ 80%'],
     goals: [
       { k: '阶段目标', v: 'KET', d: '桥梁过渡' },
       { k: '阶段用时', v: '8个月', d: '每级别 2 个月' },
@@ -200,7 +200,7 @@ export const camps = [
       { src: img('kn-2.png'), cap: 'N 级别 · 每本 635 词' },
     ],
     suitableHeading: '适合开始读初章书的孩子',
-    suitable: ['能自主读 RAZ G–J，准备进入 K–N 与初章书', '希望提高默读速度，读完能说清情节与信息', '当前级别测试文章 quiz 正确率 ≥ 80%'],
+    suitable: ['能自主读 RAZ G–J，准备进入 K–N 初章书', '想提高默读与表达能力；当前级别测试 quiz 正确率 ≥ 80%'],
     goals: [
       { k: '阶段目标', v: 'KET+', d: '初章书阅读' },
       { k: '阶段用时', v: '8个月', d: '每级别 2 个月' },
@@ -243,7 +243,7 @@ export const camps = [
       { src: img('oq-2.png'), cap: 'P 级别 · Dirty Dust' },
     ],
     suitableHeading: '适合正在读中章书的孩子',
-    suitable: ['能独立读初章书，正在进入中章书', '读较长章节时，想练习把握结构、人物与观点', '当前级别测试文章 quiz 正确率 ≥ 80%'],
+    suitable: ['能独立读初章书，准备进入中章书', '想读懂长章节的结构与观点；当前级别测试 quiz 正确率 ≥ 80%'],
     goals: [
       { k: '阶段目标', v: 'PET', d: '中高章过渡' },
       { k: '阶段用时', v: '6个月', d: '每级别 2 个月' },
@@ -284,10 +284,10 @@ export const camps = [
     focus: ['深度精读', '学术写作', '思辨演讲'],
     mainLine: {
       main: { title: 'Reading Explorer 2（第3版）· 24 篇', text: '国家地理学术文章，覆盖科技、人文、自然。每篇由专业原版老师分三个阶段精讲 60-80 分钟。' },
-      side: { title: 'RAZ R / S / T', text: '+ 辩论与时文 + 传统文化 + 国际大奖小说，围绕 RE 主题完成主题式阅读。' },
+      side: { title: '围绕 RE 主题延伸阅读', items: ['RAZ R / S / T 同主题泛读', '时文热点与思辨文章', '中国文化专题', '国际大奖小说 5 本', '科普播客'] },
     },
     suitableHeading: '适合从中高章走向学术阅读的孩子',
-    suitable: ['已读过哈利波特等中高章书，能稳定自主阅读', '准备读 Reading Explorer 2 学术文章', '希望围绕同一主题，把阅读延伸到演讲和写作'],
+    suitable: ['能稳定阅读中高章书，准备读 Reading Explorer 2', '希望围绕主题练习演讲与学术写作'],
     goals: [
       { k: '剑桥五级', v: 'PET+', d: '为 FCE 预备' },
       { k: '阶段用时', v: '6个月', d: '24 周 · 24 组主题' },
@@ -338,7 +338,7 @@ export const camps = [
     intro: '秋实营是陪跑营 2 阶的第二站（待上线）。以 Reading Explorer 3 为精读主线，搭配 RAZ U/V/W，延续思辨演讲 + 学术写作的输出闭环，结束后达到 FCE 能力。',
     focus: ['学术进阶', 'FCE 能力'],
     suitableHeading: '适合继续进阶学术阅读的孩子',
-    suitable: ['能阅读 Reading Explorer 2 难度的文章', '准备进入 RE3 与 RAZ U–W 的长篇学术阅读', '希望继续练习论证写作与思辨表达'],
+    suitable: ['能读 Reading Explorer 2 难度的文章，准备进入 RE3 与 RAZ U–W', '希望继续练习论证写作与思辨表达'],
     mainLine: {
       main: { title: 'Reading Explorer 3（第3版）', text: '更高阶的国家地理学术文章精读，继续深化阅读策略与学术写作。' },
       side: { title: 'RAZ U / V / W', text: '+ 辩论与时文 + 传统文化 + 国际大奖小说。' },

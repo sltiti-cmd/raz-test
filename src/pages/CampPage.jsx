@@ -38,15 +38,8 @@ function Objectives({ camp }) {
   const stats = camp.stats
   const metrics = stats && camp.tier === 1 ? [['主题式阅读', stats.themes], ['阅读本数', approximateBooks(stats.books, camp.id)], ['阅读量', stats.words], ['口语 / 输出', stats.oral]] : []
   return <section className="cd-section cd-overview" aria-labelledby="objectives-title">
-    <h2 id="objectives-title">这一阶段，练什么、适合谁</h2>
-    <div className="cd-overview-columns">
-      <div>
-        <h3>重点练什么</h3>
-        {camp.focus && <ol className="cd-focus">{camp.focus.map((focus, i) => <li key={focus}><span className="cd-number">{String(i + 1).padStart(2, '0')}</span><span>{focus}</span></li>)}</ol>}
-      </div>
-      {camp.suitable && <div><h3>{camp.suitableHeading}</h3><ul className="cd-suitable">{camp.suitable.map((item) => <li key={item}><span aria-hidden="true">✓</span>{item}</li>)}</ul></div>}
-    </div>
-    {camp.abilities && <ul className="cd-abilities">{camp.abilities.map((item) => <li key={item}>{plain(item)}</li>)}</ul>}
+    <h2 id="objectives-title">{camp.suitableHeading || '适合谁'}</h2>
+    {camp.suitable && <ul className="cd-suitable">{camp.suitable.map((item) => <li key={item}><span aria-hidden="true">✓</span>{item}</li>)}</ul>}
     {metrics.length > 0 && <dl className="cd-metrics">{metrics.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}
     {stats && <p className="cd-stat-note">{stats.listening !== '—' && <>听力量 {stats.listening}<span aria-hidden="true"> · </span></>}{stats.vocab}</p>}
     <dl className="cd-goals">{camp.goals.map((goal) => <div key={goal.k}><dt>{goal.k}</dt><dd><strong>{goal.v}</strong>{goal.d && <span>{goal.d}</span>}</dd></div>)}</dl>
@@ -66,7 +59,7 @@ function DailyPlan({ camp }) {
         <div><h3>{day.t}</h3><ul className="cd-task-list">{taskItems(day.items).map((item) => <li key={item}>{item}</li>)}</ul></div>
       </li>)}</ol>
       {rhythm && <aside className="cd-rhythm" aria-label="学习节奏与用时">
-        {[['audio', '每日贯穿', rhythm.daily], ['repeat', camp.tier === 2 ? '每周输出' : '周期穿插', rhythm.periodic], ['clock', camp.tier === 2 ? '重要节点' : '建议用时', rhythm.time]].map(([icon, title, items]) => <div className="cd-rhythm-group" key={title}><span className="cd-small-icon"><LearningIcon type={icon} /></span><div><h3>{title}</h3><ul>{items.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div></div>)}
+        {([['audio', '每日贯穿', rhythm.daily], ['repeat', camp.tier === 2 ? '每周输出' : '周期穿插', rhythm.periodic], ...(camp.tier === 2 ? [] : [['clock', '建议用时', rhythm.time]])]).map(([icon, title, items]) => <div className="cd-rhythm-group" key={title}><span className="cd-small-icon"><LearningIcon type={icon} /></span><div><h3>{title}</h3><ul>{items.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div></div>)}
       </aside>}
     </div>
   </section>
@@ -78,12 +71,12 @@ function LearningContent({ camp }) {
   return <section className="cd-section cd-learning" aria-labelledby="learning-title">
     <h2 id="learning-title">怎么学？输入与输出连起来</h2>
     <ol className="cd-learning-path">{steps.map(([icon, label]) => <li key={label}><span><LearningIcon type={icon} /></span><strong>{label}</strong></li>)}</ol>
-    {camp.mainLine && <div className="cd-main-lines"><div><span>精读主线</span><h3>{camp.mainLine.main.title}</h3><p>{camp.mainLine.main.text}</p></div><div><span>泛读搭配</span><h3>{camp.mainLine.side.title}</h3><p>{camp.mainLine.side.text}</p></div></div>}
+    {camp.mainLine && <div className="cd-main-lines"><div><span>精读主线</span><h3>{camp.mainLine.main.title}</h3><p>{camp.mainLine.main.text}</p></div><div><span>泛读搭配</span><h3>{camp.mainLine.side.title}</h3>{camp.mainLine.side.items ? <ul className="cd-side-items">{camp.mainLine.side.items.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{camp.mainLine.side.text}</p>}</div></div>}
     {camp.content && <>
       <p className="cd-content-cycle">{camp.content.cycle}</p>
-      <div className="cd-content-columns">
+      <div className={`cd-content-columns${camp.id === 'r' ? ' cd-content-columns-single' : ''}`}>
         <div><h3>{camp.content.intensiveTitle}</h3><ul className={camp.content.intensive.length > 8 ? 'cd-topics' : undefined}>{camp.content.intensive.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div>
-        <div><h3>{camp.id === 'aa' ? '启蒙搭配' : '泛读做拓展'}</h3><ul>{camp.content.extensive.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div>
+        {camp.id !== 'r' && <div><h3>{camp.id === 'aa' ? '启蒙搭配' : '泛读做拓展'}</h3><ul>{camp.content.extensive.map((item) => <li key={item}>{plain(item)}</li>)}</ul></div>}
       </div>
       <div className="cd-learning-note"><LearningIcon type="speech" /><div><h3>{camp.id === 'aa' ? '听说互动，从愿意开口开始' : camp.tier === 2 ? '演讲与写作，有输出，也有反馈' : '口语输出，不止读出声音'}</h3>{camp.content.mix.map((mix) => <p key={mix}>{mix}</p>)}{camp.id !== 'aa' && camp.tier === 1 && <p>复述与主题口语表达，由具备专八水平的阅读老师一对一点评。</p>}</div></div>
       {camp.content.oneEquals && <div className="cd-includes"><h3>1 个{camp.name}，包含这些学习内容</h3><ul>{camp.content.oneEquals.map((item) => <li key={item}>{item}</li>)}</ul></div>}
