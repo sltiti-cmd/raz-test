@@ -1,4 +1,10 @@
-body:has(.camp-circle-page) { background: #fffefa; }
+body:has(.camp-circle-page) {
+  background:
+    radial-gradient(circle at 8% 15%, rgba(246, 226, 174, .31), transparent 18rem),
+    radial-gradient(circle at 91% 38%, rgba(188, 225, 195, .3), transparent 25rem),
+    radial-gradient(circle at 19% 87%, rgba(251, 210, 198, .21), transparent 23rem),
+    #fffefa;
+}
 .camp-circle-page { --cc-ink: #213d50; --cc-muted: #657888; --cc-green: #397553; --cc-rule: #dce5e7; max-width: 1120px; margin: 0 auto; padding: 0 38px; color: var(--cc-ink); font-family: 'Plus Jakarta Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height: 1.68; font-optical-sizing: auto; }
 .camp-circle-page * { box-sizing: border-box; }
 .camp-circle-page a { color: inherit; text-decoration: none; }

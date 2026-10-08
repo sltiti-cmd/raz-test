@@ -3,6 +3,14 @@
   background: #fffdf9;
 }
 
+.lt-shell.lt-phase-choose {
+  background:
+    radial-gradient(circle at 9% 17%, rgba(184, 221, 240, .36), transparent 18rem),
+    radial-gradient(circle at 91% 39%, rgba(181, 226, 215, .32), transparent 24rem),
+    radial-gradient(circle at 20% 88%, rgba(225, 211, 239, .19), transparent 22rem),
+    #fffdf9;
+}
+
 .lt-shell .lt-aurora {
   display: none;
 }

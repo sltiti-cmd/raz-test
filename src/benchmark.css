@@ -1,6 +1,15 @@
 /* Scoped to Benchmark landing/report: assessment and camp pages retain their styling. */
 body:has(.benchmark-page) { background: #fffefa; }
 .benchmark-page { --bm-ink: #17364f; --bm-muted: #647c91; --bm-line: #dfe7ea; max-width: 1120px; margin: 0 auto; padding: 0 42px; color: var(--bm-ink); background: #fffefa; font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height: 1.65; }
+/* Match placement's softly shifting page color without changing the report. */
+body:has(.benchmark-home) {
+  background:
+    radial-gradient(circle at 8% 18%, rgba(174, 225, 207, .36), transparent 18rem),
+    radial-gradient(circle at 92% 38%, rgba(251, 212, 191, .3), transparent 24rem),
+    radial-gradient(circle at 20% 88%, rgba(245, 225, 159, .18), transparent 22rem),
+    #fffefa;
+}
+.benchmark-home { background: transparent; }
 .benchmark-page a { color: inherit; text-decoration: none; }
 .benchmark-page a:focus-visible, .benchmark-page button:focus-visible, .benchmark-page summary:focus-visible { outline: 3px solid #407d9d; outline-offset: 6px; border-radius: 4px; }
 .bm-topbar { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--bm-line); }
