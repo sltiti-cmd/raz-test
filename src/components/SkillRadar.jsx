@@ -32,11 +32,12 @@ export default function SkillRadar({ groups = [] }) {
         {[25, 50, 75, 100].map(value => <text key={value} x="218" y={185 - radius * value / 100 + 4} className="br-radar-tick">{value}</text>)}
         {dataPoints.map((point, index) => <circle key={activeGroups[index].key} cx={point.x} cy={point.y} r="4.5" fill="#77ad70" />)}
         {activeGroups.map((group, index) => {
-          const point = polarPoint(index, activeGroups.length, 145)
+          const angle = -Math.PI / 2 + Math.PI * 2 * index / activeGroups.length
+          const point = polarPoint(index, activeGroups.length, Math.abs(Math.cos(angle)) > 0.75 ? 135 : 140)
           const anchor = point.x < 194 ? 'end' : point.x > 226 ? 'start' : 'middle'
           return <text key={group.key} x={point.x} y={point.y} textAnchor={anchor} className="br-radar-label">
             <tspan x={point.x}>{group.label}</tspan>
-            <tspan x={point.x} dy="20" className="br-radar-value">{Math.round(group.correct / group.total * 100)}%</tspan>
+            <tspan x={point.x} dy="22" className="br-radar-value">{Math.round(group.correct / group.total * 100)}%</tspan>
           </text>
         })}
       </svg>

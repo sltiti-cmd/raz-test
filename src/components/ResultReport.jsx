@@ -37,7 +37,7 @@ const ResultReport = forwardRef(function ResultReport(
         </div>
         <div className="br-heading-dots" aria-hidden="true"><i /><i /><i /></div>
       </header>
-      <section className="br-summary" aria-label="本次测评结果">
+      <section className="br-summary" data-report-part="summary" aria-label="本次测评结果">
         <div className={`br-score ${canReadLevel ? '' : 'br-score-review'}`}>
           <svg viewBox="0 0 180 180" aria-hidden="true">
             <circle cx="90" cy="90" r="78" fill="none" stroke="#e9f3e5" strokeWidth="13" />
@@ -53,7 +53,7 @@ const ResultReport = forwardRef(function ResultReport(
         </div>
       </section>
 
-      <section className="br-section" aria-labelledby="br-dimensions-title">
+      <section className="br-section" data-report-part="dimensions" aria-labelledby="br-dimensions-title">
         <h2 id="br-dimensions-title">这次阅读，表现在哪里？</h2>
         <div className="br-dimensions">
           <SkillRadar groups={dimensions} />
@@ -74,7 +74,7 @@ const ResultReport = forwardRef(function ResultReport(
         <p className="br-disclaimer">ⓘ 仅反映本次题型表现，不等同于标准化能力评分。</p>
       </section>
 
-      <section className="br-section" aria-labelledby="br-genre-title">
+      <section className="br-section" data-report-part="genres" aria-labelledby="br-genre-title">
         <h2 id="br-genre-title">不同文体的表现</h2>
         <div className="br-genres">
           {[['虚构类', fictionTotal, fictionWrong], ['非虚构类', nonfictionTotal, nonfictionWrong]].map(([label, count, wrong], index) => (
@@ -87,16 +87,16 @@ const ResultReport = forwardRef(function ResultReport(
         <p className="br-genre-note">{genreNote}</p>
       </section>
 
-      <section className="br-section" aria-labelledby="br-wrong-title">
+      <section className="br-section" data-report-part="wrong" aria-labelledby="br-wrong-title">
         <h2 id="br-wrong-title">{wrongQuestions.length ? `这 ${wrongQuestions.length} 道题，值得再看一遍` : '本次全部答对，继续保持'}</h2>
         {wrongQuestions.length > 0 ? <div className="br-table-wrap"><table className="br-wrong-table">
           <caption className="sr-only">错题及答案对照</caption>
           <thead><tr><th scope="col">题号</th><th scope="col">关注题型</th><th scope="col">你的答案</th><th scope="col">正确答案</th></tr></thead>
-          <tbody>{wrongQuestions.map(question => <tr key={question.id}><td><span>Q{question.id}</span></td><td>{question.skill}</td><td>{question.userAnswer}</td><td>{question.correctAnswer}</td></tr>)}</tbody>
+          <tbody>{wrongQuestions.map(question => <tr key={question.id}><td><span>Q{question.id}</span></td><td>{question.skill}</td><td><span className="br-answer-label" aria-hidden="true">你的答案</span>{question.userAnswer}</td><td><span className="br-answer-label" aria-hidden="true">正确答案</span>{question.correctAnswer}</td></tr>)}</tbody>
         </table></div> : <p className="br-muted">每一次认真阅读，都是向前的一步。</p>}
       </section>
 
-      <section className="br-section br-suggestions" aria-labelledby="br-next-title">
+      <section className="br-section br-suggestions" data-report-part="suggestions" aria-labelledby="br-next-title">
         <h2 id="br-next-title">接下来，可以这样读</h2>
         <ol>{suggestions.map(([title, text], index) => <li key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
       </section>

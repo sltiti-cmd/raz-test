@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import html2canvas from 'html2canvas'
 import ResultReport from '../components/ResultReport'
@@ -15,6 +15,7 @@ export default function ResultPage() {
   const { state } = useLocation()
   const navigate = useNavigate()
   const reportRef = useRef(null)
+  const [exporting, setExporting] = useState(false)
   const { toast, showToast } = useToast()
 
   if (!state) {
@@ -33,22 +34,43 @@ export default function ResultPage() {
   const { result, studentInfo, levelId, testType, testPath } = state
   const retestPath = testPath || `/test/${levelId.toLowerCase()}`
 
-  const handleDownload = async () => {
-    if (!reportRef.current) return
+  const handleDownload = async (part) => {
+    if (!reportRef.current || exporting) return
+    setExporting(true)
     try {
       const canvas = await html2canvas(reportRef.current, {
         scale: 2,
+        windowWidth: 430,
         useCORS: true,
         backgroundColor: '#fffefa',
         logging: false,
+        onclone: (document) => {
+          const page = document.querySelector('.benchmark-result')
+          const report = document.querySelector('.br-report')
+          if (!page || !report) return
+          page.style.padding = '0'
+          page.style.maxWidth = 'none'
+          report.style.boxSizing = 'border-box'
+          report.style.width = '430px'
+          report.style.maxWidth = 'none'
+          report.dataset.exportView = part
+          if (part === 'detail') {
+            report.querySelector('.br-heading .bm-eyebrow').textContent = 'ANSWER REVIEW'
+            report.querySelector('.br-heading h1').textContent = '错题明细'
+          }
+        },
       })
       const link = document.createElement('a')
-      link.download = `RAZ${levelId}级报告_${studentInfo.name}_${studentInfo.date}.png`
+      const safeName = String(studentInfo.name || '学生').replace(/[\\/:*?"<>|]/g, '_')
+      const safeDate = String(studentInfo.date || '').replace(/[\\/:*?"<>|]/g, '_')
+      link.download = `RAZ${levelId}级${part === 'detail' ? '错题明细' : '报告概览'}_${safeName}_${safeDate}.png`
       link.href = canvas.toDataURL('image/png')
       link.click()
-      showToast('报告图片已下载 ✓')
+      showToast(`${part === 'detail' ? '错题明细' : '报告概览'}已下载 ✓`)
     } catch {
       showToast('下载失败，请截图保存', 'error')
+    } finally {
+      setExporting(false)
     }
   }
 
@@ -85,8 +107,11 @@ export default function ResultPage() {
               <button onClick={handleCopyText} className="report-action-btn">
                 ▤ 复制文字
               </button>
-              <button onClick={handleDownload} className="report-action-btn primary">
-                ↓ 下载报告
+              <button onClick={() => handleDownload('overview')} disabled={exporting} className="report-action-btn primary">
+                ↓ 下载概览
+              </button>
+              <button onClick={() => handleDownload('detail')} disabled={exporting} className="report-action-btn">
+                ↓ 下载错题
               </button>
             </div>
           </div>
@@ -103,8 +128,11 @@ export default function ResultPage() {
         </ResultReport>
 
         <div className="report-bottom-actions">
-          <button onClick={handleDownload} className="report-bottom-btn primary">
-            ↓ 下载报告
+          <button onClick={() => handleDownload('overview')} disabled={exporting} className="report-bottom-btn primary">
+            ↓ 下载概览
+          </button>
+          <button onClick={() => handleDownload('detail')} disabled={exporting} className="report-bottom-btn">
+            ↓ 下载错题
           </button>
           <button onClick={handleCopyText} className="report-bottom-btn">
             ▤ 复制文字
